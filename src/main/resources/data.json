@@ -1,0 +1,5303 @@
+[
+  {
+    "id": 4,
+    "name": "AI x BDD：規格驅動全自動開發術",
+    "slug": "ai-bdd",
+    "createdAt": 1757750531447,
+    "skills": [
+      {
+        "id": 1,
+        "name": "Spec By Example"
+      },
+      {
+        "id": 2,
+        "name": "規格化＆SSOT"
+      },
+      {
+        "id": 3,
+        "name": "開發流程原子化"
+      },
+      {
+        "id": 4,
+        "name": "AI 自我審查機制"
+      },
+      {
+        "id": 5,
+        "name": "高效率重構導入"
+      },
+      {
+        "id": 6,
+        "name": "原子流程自動化"
+      }
+    ],
+    "chapters": [
+      {
+        "id": 0,
+        "name": "課程介紹＆試聽",
+        "reward": {
+          "exp": 150,
+          "coin": 100,
+          "subscriptionExtensionInDays": 0,
+          "journeyId": 0,
+          "externalRewardDescription": ""
+        },
+        "passwordRequired": false,
+        "lessons": [
+          {
+            "id": 1,
+            "chapterId": 0,
+            "journeyId": 4,
+            "name": "這門課絕對不只是教你寫規格",
+            "premiumOnly": false,
+            "type": "scroll",
+            "createdAt": 1757750531454,
+            "reward": {
+              "exp": 201,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            }
+          },
+          {
+            "id": 8,
+            "chapterId": 0,
+            "journeyId": 4,
+            "name": "Prompt 寶典",
+            "description": "水球軟體學院，只教能扎實落地的思路和 SOP。歡迎下載本課程用到的思路及 SOP圖片，在學習過程中，記得善用 SOP資源來遂步訓練自己的思路，或是使用 SOP來指導他人。",
+            "premiumOnly": true,
+            "type": "scroll",
+            "createdAt": 1759922362681
+          }
+        ],
+        "gyms": []
+      },
+      {
+        "id": 1,
+        "name": "規格驅動開發的前提",
+        "reward": {
+          "exp": 3000,
+          "coin": 12000,
+          "subscriptionExtensionInDays": 0,
+          "journeyId": 0,
+          "externalRewardDescription": ""
+        },
+        "passwordRequired": false,
+        "lessons": [
+          {
+            "id": 1,
+            "chapterId": 1,
+            "journeyId": 4,
+            "name": "課程拆解：規格驅動開發三維大展開",
+            "premiumOnly": true,
+            "type": "video",
+            "createdAt": 1757750531454,
+            "reward": {
+              "exp": 201,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            },
+            "videoLength": "08:33"
+          },
+          {
+            "id": 2,
+            "chapterId": 1,
+            "journeyId": 4,
+            "name": "把規格寫清楚，只是個假議題",
+            "premiumOnly": true,
+            "type": "video",
+            "createdAt": 1757750531454,
+            "reward": {
+              "exp": 201,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            },
+            "videoLength": "07:25"
+          },
+          {
+            "id": 4,
+            "chapterId": 1,
+            "journeyId": 4,
+            "name": "不釐清規格，AI 開發成效如何？",
+            "premiumOnly": true,
+            "type": "video",
+            "createdAt": 1760513139402,
+            "reward": {
+              "exp": 201,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            },
+            "videoLength": "06:32"
+          },
+          {
+            "id": 3,
+            "chapterId": 1,
+            "journeyId": 4,
+            "name": "Discovery → Formulation 魔法實戰",
+            "premiumOnly": true,
+            "type": "video",
+            "createdAt": 1757750531454,
+            "reward": {
+              "exp": 201,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            },
+            "videoLength": "26:48"
+          },
+          {
+            "id": 5,
+            "chapterId": 1,
+            "journeyId": 4,
+            "name": "用模型思維釐清完規格了，AI 開發成效又如何？",
+            "premiumOnly": true,
+            "type": "video",
+            "createdAt": 1760513145069,
+            "reward": {
+              "exp": 201,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            },
+            "videoLength": "12:46"
+          },
+          {
+            "id": 6,
+            "chapterId": 1,
+            "journeyId": 4,
+            "name": "Gherkin Language 模型教學",
+            "premiumOnly": true,
+            "type": "video",
+            "createdAt": 1760513148949,
+            "reward": {
+              "exp": 201,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            },
+            "videoLength": "25:40"
+          },
+          {
+            "id": 7,
+            "chapterId": 1,
+            "journeyId": 4,
+            "name": "【總結】規格驅動開發的前提｜主流工具都做不到",
+            "premiumOnly": true,
+            "type": "video",
+            "createdAt": 1760871117888,
+            "reward": {
+              "exp": 301,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            },
+            "videoLength": "15:00"
+          },
+          {
+            "id": 8,
+            "chapterId": 1,
+            "journeyId": 4,
+            "name": "如何存取 SDD.os 原始碼？",
+            "description": "請遵照底下 SOP 進行即可存取 SDD.os 的原始碼",
+            "premiumOnly": true,
+            "type": "scroll",
+            "createdAt": 1760871136713,
+            "reward": {
+              "exp": 0,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            }
+          },
+          {
+            "id": 10,
+            "chapterId": 1,
+            "journeyId": 4,
+            "name": "【回饋問卷】AI x BDD：規格驅動全自動開發術",
+            "premiumOnly": true,
+            "type": "google-form",
+            "createdAt": 1760487478902,
+            "reward": {
+              "exp": 1000,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            }
+          }
+        ],
+        "gyms": []
+      },
+      {
+        "id": 2,
+        "name": "100% 全自動化開發的脈絡：規格的光譜",
+        "reward": {
+          "exp": 3000,
+          "coin": 12000,
+          "subscriptionExtensionInDays": 0,
+          "journeyId": 0,
+          "externalRewardDescription": ""
+        },
+        "passwordRequired": false,
+        "lessons": [
+          {
+            "id": 0,
+            "chapterId": 2,
+            "journeyId": 4,
+            "name": "第二章內容介紹 (Intro)",
+            "premiumOnly": true,
+            "type": "video",
+            "createdAt": 1762074296506,
+            "reward": {
+              "exp": 201,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            },
+            "videoLength": "13:20"
+          },
+          {
+            "id": 9,
+            "chapterId": 2,
+            "journeyId": 4,
+            "name": "第二章：共學回放影片列表",
+            "description": "第二章：共學回放影片列表\n\n課程在預購期間（也就是完整出完課程影片之前）每週二晚上八點，會透過 Zoom （會將 Zoom 報名連結放在 水球軟體學院的 VVIP LINE 社群中）舉行線上的共學活動。\n\n此文件放置所有共學影片的連結。",
+            "premiumOnly": false,
+            "type": "scroll",
+            "createdAt": 1762445732605
+          },
+          {
+            "id": 4,
+            "chapterId": 2,
+            "journeyId": 4,
+            "name": "領域驅動設計：沒有「抽象」就沒法「協作」",
+            "description": "各位*規格驅動全自動開發術*的魔法初學者們好！\n\n在第一章，我們建立了規格驅動開發的前提：**規格要能夠精準翻譯成測試程式**，然後把測試程式透過自動化測試工具作為 AI 的自動審查機制，讓 AI 能夠自行修 code、自行 debug，直到所有測試通過為止。\n\n但這只是開頭而已。\n\n當你開始寫規格時，你會發現一個更深層的問題：**如何讓不同角色的人看懂同一份規格？**",
+            "premiumOnly": true,
+            "type": "scroll",
+            "createdAt": 1757750531454,
+            "reward": {
+              "exp": 201,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            }
+          },
+          {
+            "id": 5,
+            "chapterId": 2,
+            "journeyId": 4,
+            "name": "事件風暴模型：貫穿問題及解法領域 - 規格的共同語言",
+            "description": "這個單元中，我來教你一個很重要的思維。\n\n記得之前說的模型思維吧？只要有模型襯底，釐清規格就是一件簡單的事。\n\n那要從什麼模型下手，我們才能快速把整個翻譯鏈無論是向 Problem Domain 或是 Solution Domain 打通呢？\n\n答案就是：「事件風暴」的流程模型囉！\n",
+            "premiumOnly": true,
+            "type": "scroll",
+            "createdAt": 1757750531454,
+            "reward": {
+              "exp": 201,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            }
+          },
+          {
+            "id": 7,
+            "chapterId": 2,
+            "journeyId": 4,
+            "name": "用「事件風暴」來定義「Gherkin」的 Given/When/Then",
+            "description": "在上一個單元中，我們建立了 Event Storming 的兩種系統邊界模型：\n\n1. **修改型操作（Command Operation）**\n2. **查詢型操作（Query Operation）**\n\n這兩個模型很強大，它們讓業務人員和工程師能在同一個模型上協作。但是啊，這些模型還不是可執行規格，它們還只是圖、討論的結果。\n\n\u003E **Event Storming → Gherkin 的翻譯，就是把「團隊的共同語言」轉化成「機器可執行的測試規格」，這就是規格驅動開發的核心精神。**\n\n那麼問題來了：我們要如何把這個系統邊界模型，翻譯成可執行的 Gherkin Feature Files？\n\n這就是本單元要探討的內容。",
+            "premiumOnly": true,
+            "type": "scroll",
+            "createdAt": 1757750531454,
+            "reward": {
+              "exp": 201,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            }
+          },
+          {
+            "id": 8,
+            "chapterId": 2,
+            "journeyId": 4,
+            "name": "測試程式碼的抽象：DSL-Level Gherkin vs. ISA-Level Gherkin",
+            "description": "如果你現在跟 AI 說：「請你幫我從這個 DSL-Level 的 Feature File 規格生成測試程式碼」的話，會發生什麼事情？\n\n那當然，**AI 在把 DSL 翻譯成測試程式碼的過程中一定會有腦補的，因為 DSL-Level Gherkin 的語法還是太高階了，無法直接映射到技術的實作上**。\n\nAI 並不會回過頭向你澄清技術問題，它會「自行隨意腦補」技術實作細節，然後給你一個看似合理、但可能完全不符合你系統架構的測試程式碼。",
+            "premiumOnly": true,
+            "type": "scroll",
+            "createdAt": 1757750531454,
+            "reward": {
+              "exp": 201,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            }
+          }
+        ],
+        "gyms": [
+          {
+            "id": 1,
+            "chapterId": 2,
+            "journeyId": 4,
+            "code": "1",
+            "name": "60% 自動化：AI 協作式開發的低效率",
+            "description": "使用協作式的方法",
+            "type": "CHALLENGE",
+            "difficulty": 1,
+            "createdAt": 1757750531459,
+            "reward": {
+              "exp": 2000,
+              "coin": 6000,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            },
+            "challenges": [
+              {
+                "id": 1,
+                "type": "PRACTICAL_CHALLENGE",
+                "name": "60% 自動化：AI 協作式開發的低效率",
+                "recommendDurationInDays": 14,
+                "maxDurationInDays": 14
+              }
+            ],
+            "relatedLessonIds": [
+              "1_1",
+              "1_2",
+              "1_3",
+              "2_4",
+              "2_5",
+              "2_6",
+              "2_7",
+              "2_8",
+              "2_9"
+            ]
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "name": "70% 自動化：測試驅動開發",
+        "reward": {
+          "exp": 3000,
+          "coin": 12000,
+          "subscriptionExtensionInDays": 0,
+          "journeyId": 0,
+          "externalRewardDescription": ""
+        },
+        "passwordRequired": false,
+        "lessons": [
+          {
+            "id": 10,
+            "chapterId": 3,
+            "journeyId": 4,
+            "name": "TDD 循環基礎概念：先畫靶後射箭",
+            "description": "\n各位規格驅動全自動開發術的魔法初學者們好！\n\n在前面的章節中，我們學會了如何用 Event Storming 建立系統邊界模型，並將它翻譯成 Gherkin 規格。現在你手上已經有了一份完整的 DSL-level Feature File，接下來要做什麼？\n\n**直接把規格丟給 AI，請它一次全部開發出來？**\n\n不，這不是可靠的工程方法。\n\n**如果你不懂開發流程，你就無法有效地切分任務，也就無法駕馭 AI 進行高品質開發。**\n\n這就是為什麼我們要學習 **AI x 測試驅動開發（AI x Test-Driven Development, AI x TDD）**。",
+            "premiumOnly": true,
+            "type": "scroll",
+            "createdAt": 1757750531454,
+            "reward": {
+              "exp": 201,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            }
+          },
+          {
+            "id": 11,
+            "chapterId": 3,
+            "journeyId": 4,
+            "name": "從 Gherkin 到測試程式碼：事件風暴部位的直接翻譯",
+            "description": "各位規格驅動全自動開發術的魔法初學者們好！\n\n上一個單元學完 TDD 的三步驟（Red-Green-Refactor），現在你知道要先寫測試了。但問題來了：\n\n**你會寫測試嗎？從 Gherkin 規格要怎麼翻譯成測試程式碼？**\n\n這就是本單元要解決的核心問題！水球我會教你如何用**映射思維**（意思就是...照著規則對應翻譯就對了），輕鬆將 Gherkin 語句轉換成高品質的測試程式碼。\n\n在第二章「事件風暴 → Gherkin」的翻譯中，我們已經完成了從事件風暴部位（Aggregate、Command、Query、Event）到 Gherkin 語句的精準映射。\n\n那麼，在「Gherkin → 測試程式碼」這一步，咱們就能直接從 Gherkin 識別事件風暴部位，然後一步到位翻譯成測試程式碼。\n",
+            "premiumOnly": true,
+            "type": "scroll",
+            "createdAt": 1757750531454,
+            "reward": {
+              "exp": 201,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            }
+          },
+          {
+            "id": 12,
+            "chapterId": 3,
+            "journeyId": 4,
+            "name": "AI x TDD：4 大 Prompts 手把手實戰篇",
+            "description": "大家好，接下來的這個單元啊，就要手把手帶各位來實戰練功了！\n練什麼功？\n\n那當然就是我們要來學習，如何與 AI 協作，來做到「超快速」的 AI x 測試驅動開發了。\n\n在前幾個單元中，我們都還只是學習「測試驅動開發」的開發流程以及指導，讓你了解測試程式碼怎麼寫，TDD 三步驟循環怎麼做，最小增量開發是什麼感覺。\n",
+            "premiumOnly": true,
+            "type": "scroll",
+            "createdAt": 1757750531454,
+            "reward": {
+              "exp": 201,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            }
+          },
+          {
+            "id": 13,
+            "chapterId": 3,
+            "journeyId": 4,
+            "name": "AI x TDD：從單元測試到後端 End to End 測試驅動開發",
+            "description": "AI x TDD：從單元測試到後端 End to End 測試驅動開發",
+            "premiumOnly": true,
+            "type": "scroll",
+            "createdAt": 1757750531454,
+            "reward": {
+              "exp": 201,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            }
+          },
+          {
+            "id": 14,
+            "chapterId": 3,
+            "journeyId": 4,
+            "name": "AI x TDD：掌握進階測試技巧 (Mock)",
+            "description": "AI x TDD：掌握進階測試技巧 (Mock)",
+            "premiumOnly": true,
+            "type": "scroll",
+            "createdAt": 1757750531454,
+            "reward": {
+              "exp": 201,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            }
+          }
+        ],
+        "gyms": [
+          {
+            "id": 2,
+            "chapterId": 3,
+            "journeyId": 4,
+            "code": "2",
+            "name": "70% 自動化：測試驅動開發",
+            "description": "用 AI x TDD 開發一個 CLI 應用",
+            "type": "CHALLENGE",
+            "difficulty": 1,
+            "createdAt": 1757750531459,
+            "reward": {
+              "exp": 3000,
+              "coin": 6000,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            },
+            "challenges": [
+              {
+                "id": 1,
+                "type": "PRACTICAL_CHALLENGE",
+                "name": "70% 自動化：測試驅動開發",
+                "recommendDurationInDays": 14,
+                "maxDurationInDays": 14
+              }
+            ],
+            "relatedLessonIds": [
+              "3_10",
+              "3_11",
+              "3_12",
+              "3_13",
+              "3_14",
+              "3_15",
+              "3_16",
+              "3_17"
+            ]
+          }
+        ]
+      },
+      {
+        "id": 4,
+        "name": "80% 自動化：行為驅動開發 (BDD)",
+        "reward": {
+          "exp": 3000,
+          "coin": 12000,
+          "subscriptionExtensionInDays": 0,
+          "journeyId": 0,
+          "externalRewardDescription": ""
+        },
+        "passwordRequired": false,
+        "lessons": [
+          {
+            "id": 18,
+            "chapterId": 4,
+            "journeyId": 4,
+            "name": "AI x TDD 的問題",
+            "premiumOnly": true,
+            "type": "scroll",
+            "createdAt": 1757750531454,
+            "reward": {
+              "exp": 201,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            }
+          },
+          {
+            "id": 19,
+            "chapterId": 4,
+            "journeyId": 4,
+            "name": "行為驅動開發 (BDD)：概念及 SOP",
+            "premiumOnly": true,
+            "type": "scroll",
+            "createdAt": 1757750531454,
+            "reward": {
+              "exp": 201,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            }
+          },
+          {
+            "id": 20,
+            "chapterId": 4,
+            "journeyId": 4,
+            "name": "人工 BDD 實戰示範",
+            "premiumOnly": true,
+            "type": "scroll",
+            "createdAt": 1757750531454,
+            "reward": {
+              "exp": 201,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            }
+          },
+          {
+            "id": 21,
+            "chapterId": 4,
+            "journeyId": 4,
+            "name": "AI x BDD 實戰示範",
+            "premiumOnly": true,
+            "type": "scroll",
+            "createdAt": 1757750531454,
+            "reward": {
+              "exp": 201,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            }
+          },
+          {
+            "id": 22,
+            "chapterId": 4,
+            "journeyId": 4,
+            "name": "【逆向工程】把測試程式抽象成 Scenario",
+            "premiumOnly": true,
+            "type": "scroll",
+            "createdAt": 1757750531454,
+            "reward": {
+              "exp": 201,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            }
+          },
+          {
+            "id": 23,
+            "chapterId": 4,
+            "journeyId": 4,
+            "name": "【逆向工程】多個 Scenario 聚成一條 Rule",
+            "premiumOnly": true,
+            "type": "scroll",
+            "createdAt": 1757750531454,
+            "reward": {
+              "exp": 201,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            }
+          },
+          {
+            "id": 24,
+            "chapterId": 4,
+            "journeyId": 4,
+            "name": "【逆向工程】為每一個 Rule 舉出多個 Examples",
+            "premiumOnly": true,
+            "type": "scroll",
+            "createdAt": 1757750531454,
+            "reward": {
+              "exp": 201,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            }
+          },
+          {
+            "id": 25,
+            "chapterId": 4,
+            "journeyId": 4,
+            "name": "AI 輔助逆向工程",
+            "premiumOnly": true,
+            "type": "scroll",
+            "createdAt": 1757750531454,
+            "reward": {
+              "exp": 201,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            }
+          },
+          {
+            "id": 26,
+            "chapterId": 4,
+            "journeyId": 4,
+            "name": "【不准用 AI】把測試類別抽象成 Feature！",
+            "premiumOnly": true,
+            "type": "scroll",
+            "createdAt": 1757750531454,
+            "reward": {
+              "exp": 201,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            }
+          },
+          {
+            "id": 27,
+            "chapterId": 4,
+            "journeyId": 4,
+            "name": "【正向工程】從 User Story 拆解 Examples：SOP",
+            "premiumOnly": true,
+            "type": "scroll",
+            "createdAt": 1757750531454,
+            "reward": {
+              "exp": 201,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            }
+          },
+          {
+            "id": 28,
+            "chapterId": 4,
+            "journeyId": 4,
+            "name": "【不准用 AI】從 User Story 拆解 Examples：SOP",
+            "premiumOnly": true,
+            "type": "scroll",
+            "createdAt": 1757750531454,
+            "reward": {
+              "exp": 201,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            }
+          },
+          {
+            "id": 29,
+            "chapterId": 4,
+            "journeyId": 4,
+            "name": "AI 輔助 Example Mapping",
+            "premiumOnly": true,
+            "type": "scroll",
+            "createdAt": 1757750531454,
+            "reward": {
+              "exp": 201,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            }
+          },
+          {
+            "id": 30,
+            "chapterId": 4,
+            "journeyId": 4,
+            "name": "【Solution Mapping】切換開發之技術層級 - 從 CLI 變成後端",
+            "premiumOnly": true,
+            "type": "scroll",
+            "createdAt": 1757750531454,
+            "reward": {
+              "exp": 201,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            }
+          },
+          {
+            "id": 31,
+            "chapterId": 4,
+            "journeyId": 4,
+            "name": "Solution Mapping 實戰示範",
+            "premiumOnly": true,
+            "type": "scroll",
+            "createdAt": 1757750531454,
+            "reward": {
+              "exp": 201,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            }
+          },
+          {
+            "id": 32,
+            "chapterId": 4,
+            "journeyId": 4,
+            "name": "總結 1：BDD 就是 可執行規格 + TDD",
+            "premiumOnly": true,
+            "type": "scroll",
+            "createdAt": 1757750531454,
+            "reward": {
+              "exp": 201,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            }
+          },
+          {
+            "id": 33,
+            "chapterId": 4,
+            "journeyId": 4,
+            "name": "總結 2：BDD 的三大環節",
+            "premiumOnly": true,
+            "type": "scroll",
+            "createdAt": 1757750531454,
+            "reward": {
+              "exp": 201,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            }
+          }
+        ],
+        "gyms": [
+          {
+            "id": 3,
+            "chapterId": 4,
+            "journeyId": 4,
+            "code": "3",
+            "name": "80% 自動化：行為驅動開發",
+            "description": "用 AI x BDD 開發一個  MVP 全端應用程式（畫面隨意）",
+            "type": "CHALLENGE",
+            "difficulty": 2,
+            "createdAt": 1757750531459,
+            "reward": {
+              "exp": 4000,
+              "coin": 8000,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            },
+            "challenges": [
+              {
+                "id": 1,
+                "type": "PRACTICAL_CHALLENGE",
+                "name": "80% 自動化：行為驅動開發",
+                "recommendDurationInDays": 14,
+                "maxDurationInDays": 14
+              }
+            ],
+            "relatedLessonIds": [
+              "4_18",
+              "4_19",
+              "4_20",
+              "4_21",
+              "4_22",
+              "4_23",
+              "4_24",
+              "4_25",
+              "4_26",
+              "4_27",
+              "4_28",
+              "4_29",
+              "4_30",
+              "4_31",
+              "4_32",
+              "4_33"
+            ]
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "name": "90% 自動化：指令集架構之可執行規格",
+        "reward": {
+          "exp": 3000,
+          "coin": 12000,
+          "subscriptionExtensionInDays": 0,
+          "journeyId": 0,
+          "externalRewardDescription": ""
+        },
+        "passwordRequired": false,
+        "lessons": [
+          {
+            "id": 34,
+            "chapterId": 5,
+            "journeyId": 4,
+            "name": "BDD 在全自動化 4S 的剩餘問題",
+            "premiumOnly": true,
+            "type": "scroll",
+            "createdAt": 1757750531454,
+            "reward": {
+              "exp": 201,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            }
+          },
+          {
+            "id": 35,
+            "chapterId": 5,
+            "journeyId": 4,
+            "name": "【上帝視角】90% 全自動化開發長怎樣？",
+            "premiumOnly": true,
+            "type": "scroll",
+            "createdAt": 1757750531454,
+            "reward": {
+              "exp": 201,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            }
+          },
+          {
+            "id": 36,
+            "chapterId": 5,
+            "journeyId": 4,
+            "name": "軟體工程是藝術嗎？一項令人落寞的統計問題",
+            "premiumOnly": true,
+            "type": "scroll",
+            "createdAt": 1757750531454,
+            "reward": {
+              "exp": 201,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            }
+          },
+          {
+            "id": 37,
+            "chapterId": 5,
+            "journeyId": 4,
+            "name": "【價值轉型】這世界永遠都會留下一些樂趣給工程師",
+            "premiumOnly": true,
+            "type": "scroll",
+            "createdAt": 1757750531454,
+            "reward": {
+              "exp": 201,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            }
+          },
+          {
+            "id": 38,
+            "chapterId": 5,
+            "journeyId": 4,
+            "name": "【職涯競爭】寫組語的工程師會被取代嗎？不可能",
+            "premiumOnly": true,
+            "type": "scroll",
+            "createdAt": 1757750531454,
+            "reward": {
+              "exp": 201,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            }
+          },
+          {
+            "id": 39,
+            "chapterId": 5,
+            "journeyId": 4,
+            "name": "【上帝視角】那來吧，我們來寫 AI 時代下的組語",
+            "premiumOnly": true,
+            "type": "scroll",
+            "createdAt": 1757750531454,
+            "reward": {
+              "exp": 201,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            }
+          },
+          {
+            "id": 40,
+            "chapterId": 5,
+            "journeyId": 4,
+            "name": "【開發流程原子化】變與不變",
+            "premiumOnly": true,
+            "type": "scroll",
+            "createdAt": 1757750531454,
+            "reward": {
+              "exp": 201,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            }
+          },
+          {
+            "id": 41,
+            "chapterId": 5,
+            "journeyId": 4,
+            "name": "【開發流程原子化】後端程式",
+            "premiumOnly": true,
+            "type": "scroll",
+            "createdAt": 1757750531454,
+            "reward": {
+              "exp": 201,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            }
+          },
+          {
+            "id": 42,
+            "chapterId": 5,
+            "journeyId": 4,
+            "name": "【開發流程原子化】不同場域的原子化",
+            "premiumOnly": true,
+            "type": "scroll",
+            "createdAt": 1757750531454,
+            "reward": {
+              "exp": 201,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            }
+          },
+          {
+            "id": 43,
+            "chapterId": 5,
+            "journeyId": 4,
+            "name": "補齊每一個步驟的 SSOT",
+            "premiumOnly": true,
+            "type": "scroll",
+            "createdAt": 1757750531454,
+            "reward": {
+              "exp": 201,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            }
+          },
+          {
+            "id": 44,
+            "chapterId": 5,
+            "journeyId": 4,
+            "name": "【SSOT】領域驅動設計 (DDD)：模型之間的映射性",
+            "premiumOnly": true,
+            "type": "scroll",
+            "createdAt": 1757750531454,
+            "reward": {
+              "exp": 201,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            }
+          },
+          {
+            "id": 45,
+            "chapterId": 5,
+            "journeyId": 4,
+            "name": "【SSOT】DDD - API 規格自動化產出",
+            "premiumOnly": true,
+            "type": "scroll",
+            "createdAt": 1757750531454,
+            "reward": {
+              "exp": 201,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            }
+          },
+          {
+            "id": 46,
+            "chapterId": 5,
+            "journeyId": 4,
+            "name": "【SSOT】DDD - ERD 規格自動化產出",
+            "premiumOnly": true,
+            "type": "scroll",
+            "createdAt": 1757750531454,
+            "reward": {
+              "exp": 201,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            }
+          },
+          {
+            "id": 47,
+            "chapterId": 5,
+            "journeyId": 4,
+            "name": "【指令集】指令 vs. 語言規格",
+            "premiumOnly": true,
+            "type": "scroll",
+            "createdAt": 1757750531454,
+            "reward": {
+              "exp": 201,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            }
+          },
+          {
+            "id": 48,
+            "chapterId": 5,
+            "journeyId": 4,
+            "name": "【指令集】建立後端程式的 ISA：SOP",
+            "premiumOnly": true,
+            "type": "scroll",
+            "createdAt": 1757750531454,
+            "reward": {
+              "exp": 201,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            }
+          },
+          {
+            "id": 49,
+            "chapterId": 5,
+            "journeyId": 4,
+            "name": "【指令集】建立後端程式的 ISA：實戰",
+            "premiumOnly": true,
+            "type": "scroll",
+            "createdAt": 1757750531454,
+            "reward": {
+              "exp": 201,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            }
+          },
+          {
+            "id": 50,
+            "chapterId": 5,
+            "journeyId": 4,
+            "name": "【會尖叫的架構】超高拓展性的 AI x BDD 測試架構",
+            "premiumOnly": true,
+            "type": "scroll",
+            "createdAt": 1757750531454,
+            "reward": {
+              "exp": 201,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            }
+          },
+          {
+            "id": 51,
+            "chapterId": 5,
+            "journeyId": 4,
+            "name": "【指令集】動態斷言指令：枚舉",
+            "premiumOnly": true,
+            "type": "scroll",
+            "createdAt": 1757750531454,
+            "reward": {
+              "exp": 201,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            }
+          },
+          {
+            "id": 52,
+            "chapterId": 5,
+            "journeyId": 4,
+            "name": "【指令集】動態斷言指令：示範",
+            "premiumOnly": true,
+            "type": "scroll",
+            "createdAt": 1757750531454,
+            "reward": {
+              "exp": 201,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            }
+          },
+          {
+            "id": 53,
+            "chapterId": 5,
+            "journeyId": 4,
+            "name": "【指令集】Auth 指令集怎麼做？",
+            "premiumOnly": true,
+            "type": "scroll",
+            "createdAt": 1757750531454,
+            "reward": {
+              "exp": 201,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            }
+          },
+          {
+            "id": 54,
+            "chapterId": 5,
+            "journeyId": 4,
+            "name": "【指令集】Auth 指令集實戰示範",
+            "premiumOnly": true,
+            "type": "scroll",
+            "createdAt": 1757750531454,
+            "reward": {
+              "exp": 201,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            }
+          },
+          {
+            "id": 55,
+            "chapterId": 5,
+            "journeyId": 4,
+            "name": "【契約測試】微服務之指令集怎麼做？",
+            "premiumOnly": true,
+            "type": "scroll",
+            "createdAt": 1757750531454,
+            "reward": {
+              "exp": 201,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            }
+          },
+          {
+            "id": 56,
+            "chapterId": 5,
+            "journeyId": 4,
+            "name": "【契約測試】微服務之指令集實戰",
+            "premiumOnly": true,
+            "type": "scroll",
+            "createdAt": 1757750531454,
+            "reward": {
+              "exp": 201,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            }
+          },
+          {
+            "id": 57,
+            "chapterId": 5,
+            "journeyId": 4,
+            "name": "【契約測試】微服務之指令集之練習",
+            "premiumOnly": true,
+            "type": "scroll",
+            "createdAt": 1757750531454,
+            "reward": {
+              "exp": 201,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            }
+          },
+          {
+            "id": 58,
+            "chapterId": 5,
+            "journeyId": 4,
+            "name": "【契約測試】用同樣的 SOP 測試 Redis",
+            "premiumOnly": true,
+            "type": "scroll",
+            "createdAt": 1757750531454,
+            "reward": {
+              "exp": 201,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            }
+          },
+          {
+            "id": 59,
+            "chapterId": 5,
+            "journeyId": 4,
+            "name": "【契約測試】用同樣的  SOP 測試 AWS S3",
+            "premiumOnly": true,
+            "type": "scroll",
+            "createdAt": 1757750531454,
+            "reward": {
+              "exp": 201,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            }
+          },
+          {
+            "id": 60,
+            "chapterId": 5,
+            "journeyId": 4,
+            "name": "【契約測試】分散式系統指令集實戰",
+            "premiumOnly": true,
+            "type": "scroll",
+            "createdAt": 1757750531454,
+            "reward": {
+              "exp": 201,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            }
+          },
+          {
+            "id": 61,
+            "chapterId": 5,
+            "journeyId": 4,
+            "name": "【指令集】建立前端程式的 ISA",
+            "premiumOnly": true,
+            "type": "scroll",
+            "createdAt": 1757750531454,
+            "reward": {
+              "exp": 201,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            }
+          }
+        ],
+        "gyms": [
+          {
+            "id": 4,
+            "chapterId": 5,
+            "journeyId": 4,
+            "code": "4",
+            "name": "90% 自動化：指令集架構之可執行規格",
+            "description": "用 AI x BDD 開發一個微服務應用程式（畫面隨意）",
+            "type": "CHALLENGE",
+            "difficulty": 3,
+            "createdAt": 1757750531459,
+            "reward": {
+              "exp": 4000,
+              "coin": 8000,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            },
+            "challenges": [
+              {
+                "id": 1,
+                "type": "PRACTICAL_CHALLENGE",
+                "name": "90% 自動化：指令集架構之可執行規格",
+                "recommendDurationInDays": 28,
+                "maxDurationInDays": 28
+              }
+            ],
+            "relatedLessonIds": [
+              "5_34",
+              "5_35",
+              "5_36",
+              "5_37",
+              "5_38",
+              "5_39",
+              "5_40",
+              "5_41",
+              "5_42",
+              "5_43",
+              "5_44",
+              "5_45",
+              "5_46",
+              "5_47",
+              "5_48",
+              "5_49",
+              "5_50",
+              "5_51",
+              "5_52",
+              "5_53",
+              "5_54",
+              "5_55",
+              "5_56",
+              "5_57",
+              "5_58",
+              "5_59",
+              "5_60",
+              "5_61"
+            ]
+          }
+        ]
+      },
+      {
+        "id": 6,
+        "name": "99% 自動化：為企業打造專屬 BDD Master Agent",
+        "reward": {
+          "exp": 3000,
+          "coin": 12000,
+          "subscriptionExtensionInDays": 0,
+          "journeyId": 0,
+          "externalRewardDescription": ""
+        },
+        "passwordRequired": false,
+        "lessons": [
+          {
+            "id": 62,
+            "chapterId": 6,
+            "journeyId": 4,
+            "name": "使用 N8N 自幹一個 BDD Agent",
+            "premiumOnly": true,
+            "type": "scroll",
+            "createdAt": 1757750531454,
+            "reward": {
+              "exp": 201,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            }
+          },
+          {
+            "id": 63,
+            "chapterId": 6,
+            "journeyId": 4,
+            "name": "了解 N8N 基本概念",
+            "premiumOnly": true,
+            "type": "scroll",
+            "createdAt": 1757750531454,
+            "reward": {
+              "exp": 201,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            }
+          },
+          {
+            "id": 64,
+            "chapterId": 6,
+            "journeyId": 4,
+            "name": "快速建立一個 BDD Cycle Workflow",
+            "premiumOnly": true,
+            "type": "scroll",
+            "createdAt": 1757750531454,
+            "reward": {
+              "exp": 201,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            }
+          },
+          {
+            "id": 65,
+            "chapterId": 6,
+            "journeyId": 4,
+            "name": "建立指令組譯器",
+            "premiumOnly": true,
+            "type": "scroll",
+            "createdAt": 1757750531454,
+            "reward": {
+              "exp": 201,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            }
+          },
+          {
+            "id": 66,
+            "chapterId": 6,
+            "journeyId": 4,
+            "name": "打造 Context Engineering 自動化機制",
+            "premiumOnly": true,
+            "type": "scroll",
+            "createdAt": 1757750531454,
+            "reward": {
+              "exp": 201,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            }
+          },
+          {
+            "id": 67,
+            "chapterId": 6,
+            "journeyId": 4,
+            "name": "完成全自動化 BDD Cycle Workflow",
+            "premiumOnly": true,
+            "type": "scroll",
+            "createdAt": 1757750531454,
+            "reward": {
+              "exp": 201,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            }
+          },
+          {
+            "id": 68,
+            "chapterId": 6,
+            "journeyId": 4,
+            "name": "建立 AI Review AI 機制",
+            "premiumOnly": true,
+            "type": "scroll",
+            "createdAt": 1757750531454,
+            "reward": {
+              "exp": 201,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            }
+          },
+          {
+            "id": 69,
+            "chapterId": 6,
+            "journeyId": 4,
+            "name": "使用 Claude Code SDK 自幹一個 BDD Agent",
+            "premiumOnly": true,
+            "type": "scroll",
+            "createdAt": 1757750531454,
+            "reward": {
+              "exp": 201,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            }
+          }
+        ],
+        "gyms": [
+          {
+            "id": 5,
+            "chapterId": 6,
+            "journeyId": 4,
+            "code": "5",
+            "name": "99% 自動化：為企業打造專屬 BDD Master Agent",
+            "description": "自己開發一個 Claude BDD Master Agent",
+            "type": "CHALLENGE",
+            "difficulty": 3,
+            "createdAt": 1757750531459,
+            "reward": {
+              "exp": 5000,
+              "coin": 12000,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            },
+            "challenges": [
+              {
+                "id": 1,
+                "type": "PRACTICAL_CHALLENGE",
+                "name": "99% 自動化：為企業打造專屬 BDD Master Agent",
+                "recommendDurationInDays": 28,
+                "maxDurationInDays": 28
+              }
+            ],
+            "relatedLessonIds": [
+              "6_62",
+              "6_63",
+              "6_64",
+              "6_65",
+              "6_66",
+              "6_67",
+              "6_68",
+              "6_69"
+            ]
+          }
+        ]
+      },
+      {
+        "id": 7,
+        "name": "100% 自動化：超 AI 化",
+        "reward": {
+          "exp": 3000,
+          "coin": 12000,
+          "subscriptionExtensionInDays": 0,
+          "journeyId": 0,
+          "externalRewardDescription": ""
+        },
+        "passwordRequired": false,
+        "lessons": [
+          {
+            "id": 70,
+            "chapterId": 7,
+            "journeyId": 4,
+            "name": "99% 到 100% 的最後一哩路：超 AI 化",
+            "premiumOnly": true,
+            "type": "scroll",
+            "createdAt": 1757750531454,
+            "reward": {
+              "exp": 201,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            }
+          },
+          {
+            "id": 71,
+            "chapterId": 7,
+            "journeyId": 4,
+            "name": "分析每一步指令的空間複雜度",
+            "premiumOnly": true,
+            "type": "scroll",
+            "createdAt": 1757750531454,
+            "reward": {
+              "exp": 201,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            }
+          },
+          {
+            "id": 72,
+            "chapterId": 7,
+            "journeyId": 4,
+            "name": "用枚舉來做到 CodeGen",
+            "premiumOnly": true,
+            "type": "scroll",
+            "createdAt": 1757750531454,
+            "reward": {
+              "exp": 201,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            }
+          },
+          {
+            "id": 73,
+            "chapterId": 7,
+            "journeyId": 4,
+            "name": "整合回 BDD Agent：不到三秒就產出所有測試程式碼",
+            "premiumOnly": true,
+            "type": "scroll",
+            "createdAt": 1757750531454,
+            "reward": {
+              "exp": 201,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            }
+          },
+          {
+            "id": 74,
+            "chapterId": 7,
+            "journeyId": 4,
+            "name": "總結：規格光譜之「指令集架構」",
+            "premiumOnly": true,
+            "type": "scroll",
+            "createdAt": 1757750531454,
+            "reward": {
+              "exp": 201,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            }
+          }
+        ],
+        "gyms": [
+          {
+            "id": 6,
+            "chapterId": 7,
+            "journeyId": 4,
+            "code": "6",
+            "name": "100% 自動化：超 AI 化",
+            "description": "開發一個 CodeGen ",
+            "type": "CHALLENGE",
+            "difficulty": 3,
+            "createdAt": 1757750531459,
+            "reward": {
+              "exp": 5000,
+              "coin": 12000,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            },
+            "challenges": [
+              {
+                "id": 1,
+                "type": "PRACTICAL_CHALLENGE",
+                "name": "100% 自動化：超 AI 化",
+                "recommendDurationInDays": 28,
+                "maxDurationInDays": 28
+              }
+            ],
+            "relatedLessonIds": [
+              "7_70",
+              "7_71",
+              "7_72",
+              "7_73",
+              "7_74"
+            ]
+          }
+        ]
+      },
+      {
+        "id": 8,
+        "name": "全自動化開發 in 敏捷/DevOps",
+        "reward": {
+          "exp": 3000,
+          "coin": 12000,
+          "subscriptionExtensionInDays": 0,
+          "journeyId": 0,
+          "externalRewardDescription": ""
+        },
+        "passwordRequired": false,
+        "lessons": [
+          {
+            "id": 75,
+            "chapterId": 8,
+            "journeyId": 4,
+            "name": "【上帝視角】將 AI x BDD 部署至 CI/CD 之中",
+            "premiumOnly": true,
+            "type": "scroll",
+            "createdAt": 1757750531454,
+            "reward": {
+              "exp": 201,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            }
+          },
+          {
+            "id": 76,
+            "chapterId": 8,
+            "journeyId": 4,
+            "name": "直接部署 Feature file 叫 BDD Master 開發",
+            "premiumOnly": true,
+            "type": "scroll",
+            "createdAt": 1757750531454,
+            "reward": {
+              "exp": 201,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            }
+          },
+          {
+            "id": 77,
+            "chapterId": 8,
+            "journeyId": 4,
+            "name": "Code Review 檢驗重點：非功能性需求",
+            "premiumOnly": true,
+            "type": "scroll",
+            "createdAt": 1757750531454,
+            "reward": {
+              "exp": 201,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            }
+          },
+          {
+            "id": 78,
+            "chapterId": 8,
+            "journeyId": 4,
+            "name": "測試環境的 Feedback Loop",
+            "premiumOnly": true,
+            "type": "scroll",
+            "createdAt": 1757750531454,
+            "reward": {
+              "exp": 201,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            }
+          }
+        ],
+        "gyms": [
+          {
+            "id": 7,
+            "chapterId": 8,
+            "journeyId": 4,
+            "code": "7",
+            "name": "全自動化開發 in 敏捷/DevOps",
+            "description": "導入後端",
+            "type": "CHALLENGE",
+            "difficulty": 3,
+            "createdAt": 1757750531459,
+            "reward": {
+              "exp": 5000,
+              "coin": 12000,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            },
+            "challenges": [
+              {
+                "id": 1,
+                "type": "PRACTICAL_CHALLENGE",
+                "name": "全自動化開發 in 敏捷/DevOps",
+                "recommendDurationInDays": 14,
+                "maxDurationInDays": 14
+              }
+            ],
+            "relatedLessonIds": [
+              "8_75",
+              "8_76",
+              "8_77",
+              "8_78"
+            ]
+          }
+        ]
+      }
+    ],
+    "missions": []
+  },
+  {
+    "id": 3,
+    "name": "軟體設計實戰漫談",
+    "slug": "software-design-talk",
+    "createdAt": 1700348517440,
+    "chapters": [
+      {
+        "id": 1,
+        "name": "開放原始碼設計",
+        "passwordRequired": false,
+        "lessons": [
+          {
+            "id": 1,
+            "chapterId": 1,
+            "journeyId": 3,
+            "name": "淺談如何快速看懂原始碼？用兩種架構思維來切入分析（以 Spring Framework 為例）",
+            "description": "「欸水球！在讀原始碼的時候，總會覺得特別傷眼，一直盯著一堆密密麻麻的程式，而且還會看到一半就忘記自己到底看了什麼。啊，那就更別提要貢獻開源專案了。水球你到底是如何在短時間內準備這份演講的呢？」在 JCConf 我的 “Spring Framework IoC 原始碼設計” 演講結束後，有個會眾的追問！\n\n於是我決定今天來分享一下我認為「快速掌握原始碼設計的必要能力」，而這主要仰賴了「兩種架構式思維」和一套通用框架，以 Spring Framework 的原始碼為例。如果想要高效率地吸收原始碼（理解/分析/歸納洞見）和化為輸出 (貢獻/複刻系統/整合原始碼），那麼可以參考一下我的觀點 😀。",
+            "coverImageUrl": "https://cdn.waterballsa.tw/software-design-talk/content/c1m1/1702195327187-c1m1-cover",
+            "premiumOnly": false,
+            "type": "scroll",
+            "createdAt": 1700350809363
+          }
+        ],
+        "gyms": []
+      },
+      {
+        "id": 2,
+        "name": "SOLID 原則漫談",
+        "passwordRequired": false,
+        "lessons": [
+          {
+            "id": 1,
+            "chapterId": 2,
+            "journeyId": 3,
+            "name": "到底有沒有必要去除 If-Else 來做到開閉原則 (OCP)？",
+            "description": "答案：大多數時候沒有必要！😱\n\n這篇文又要來好好地聊死一門學問，關於「套模式來去除 If-Else」這件事背後的效益分析，實在是有太多學生有同樣的疑惑啦。\n\n本文會完整論述從 If-Else 初衷到 OCP 初衷，再到 OCP 的必要性分析，一直到最後總結出兩句能幫助你判斷 OCP 必要性的咒語。\n",
+            "coverImageUrl": "https://cdn.waterballsa.tw/software-design-talk/content/c2m1/1713073072648-c2m1-cover",
+            "premiumOnly": false,
+            "type": "scroll",
+            "createdAt": 1713041788449
+          }
+        ],
+        "gyms": []
+      }
+    ],
+    "missions": []
+  },
+  {
+    "id": 2,
+    "name": "領域驅動設計 (Domain-Driven Design)",
+    "slug": "ddd",
+    "createdAt": 1696065726350,
+    "chapters": [
+      {
+        "id": 1,
+        "name": "學習日誌",
+        "passwordRequired": false,
+        "lessons": [
+          {
+            "id": 1,
+            "chapterId": 1,
+            "journeyId": 2,
+            "name": "在 Scrum 產品開發生命週期中結合 DDD 的 Knowledge Crunching 儀式，那議程該怎麼跑？",
+            "description": "在 DDD Conf 2023 中，我給出了一場演講【新創到底適不適合走 DDD ？就讓我公司當白老鼠走一次 Scrum x DDD 試試看吧】。\n在其中我提到我們公司在 Scrum 產品開發流程中，結合 DDD 的 Knowledge Crunching 儀式來結合 Scrum 與 DDD。\n\n此文章主要是釋出這份赤裸裸的議程文件，還有很多細節還再慢慢調整，但先公開給想要一起探討的夥伴們。",
+            "coverImageUrl": "https://cdn.waterballsa.tw/domain-driven-design/content/c1m1/1696150496451-c1m1-cover",
+            "premiumOnly": false,
+            "type": "scroll",
+            "createdAt": 1696066456683
+          }
+        ],
+        "gyms": []
+      }
+    ],
+    "missions": []
+  },
+  {
+    "id": 1,
+    "name": "工程師下班職涯快速成長攻略",
+    "slug": "software-career",
+    "createdAt": 1689366770140,
+    "chapters": [
+      {
+        "id": 1,
+        "name": "副本一：職涯攻略的啟程",
+        "passwordRequired": true,
+        "lessons": [
+          {
+            "id": 1,
+            "chapterId": 1,
+            "journeyId": 1,
+            "name": "1.1 這份職涯攻略和你想得很不一樣",
+            "description": "本文章受密碼保護。",
+            "premiumOnly": false,
+            "type": "scroll",
+            "createdAt": 1689369266751
+          },
+          {
+            "id": 2,
+            "chapterId": 1,
+            "journeyId": 1,
+            "name": "1.2 一個的迷茫的輟學生，搖身一變成為一位資深工程師",
+            "description": "本文章受密碼保護。",
+            "premiumOnly": false,
+            "type": "scroll",
+            "createdAt": 1689380283155
+          },
+          {
+            "id": 3,
+            "chapterId": 1,
+            "journeyId": 1,
+            "name": "1.3 定義何謂「職涯攻略」",
+            "description": "本文章受密碼保護。",
+            "premiumOnly": false,
+            "type": "scroll",
+            "createdAt": 1689380481971
+          },
+          {
+            "id": 4,
+            "chapterId": 1,
+            "journeyId": 1,
+            "name": "1.4 職涯 10 項主要問題",
+            "description": "本文章受密碼保護。",
+            "premiumOnly": false,
+            "type": "scroll",
+            "createdAt": 1689380708665
+          },
+          {
+            "id": 5,
+            "chapterId": 1,
+            "journeyId": 1,
+            "name": "1.5 初識「職涯籌碼金字塔」",
+            "description": "本文章受密碼保護。",
+            "premiumOnly": false,
+            "type": "scroll",
+            "createdAt": 1689381337354
+          },
+          {
+            "id": 6,
+            "chapterId": 1,
+            "journeyId": 1,
+            "name": "【解鎖任務】解鎖副本二",
+            "description": "既然這是「下班攻略」，那指的就是下班後的籌碼累積等相關技巧和行動力的投入。\n接下來的任務內容是我會讓各位善用「水球軟體學院」，來遵照職涯籌碼金字塔上的每一個環節去打造自己的區域，教你在大環境中去建立屬於自己的連結和行動力。",
+            "premiumOnly": false,
+            "type": "scroll",
+            "createdAt": 1690802634264
+          }
+        ],
+        "gyms": []
+      },
+      {
+        "id": 2,
+        "name": "附錄：乾貨單篇",
+        "passwordRequired": false,
+        "lessons": [
+          {
+            "id": 1,
+            "chapterId": 2,
+            "journeyId": 1,
+            "name": "征服面試題：「你解決過最困難的問題是什麼？」",
+            "description": "大家在面試時很常問到的一個問題是「你解決過最困難的問題是什麼？」\n󠀠\n今天來聊聊，到底該怎麼樣回答這則問題才能高分過關。\n󠀠\n並且，我認為你必須經歷過底下我提出的四種過程，才算是一位強勁的 Problem-Solver。",
+            "coverImageUrl": "https://cdn.waterballsa.tw/software-career/content/c2m1/1714293067158-c2m1-cover",
+            "premiumOnly": false,
+            "type": "scroll",
+            "createdAt": 1714259766843
+          }
+        ],
+        "gyms": []
+      }
+    ],
+    "missions": []
+  },
+  {
+    "id": 0,
+    "name": "軟體設計模式精通之旅",
+    "slug": "software-design-pattern",
+    "createdAt": 1686609873464,
+    "skills": [
+      {
+        "id": 1,
+        "name": "物件導向分析：\n需求結構化分析"
+      },
+      {
+        "id": 2,
+        "name": "物件導向分析：\n區分結構與行為"
+      },
+      {
+        "id": 3,
+        "name": "物件導向設計：\n抽象/萃取能力"
+      },
+      {
+        "id": 4,
+        "name": "物件導向設計：\n建立 Well-Defined Context"
+      },
+      {
+        "id": 5,
+        "name": "物件導向設計：\n熟悉設計模式的 Form"
+      },
+      {
+        "id": 6,
+        "name": "物件導向程式設計：\n游刃有餘的開發能力"
+      }
+    ],
+    "chapters": [
+      {
+        "id": 0,
+        "name": "副本零：冒險者指引",
+        "reward": {
+          "exp": 0,
+          "coin": 0,
+          "subscriptionExtensionInDays": 0,
+          "journeyId": 0,
+          "externalRewardDescription": ""
+        },
+        "passwordRequired": false,
+        "lessons": [
+          {
+            "id": 7,
+            "chapterId": 0,
+            "journeyId": 0,
+            "name": "平台使用手冊",
+            "description": "平台使用手冊",
+            "premiumOnly": true,
+            "type": "scroll",
+            "createdAt": 1743300085786
+          },
+          {
+            "id": 3,
+            "chapterId": 0,
+            "journeyId": 0,
+            "name": "如何使用課程贊助給大家的專業 UML Editor — Astah Pro？",
+            "description": "使用 Astah Professional\n \u003E你們是正式旅程的菁英冒險者，必須配上最好的武器才行。 學院提供最好的教育服務、武器和內容，剩下的就靠你們了！",
+            "coverImageUrl": "https://cdn.waterballsa.tw/software-design-pattern/content/c0m3/1742893100539-c0m3-cover",
+            "premiumOnly": true,
+            "type": "scroll",
+            "createdAt": 1686609948184
+          },
+          {
+            "id": 8,
+            "chapterId": 0,
+            "journeyId": 0,
+            "name": "SOP 寶典",
+            "description": "水球軟體學院，只教能扎實落地的思路和 SOP。歡迎下載本課程用到的思路及 SOP圖片，在學習過程中，記得善用 SOP資源來遂步訓練自己的思路，或是使用 SOP來指導他人。",
+            "premiumOnly": true,
+            "type": "scroll",
+            "createdAt": 1749447272715
+          }
+        ],
+        "gyms": []
+      },
+      {
+        "id": 1,
+        "name": "副本一：行雲流水的設計底層思路",
+        "reward": {
+          "exp": 3000,
+          "coin": 12000,
+          "subscriptionExtensionInDays": 0,
+          "journeyId": 0,
+          "externalRewardDescription": ""
+        },
+        "passwordRequired": false,
+        "lessons": [
+          {
+            "id": 12,
+            "chapterId": 1,
+            "journeyId": 0,
+            "name": "設計的關鍵是：把無形變有形",
+            "description": "設計的關鍵是：把無形變有形",
+            "premiumOnly": true,
+            "type": "video",
+            "createdAt": 1732689225689,
+            "reward": {
+              "exp": 150,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            },
+            "videoLength": "13:21"
+          },
+          {
+            "id": 13,
+            "chapterId": 1,
+            "journeyId": 0,
+            "name": "UML 不是拿來寫文件用的",
+            "description": "UML 不是拿來寫文件用的",
+            "premiumOnly": true,
+            "type": "video",
+            "createdAt": 1732689435672,
+            "reward": {
+              "exp": 100,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            },
+            "videoLength": "07:07"
+          },
+          {
+            "id": 14,
+            "chapterId": 1,
+            "journeyId": 0,
+            "name": "行雲流水的 OOA | OOD | OOP",
+            "description": "行雲流水的 OOA | OOD | OOP",
+            "premiumOnly": true,
+            "type": "video",
+            "createdAt": 1732689557594,
+            "reward": {
+              "exp": 200,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            },
+            "videoLength": "16:52"
+          },
+          {
+            "id": 15,
+            "chapterId": 1,
+            "journeyId": 0,
+            "name": "上這門課一定要有「空杯心態」",
+            "description": "上這門課一定要有「空杯心態」",
+            "premiumOnly": true,
+            "type": "video",
+            "createdAt": 1732689620580,
+            "reward": {
+              "exp": 100,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            },
+            "videoLength": "05:32"
+          },
+          {
+            "id": 35,
+            "chapterId": 1,
+            "journeyId": 0,
+            "name": "OOA / OOD / OOP 概念複習題",
+            "description": "OOA / OOD / OOP 概念複習題",
+            "premiumOnly": true,
+            "type": "google-form",
+            "createdAt": 1732960176998
+          },
+          {
+            "id": 16,
+            "chapterId": 1,
+            "journeyId": 0,
+            "name": "軟體抽象之一：點的萃取",
+            "description": "軟體抽象之一：點的萃取",
+            "premiumOnly": true,
+            "type": "video",
+            "createdAt": 1732689655627,
+            "reward": {
+              "exp": 200,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            },
+            "videoLength": "19:54"
+          },
+          {
+            "id": 17,
+            "chapterId": 1,
+            "journeyId": 0,
+            "name": "練武 - 點的萃取",
+            "description": "練武 - 點的萃取",
+            "premiumOnly": true,
+            "type": "video",
+            "createdAt": 1732689692850,
+            "reward": {
+              "exp": 150,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            },
+            "videoLength": "14:27"
+          },
+          {
+            "id": 18,
+            "chapterId": 1,
+            "journeyId": 0,
+            "name": "軟體抽象之二：萃取行為及操作",
+            "description": "軟體抽象之二：萃取行為及操作",
+            "premiumOnly": true,
+            "type": "video",
+            "createdAt": 1732689712642,
+            "reward": {
+              "exp": 250,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            },
+            "videoLength": "24:42"
+          },
+          {
+            "id": 19,
+            "chapterId": 1,
+            "journeyId": 0,
+            "name": "軟體抽象之三：線的萃取",
+            "description": "軟體抽象之三：線的萃取",
+            "premiumOnly": true,
+            "type": "video",
+            "createdAt": 1732689739065,
+            "reward": {
+              "exp": 350,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            },
+            "videoLength": "32:47"
+          },
+          {
+            "id": 20,
+            "chapterId": 1,
+            "journeyId": 0,
+            "name": "兩種更強的關聯：聚合＆複合",
+            "description": "兩種更強的關聯：聚合＆複合",
+            "premiumOnly": true,
+            "type": "video",
+            "createdAt": 1732689758214,
+            "reward": {
+              "exp": 150,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            },
+            "videoLength": "13:45"
+          },
+          {
+            "id": 21,
+            "chapterId": 1,
+            "journeyId": 0,
+            "name": "線上的點：關聯類別",
+            "description": "線上的點：關聯類別",
+            "premiumOnly": true,
+            "type": "video",
+            "createdAt": 1732689905182,
+            "reward": {
+              "exp": 150,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            },
+            "videoLength": "10:55",
+            "relatedGymId": "10"
+          },
+          {
+            "id": 22,
+            "chapterId": 1,
+            "journeyId": 0,
+            "name": "軟體抽象之四：區分結構、行為和侷限",
+            "description": "軟體抽象之四：區分結構、行為和侷限",
+            "premiumOnly": true,
+            "type": "video",
+            "createdAt": 1732689921446,
+            "reward": {
+              "exp": 250,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            },
+            "videoLength": "20:42"
+          },
+          {
+            "id": 36,
+            "chapterId": 1,
+            "journeyId": 0,
+            "name": "Astah：類別圖教學",
+            "description": "Astah：類別圖教學",
+            "premiumOnly": true,
+            "type": "video",
+            "createdAt": 1733234593992,
+            "reward": {
+              "exp": 300,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            },
+            "videoLength": "25:07"
+          },
+          {
+            "id": 23,
+            "chapterId": 1,
+            "journeyId": 0,
+            "name": "練武 - 單句分析 （初級）",
+            "description": "練武 - 單句分析 （初級）",
+            "premiumOnly": true,
+            "type": "video",
+            "createdAt": 1732689936928,
+            "reward": {
+              "exp": 450,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            },
+            "videoLength": "40:57"
+          },
+          {
+            "id": 31,
+            "chapterId": 1,
+            "journeyId": 0,
+            "name": "練武 - 單句分析 （進階）",
+            "description": "練武 - 單句分析 （進階）",
+            "premiumOnly": true,
+            "type": "video",
+            "createdAt": 1732955739391,
+            "reward": {
+              "exp": 400,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            },
+            "videoLength": "39:32"
+          },
+          {
+            "id": 24,
+            "chapterId": 1,
+            "journeyId": 0,
+            "name": "OOD 階段一：用行為模型來梳理實作",
+            "description": "OOD 階段一：用行為模型來梳理實作",
+            "premiumOnly": true,
+            "type": "video",
+            "createdAt": 1732689952655,
+            "reward": {
+              "exp": 250,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            },
+            "videoLength": "22:25"
+          },
+          {
+            "id": 37,
+            "chapterId": 1,
+            "journeyId": 0,
+            "name": "用 Astah 循序圖來讓「象棋」領域模型動起來",
+            "description": "用 Astah 循序圖來讓「象棋」領域模型動起來",
+            "premiumOnly": true,
+            "type": "video",
+            "createdAt": 1733234651031,
+            "reward": {
+              "exp": 200,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            },
+            "videoLength": "16:16"
+          },
+          {
+            "id": 26,
+            "chapterId": 1,
+            "journeyId": 0,
+            "name": "OOP 技法一：依賴",
+            "description": "OOP 技法一：依賴",
+            "premiumOnly": true,
+            "type": "video",
+            "createdAt": 1732689984063,
+            "reward": {
+              "exp": 150,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            },
+            "videoLength": "12:33"
+          },
+          {
+            "id": 27,
+            "chapterId": 1,
+            "journeyId": 0,
+            "name": "OOP 技法二：關聯",
+            "description": "OOP 技法二：關聯",
+            "premiumOnly": true,
+            "type": "video",
+            "createdAt": 1732690001354,
+            "reward": {
+              "exp": 350,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            },
+            "videoLength": "32:29"
+          },
+          {
+            "id": 28,
+            "chapterId": 1,
+            "journeyId": 0,
+            "name": "OOP 技法三：關聯類別",
+            "description": "OOP 技法三：關聯類別",
+            "premiumOnly": true,
+            "type": "video",
+            "createdAt": 1732690022335,
+            "reward": {
+              "exp": 250,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            },
+            "videoLength": "20:34",
+            "relatedGymId": "10"
+          },
+          {
+            "id": 29,
+            "chapterId": 1,
+            "journeyId": 0,
+            "name": "OOP 技法四：抽象類別",
+            "description": "OOP 技法四：抽象類別",
+            "premiumOnly": true,
+            "type": "video",
+            "createdAt": 1732690039145,
+            "reward": {
+              "exp": 150,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            },
+            "videoLength": "13:39"
+          },
+          {
+            "id": 38,
+            "chapterId": 1,
+            "journeyId": 0,
+            "name": "OOP 按圖施工（懶人包）",
+            "description": "OOP 按圖施工（懶人包）",
+            "premiumOnly": true,
+            "type": "scroll",
+            "createdAt": 1733465435409
+          },
+          {
+            "id": 25,
+            "chapterId": 1,
+            "journeyId": 0,
+            "name": "OOD 階段二：封裝｜解耦｜萃取",
+            "description": "OOD 階段二：封裝｜解耦｜萃取",
+            "premiumOnly": true,
+            "type": "video",
+            "createdAt": 1732689968856,
+            "reward": {
+              "exp": 300,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            },
+            "videoLength": "27:09",
+            "relatedGymId": "10"
+          }
+        ],
+        "gyms": [
+          {
+            "id": 10,
+            "chapterId": 1,
+            "journeyId": 0,
+            "code": "1",
+            "name": "行雲流水的設計底層思路",
+            "description": "軟體設計的關鍵，永遠都不在「你學過多少學問」，而是在於「你在接收到複雜的需求時」，你到底能不能立刻就知道下一步要幹什麼？\n\n如果知道第一步要做什麼，那才能推出「第二步」，以此類推。\n\n所以你最先需要的是「思路」，而不是「設計模式」，於是第一個道館中，我們只在乎「思路」，而且是「行雲流水的思路」。\n\n而水球所整理的這一套「水球流 OOAD — 迭代式物件導向分析和設計」，就是一種可以立即落地的思路了。\n\n「接收到任意需求時，不求完美一次到位、而求多次行雲流水地交付。」\n\n只要你做得到這件事，我就讓你取得此道館的徽章。",
+            "type": "CHALLENGE",
+            "difficulty": 1,
+            "createdAt": 1686609948184,
+            "reward": {
+              "exp": 500,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            },
+            "challenges": [
+              {
+                "id": 1,
+                "type": "PRACTICAL_CHALLENGE",
+                "name": "Showdown ! 撲克牌遊戲建模 ★",
+                "submissionFields": [
+                  {
+                    "type": "image",
+                    "name": "ooa_uml",
+                    "title": "物件導向分析 (OOA)",
+                    "description": "上傳你的 OOA 領域類別圖"
+                  },
+                  {
+                    "type": "image",
+                    "name": "ood_sequence_diagram",
+                    "title": "循序圖設計 (OOD)",
+                    "description": "上傳你的 OOD 循序圖設計"
+                  },
+                  {
+                    "type": "zip",
+                    "name": "code_files",
+                    "title": "專案壓縮檔",
+                    "description": "請將你專案的原始碼壓縮至 ZIP 中並且上傳。(只包含原始碼檔案就好囉,不要包含編譯後的檔案。)"
+                  }
+                ],
+                "recommendDurationInDays": 14,
+                "maxDurationInDays": 14
+              },
+              {
+                "id": 2,
+                "type": "INSTANT_CHALLENGE",
+                "name": "Uno Card ✭",
+                "submissionFields": [
+                  {
+                    "type": "image",
+                    "name": "ooa_uml",
+                    "title": "物件導向分析 (OOA)",
+                    "description": "上傳你的 OOA 領域類別圖"
+                  },
+                  {
+                    "type": "image",
+                    "name": "ood_sequence_diagram",
+                    "title": "循序圖設計 (OOD)",
+                    "description": "上傳你的 OOD 循序圖設計"
+                  }
+                ],
+                "recommendDurationInDays": 3,
+                "maxDurationInDays": 3
+              },
+              {
+                "id": 3,
+                "type": "INSTANT_CHALLENGE",
+                "name": "處方診斷系統 ✭",
+                "submissionFields": [
+                  {
+                    "type": "image",
+                    "name": "ooa_uml",
+                    "title": "物件導向分析 (OOA)",
+                    "description": "上傳你的 OOA 領域類別圖"
+                  },
+                  {
+                    "type": "image",
+                    "name": "ood_sequence_diagram",
+                    "title": "循序圖設計 (OOD)",
+                    "description": "上傳你的 OOD 循序圖設計"
+                  }
+                ],
+                "recommendDurationInDays": 3,
+                "maxDurationInDays": 3
+              },
+              {
+                "id": 4,
+                "type": "INSTANT_CHALLENGE",
+                "name": "資訊兵主控制器 ✭",
+                "submissionFields": [
+                  {
+                    "type": "image",
+                    "name": "ooa_uml",
+                    "title": "物件導向分析 (OOA)",
+                    "description": "上傳你的 OOA 領域類別圖"
+                  },
+                  {
+                    "type": "image",
+                    "name": "ood_sequence_diagram",
+                    "title": "循序圖設計 (OOD)",
+                    "description": "上傳你的 OOD 循序圖設計"
+                  }
+                ],
+                "recommendDurationInDays": 3,
+                "maxDurationInDays": 3
+              }
+            ],
+            "relatedLessonIds": [
+              "1_12",
+              "1_13",
+              "1_14",
+              "1_15",
+              "1_35",
+              "1_16",
+              "1_17",
+              "1_18",
+              "1_19",
+              "1_20",
+              "1_21",
+              "1_22",
+              "1_36",
+              "1_23",
+              "1_31",
+              "1_24",
+              "1_37",
+              "1_25",
+              "1_26",
+              "1_27",
+              "1_28",
+              "1_29",
+              "1_38"
+            ]
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "name": "副本二：Christopher Alexander 設計模式",
+        "reward": {
+          "exp": 3000,
+          "coin": 12000,
+          "subscriptionExtensionInDays": 0,
+          "journeyId": 0,
+          "externalRewardDescription": ""
+        },
+        "passwordRequired": false,
+        "lessons": [
+          {
+            "id": 30,
+            "chapterId": 2,
+            "journeyId": 0,
+            "name": "前導片：失傳的設計模式",
+            "description": "破除迷思：為什麼四人幫設計模式反而給你添了了更多麻煩？ ",
+            "premiumOnly": true,
+            "type": "video",
+            "createdAt": 1733293973175,
+            "reward": {
+              "exp": 150,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            },
+            "videoLength": "14:19"
+          },
+          {
+            "id": 31,
+            "chapterId": 2,
+            "journeyId": 0,
+            "name": "架構師該學的 C.A. 模式六大要素及模式思維",
+            "description": "思維升級：Christopher Alexander 模式六大要素及模式語言",
+            "premiumOnly": true,
+            "type": "video",
+            "createdAt": 1733294001561,
+            "reward": {
+              "exp": 350,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            },
+            "videoLength": "31:01"
+          },
+          {
+            "id": 2,
+            "chapterId": 2,
+            "journeyId": 0,
+            "name": "軟體設計模式觀念複習",
+            "description": "歡迎各位來到了要打通各位韌度二脈的副本——軟體設計模式。「軟體設計學」博大精深，如同去欣賞一棟建築物的品質般如此抽象又主觀，而從主觀背後的邏輯中萃取出理論便是每一門學說最大的目的。我們精通這些理論，正是為了能夠有效且理性的方式來去欣賞更多不同的軟體設計、並且做出良好的設計決策，而非總是被自身的直覺和經驗牽著鼻子走。",
+            "premiumOnly": true,
+            "type": "google-form",
+            "createdAt": 1686609948184,
+            "reward": {
+              "exp": 100,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            }
+          },
+          {
+            "id": 3,
+            "chapterId": 2,
+            "journeyId": 0,
+            "name": "你必須了解何謂「萃取」 (Abstract)｜抽象類別 vs. 介面",
+            "description": "我們曾在 OOA 中提過抽象類別 (Abstract Class) 的概念：我們之所以將一個類別定義為「抽象」，主要是因為 「此類別具備著抽象的動作/操作 (Abstract operation)」。如果該類別不具備任何抽象動作，則你目前還沒有十足的理由將此類別宣告為抽象類。\n\n進入到物件導向設計 (Object-Oriented Design, OOD) 階段之後，我們就要開始在類別圖中認識一項新的設計元素：介面 (Interface）。\n\n所以，我們用一篇文章和一則簡單案例的時間來理解「抽象類別」和「介面」之間的差異吧！",
+            "premiumOnly": true,
+            "type": "scroll",
+            "createdAt": 1686609948184
+          },
+          {
+            "id": 4,
+            "chapterId": 2,
+            "journeyId": 0,
+            "name": "景點 - 策略模式｜基礎水平行為擴充",
+            "description": "各位冒險者，準備好要學習第一個設計模式了嗎？ 不管你已經聽過多少次「策略模式」的概念，這支影片都保證會刷新你的三觀！",
+            "coverImageUrl": "https://cdn.waterballsa.tw/software-design-pattern/content/c2m4/1699078655841-c2m4-cover",
+            "premiumOnly": true,
+            "type": "video",
+            "createdAt": 1686609948184,
+            "reward": {
+              "exp": 100,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            },
+            "videoLength": "18:16",
+            "relatedGymId": "2_6"
+          },
+          {
+            "id": 5,
+            "chapterId": 2,
+            "journeyId": 0,
+            "name": "複習 - 策略模式",
+            "description": "歡迎進入到策略模式的挑戰題！第一個模式特別重要！我們來做一點思維上的練習，然後再來進入實作題吧！",
+            "premiumOnly": true,
+            "type": "google-form",
+            "difficulty": 1,
+            "createdAt": 1686609948184,
+            "reward": {
+              "exp": 100,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            }
+          },
+          {
+            "id": 8,
+            "chapterId": 2,
+            "journeyId": 0,
+            "name": "景點 - 樣板方法｜留同存異的萃取能力",
+            "description": "樣板方法模式是一種行為型設計模式，它提供了一個演算法的框架，將演算法的結構和某些步驟的實現延遲到子類中。樣板方法的目的是提供一個共用的演算法框架，使得不同的子類可以根據自己的需求進行具體的實現。\n\n 這樣做的好處是避免了代碼重複，提高了代碼的可維護性和可擴展性。同時，樣板方法還使得演算法的結構更清晰，易於理解和修改。",
+            "coverImageUrl": "https://cdn.waterballsa.tw/software-design-pattern/content/c2m8/1699078717081-c2m8-cover",
+            "premiumOnly": true,
+            "type": "video",
+            "createdAt": 1686609948184,
+            "reward": {
+              "exp": 100,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            },
+            "videoLength": "19:06",
+            "relatedGymId": "2_11"
+          },
+          {
+            "id": 29,
+            "chapterId": 2,
+            "journeyId": 0,
+            "name": "用樣板方法來實現「控制反轉」",
+            "description": "萃取樣板，就是最小的控制反轉",
+            "premiumOnly": true,
+            "type": "video",
+            "createdAt": 1732957968517,
+            "reward": {
+              "exp": 250,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            },
+            "videoLength": "22:02"
+          },
+          {
+            "id": 9,
+            "chapterId": 2,
+            "journeyId": 0,
+            "name": "複習 - 樣板方法",
+            "description": "樣板方法——寫一個牌類遊戲框架吧！\n「技術框架正是樣板方法的集成。」\n樣板方法是最簡單的模式，但卻是技術框架中最重要的設計。\n\n樣板方法的實作題難上了許多，是時候善用旅團中的全力來一同過關斬將了！",
+            "premiumOnly": true,
+            "type": "google-form",
+            "createdAt": 1686609948184,
+            "reward": {
+              "exp": 100,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            }
+          },
+          {
+            "id": 10,
+            "chapterId": 2,
+            "journeyId": 0,
+            "name": "樣板思維暖身帖",
+            "description": "在這一份樣板方法特訓帖中，我會透過兩道循序漸進的題目，來讓你好好地暖一暖你的樣板思維。\n\n 小試身手：提取樣板方法 — 去除重複程式碼\n\n 給予以下兩個類別，程式碼的意圖被我刻意使用雜亂的命名掩飾掉了，明眼人可能一下就看出兩個類別在做什麼，但是為了鍛鍊你的萃取能力，你暫時只需要關注在程式碼本身就行。\n\n 這一題小試身手就是：你必須套用樣板方法來完全去除兩個類別中所有重複的程式碼。",
+            "premiumOnly": true,
+            "type": "scroll",
+            "createdAt": 1686609948184
+          },
+          {
+            "id": 13,
+            "chapterId": 2,
+            "journeyId": 0,
+            "name": "景點 - 責任鏈模式｜解析後水平行為擴充",
+            "description": "「責任鏈上的每個物件，就像公司中那些本位主義的員工，不在其位，不謀其政。有了責任鏈之後，老闆只須發號施令就行了，不再關心究竟責任會落到誰的身上。」\n\n 責任鏈模式透過優雅的依賴注入，讓需求處理者一個串著一個， 在許多專案中，常常最有生產力價值的——就是這條責任鏈，因為他支撐起了整個專案的擴充性。\n\n 走吧！",
+            "coverImageUrl": "https://cdn.waterballsa.tw/software-design-pattern/content/c2m13/1699078820312-c2m13-cover",
+            "premiumOnly": false,
+            "type": "video",
+            "createdAt": 1686609948184,
+            "reward": {
+              "exp": 100,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            },
+            "videoLength": "26:51",
+            "relatedGymId": "2_15"
+          },
+          {
+            "id": 14,
+            "chapterId": 2,
+            "journeyId": 0,
+            "name": "複習 - 責任鏈模式",
+            "description": "責任鏈模式—— 讓功能由少變多的模式啊！\n\n 這是副本二的最後一個任務了！學院也不私藏地在體驗旅程中就將其中一個能夠有效改變思維的模式贈送給大家了！責任鏈模式一下子的就擴大了軟體擴充的各種可能，但在套用時一定要冷靜地察覺清楚 Forces，要不然你有可能會淪為「看到 if-else 就想套用模式」的錯誤觀念唷！",
+            "premiumOnly": true,
+            "type": "google-form",
+            "createdAt": 1686609948184,
+            "reward": {
+              "exp": 100,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            }
+          },
+          {
+            "id": 19,
+            "chapterId": 2,
+            "journeyId": 0,
+            "name": "開閉原則 (Open-Closed Principle)",
+            "description": "第一個該學的SOLID原則：開閉原則 (Open-Closed Principle)\nSOLID到底重不重要嗎？\n「開閉原則 (Open-Closed Principle)」是軟體設計原則SOLID Principle中提出的一項原則。\n\n大家應該在寫程式之後，最常聽到的原則應該就是\"SOLID\"了。 不過呀，SOLID就是最典型的「易學難精」的知識，有八成的夥伴在職場上，其實都聽過好多次SOLID了， 但仍會礙於實務經驗的不足，而即便聽了多年，也都無法真正理解原則背後最在乎的事情。",
+            "premiumOnly": true,
+            "type": "scroll",
+            "createdAt": 1686609948184
+          },
+          {
+            "id": 27,
+            "chapterId": 2,
+            "journeyId": 0,
+            "name": "精準區分策略＆責任鏈 Forces",
+            "description": "策略 vs. 責任鏈 Forces ",
+            "premiumOnly": true,
+            "type": "video",
+            "createdAt": 1732957393064,
+            "reward": {
+              "exp": 300,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            },
+            "videoLength": "26:20"
+          },
+          {
+            "id": 28,
+            "chapterId": 2,
+            "journeyId": 0,
+            "name": "練武 - 精準區分策略＆責任鏈 Forces",
+            "description": "練武 - 三種基礎行為 Forces",
+            "premiumOnly": true,
+            "type": "video",
+            "createdAt": 1732957405044,
+            "reward": {
+              "exp": 450,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            },
+            "videoLength": "43:19"
+          },
+          {
+            "id": 23,
+            "chapterId": 2,
+            "journeyId": 0,
+            "name": "補帖 - 無招勝有招：依賴反轉之重構三步驟",
+            "description": "練武 - 依賴反轉之重構三步驟",
+            "premiumOnly": true,
+            "type": "video",
+            "createdAt": 1732957225831,
+            "reward": {
+              "exp": 300,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            },
+            "videoLength": "25:28"
+          }
+        ],
+        "gyms": [
+          {
+            "id": 6,
+            "chapterId": 2,
+            "journeyId": 0,
+            "code": "2",
+            "name": "Christopher Alexander：設計模式",
+            "description": "在學完 OOAD 之後，你已經掌握了設計的關鍵「有形的思考」，那麼接下來呢？\n\n「要成為設計的高手，顯然這裡就是入口。」\n\n我們即將在這個道館中學習 Christopher Alexander 的模式思維，結合 OOADP 的框架，將 Alexander 的模式思維落地到軟體領域中。\n\n「最好的設計是『剛剛好』的設計，而不是漂亮和浮誇的設計。」\n\nChristopher Alexander 的模式思維，將進一步地帶領你掌握「減法設計」。\n\n「我們不再做出複雜化或是浮誇的設計，而是用心察覺設計上的約束，並精準解決問題。」\n\n在本道館的單元中，我就會教你如何用 「察覺 Forces → 辨識衝突的 Forces → 定義 Problem → 精準辨識要套用的 Pattern → 套用 Pattern 得到新版的類別圖」來獲得最剛好的設計。\n\n「Forces」正是帶領我們做出更細膩設計推理的關鍵，但同時 Forces 對新手而言也比較抽象，需要一定時間的感受才能掌握精髓。\n\n所以在這個道館中，你的目標很簡單，就是「盡可能的模仿水球我的思維」。\n\n先不要想太多，先盡情地模仿我，模仿了一次、兩次、三次，幾乎所有學員都是模仿到了第四次之後，就能開始舉一反三、超脫框架。\n\n來試試看你能模仿到什麼程度吧！\n\n注意，如果你的 OOAD 類別圖中「沒有模仿我的設計思路」，那就會直接挑戰失敗唷。",
+            "type": "CHALLENGE",
+            "difficulty": 1,
+            "createdAt": 1686609948184,
+            "reward": {
+              "exp": 300,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            },
+            "challenges": [
+              {
+                "id": 1,
+                "type": "PRACTICAL_CHALLENGE",
+                "name": "實作交友配對系統 ★",
+                "submissionFields": [
+                  {
+                    "type": "image",
+                    "name": "ooa_uml",
+                    "title": "物件導向分析 (OOA)",
+                    "description": "上傳你的 OOA 領域類別圖"
+                  },
+                  {
+                    "type": "image",
+                    "name": "ood_sequence_diagram",
+                    "title": "循序圖設計 (OOD)",
+                    "description": "上傳你的 OOD 循序圖設計"
+                  },
+                  {
+                    "type": "image",
+                    "name": "ood_uml",
+                    "title": "物件導向設計 (OOD)",
+                    "description": "上傳你的 OOD 類別圖"
+                  },
+                  {
+                    "type": "zip",
+                    "name": "code_files",
+                    "title": "專案壓縮檔",
+                    "description": "請將你專案的原始碼壓縮至 ZIP 中並且上傳。(只包含原始碼檔案就好囉,不要包含編譯後的檔案。)"
+                  }
+                ],
+                "recommendDurationInDays": 7,
+                "maxDurationInDays": 14
+              },
+              {
+                "id": 2,
+                "type": "INSTANT_CHALLENGE",
+                "name": "RPG ✭",
+                "submissionFields": [
+                  {
+                    "type": "image",
+                    "name": "ooa_uml",
+                    "title": "物件導向分析 (OOA)",
+                    "description": "上傳你的 OOA 領域類別圖"
+                  },
+                  {
+                    "type": "image",
+                    "name": "ood_sequence_diagram",
+                    "title": "循序圖設計 (OOD)",
+                    "description": "上傳你的 OOD 循序圖設計"
+                  },
+                  {
+                    "type": "image",
+                    "name": "ood_uml",
+                    "title": "物件導向設計 (OOD)",
+                    "description": "上傳你的 OOD 類別圖"
+                  }
+                ],
+                "recommendDurationInDays": 3,
+                "maxDurationInDays": 3
+              },
+              {
+                "id": 3,
+                "type": "INSTANT_CHALLENGE",
+                "name": "導航系統 ✭",
+                "submissionFields": [
+                  {
+                    "type": "image",
+                    "name": "ooa_uml",
+                    "title": "物件導向分析 (OOA)",
+                    "description": "上傳你的 OOA 領域類別圖"
+                  },
+                  {
+                    "type": "image",
+                    "name": "ood_sequence_diagram",
+                    "title": "循序圖設計 (OOD)",
+                    "description": "上傳你的 OOD 循序圖設計"
+                  },
+                  {
+                    "type": "image",
+                    "name": "ood_uml",
+                    "title": "物件導向設計 (OOD)",
+                    "description": "上傳你的 OOD 類別圖"
+                  }
+                ],
+                "recommendDurationInDays": 3,
+                "maxDurationInDays": 3
+              }
+            ],
+            "relatedLessonIds": [
+              "2_30",
+              "2_31",
+              "2_2",
+              "2_3",
+              "2_4",
+              "2_23",
+              "2_5"
+            ]
+          },
+          {
+            "id": 11,
+            "chapterId": 2,
+            "journeyId": 0,
+            "code": "3",
+            "name": "掌握「樣板方法」：最基礎的控制反轉",
+            "description": "走到了這裡，就代表你已經學會了「Christopher Alexander 設計模式」以及第一則最最最基礎的「策略模式」了，對吧？\n\n什麼？你覺得策略模式的 Form 很簡單？\n哈哈，那是當然的，這可是最基礎的設計模式。\n\n但最重要的是，你的思路是否有因此成長？\n\n記得，這門課主張「設計要客觀」且「有憑有據」，所以你千萬不要小看你所學的第一個模式，其實你正在學的並不是「怎麼套策略模式」，而是如何有憑有據地：「察覺 Forces、定義 Problem，並一步一步地做依賴反轉，來形塑出策略模式」。\n在套用策略模式時，每一個步驟都要盡可能客觀、有憑有據，以及關注點分離，才能形塑出最精準的策略模式的套用結果。\n\n這就是為什麼我們的每一部設計模式的觀光景點中，都會用逐步推理的方式來分析、思考和套用模式。\n而為了讓你好上手這種思路，我特地選了最基礎的策略模式來讓你小試身手呢。\n\n我們再練習一次吧，這一次，我們要學的不是策略模式，而是在套用完策略模式之後，你很有可能會想要接著套用的「樣板方法」。\n\n在學新的設計模式的時候，同時也會學到「新的 Force」。通常這個訓練過程要反覆三次以上，就會能夠舉一反三。\n\n那麼，這次你的目標一樣也是盡可能在 OOAD 時模仿我影片中的思路，那麼來吧，歡迎你來挑戰道館三！",
+            "type": "CHALLENGE",
+            "difficulty": 2,
+            "createdAt": 1686609948184,
+            "reward": {
+              "exp": 500,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            },
+            "challenges": [
+              {
+                "id": 1,
+                "type": "PRACTICAL_CHALLENGE",
+                "name": "寫一個牌類遊戲框架！ ★★",
+                "submissionFields": [
+                  {
+                    "type": "image",
+                    "name": "ooa_uml",
+                    "title": "物件導向分析 (OOA)",
+                    "description": "上傳你的 OOA 領域類別圖"
+                  },
+                  {
+                    "type": "image",
+                    "name": "ood_uml",
+                    "title": "物件導向設計 (OOD)",
+                    "description": "上傳你的 OOD 類別圖"
+                  },
+                  {
+                    "type": "image",
+                    "name": "ood_sequence_diagram",
+                    "title": "循序圖設計 (OOD)",
+                    "description": "上傳你的 OOD 循序圖設計"
+                  },
+                  {
+                    "type": "zip",
+                    "name": "code_files",
+                    "title": "專案壓縮檔",
+                    "description": "請將你專案的原始碼壓縮至 ZIP 中並且上傳。(只包含原始碼檔案就好囉,不要包含編譯後的檔案。)"
+                  }
+                ],
+                "recommendDurationInDays": 7,
+                "maxDurationInDays": 14
+              }
+            ],
+            "relatedLessonIds": [
+              "2_8",
+              "2_29",
+              "2_24",
+              "2_9",
+              "2_10"
+            ]
+          },
+          {
+            "id": 15,
+            "chapterId": 2,
+            "journeyId": 0,
+            "code": "4.A",
+            "name": "責任鏈模式練習：碰撞偵測＆處理",
+            "description": "很好，你現在不只會處理最基礎的行為變化（套用策略模式），還懂得用在多道行為之間「留同存異」來萃取出樣板。\n\n有沒有開始感受到自己越來越懂得設計出良好的程式架構「因應需求的變化」？\n\n「在這個世界上，唯一不變的事情，就是事事會變。」確實，人們很常這樣說。\n\n但是這門課會這樣說： 「不過，我只要弄懂所有可能的變化形式，那我就能一直應變。」\n\n需求雖然一直變，但是變的方式有哪些？\n\n我們現在只學到了一種變的方式，就是策略模式所處理的「基礎行為變動性 Force」，讓 Client 得以直接抽換類別的某部分行為，在多種行為中選擇其中一種。\n\n現在，是時候學習「第二種行為變動性的 Force」。 很多時候，我們根本不知道 Client 想要的是什麼，只能先解析 Client 的輸入意圖之後，才知道要到底要如何處理他的輸入。\n\n你不只需要學習第二種行為變動性的 Force，還需要好好區分目前所學的這兩種之間有什麼差別。\n\n如果你要挑戰道館，那麼我一定會問你這個問題。來吧！強者們！來挑戰吧！",
+            "type": "CHALLENGE",
+            "difficulty": 1,
+            "createdAt": 1686609948184,
+            "reward": {
+              "exp": 300,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            },
+            "challenges": [
+              {
+                "id": 1,
+                "type": "PRACTICAL_CHALLENGE",
+                "name": "碰撞偵測＆處理 ★",
+                "submissionFields": [
+                  {
+                    "type": "image",
+                    "name": "ooa_uml",
+                    "title": "物件導向分析 (OOA)",
+                    "description": "上傳你的 OOA 領域類別圖"
+                  },
+                  {
+                    "type": "image",
+                    "name": "ood_sequence_diagram",
+                    "title": "循序圖設計 (OOD)",
+                    "description": "上傳你的 OOD 循序圖設計"
+                  },
+                  {
+                    "type": "image",
+                    "name": "ood_uml",
+                    "title": "物件導向設計 (OOD)",
+                    "description": "上傳你的 OOD 類別圖"
+                  },
+                  {
+                    "type": "zip",
+                    "name": "code_files",
+                    "title": "專案壓縮檔",
+                    "description": "請將你專案的原始碼壓縮至 ZIP 中並且上傳。(只包含原始碼檔案就好囉,不要包含編譯後的檔案。)"
+                  }
+                ],
+                "recommendDurationInDays": 7,
+                "maxDurationInDays": 14
+              },
+              {
+                "id": 2,
+                "type": "INSTANT_CHALLENGE",
+                "name": "碰撞偵測＆處理 ★",
+                "submissionFields": [
+                  {
+                    "type": "image",
+                    "name": "ooa_uml",
+                    "title": "物件導向分析 (OOA)",
+                    "description": "上傳你的 OOA 領域類別圖"
+                  },
+                  {
+                    "type": "image",
+                    "name": "ood_sequence_diagram",
+                    "title": "循序圖設計 (OOD)",
+                    "description": "上傳你的 OOD 循序圖設計"
+                  },
+                  {
+                    "type": "image",
+                    "name": "ood_uml",
+                    "title": "物件導向設計 (OOD)",
+                    "description": "上傳你的 OOD 類別圖"
+                  }
+                ],
+                "recommendDurationInDays": 7,
+                "maxDurationInDays": 3
+              }
+            ],
+            "relatedLessonIds": [
+              "2_13",
+              "2_14",
+              "2_19"
+            ]
+          },
+          {
+            "id": 17,
+            "chapterId": 2,
+            "journeyId": 0,
+            "code": "4",
+            "name": "複雜行為實戰演練：Big 2",
+            "description": "各位強者們好！\n\n我們現在已經學會了三個設計模式了：策略模式 (Strategy Pattern)、樣板方法 (Template Method) 以及責任鍊模式 (Chain of responsibility Pattern)。\n\n還從中學到了多道 Forces：\n1. 基礎行為變動性 Force （策略）\n2. 責任鏈的行為變動性 Force：「輸入 → 解析輸入意圖 → 處理輸入」\n3. 程式碼重複 Force\n4. 擴充性 / 彈性 / 開閉原則 Force (三者都是擴充性的別名）\n\n那在過去的三個道館呢，由於你已經明確知道「該道館要你挑戰的設計模式可能為何」，因此你可以很容易地「知道」要套什麼模式比較好。\n\n但是！這一題魔王題就不一樣了！\n你現在會收到一份莫名其妙的需求，然後你必須自己察覺需求中形成的 Forces，理性地在適合的地方套用多個設計模式，這就是所謂的綜合模式的實戰演練。\n\n在這個道館中，我即將出一題「大老二撲克牌遊戲」的綜合實戰演練給你，好好表現吧，強者們。\n\n「你說⋯⋯『大老二撲克牌遊戲』不是實戰演練，是很幼稚的專案嗎？」\n不，相信我，大多數企業專案面對的領域模型的邏輯複雜度都沒有比大老二來得困難，大老二撲克牌遊戲中無論是遊戲流程、牌型判斷還是人工智慧，都是一般企業商業邏輯難度的數倍以上。意即，如果你能寫得好大老二，企業中的商業邏輯對你來說幾乎是易如反掌。\n\n所以來吧，按下挑戰按鈕，相信你自己，你受了這麼多訓練，就代表——你絕對能夠順利挑戰成功這個道館。\n當你讀著這段話時，記得，水球我永遠相信你做得到的，我在第五道館等你，Let’s move on。",
+            "type": "BOSS",
+            "difficulty": 2,
+            "createdAt": 1686609948184,
+            "reward": {
+              "exp": 1000,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            },
+            "challenges": [
+              {
+                "id": 1,
+                "type": "PRACTICAL_CHALLENGE",
+                "name": "大老二撲克牌遊戲！ ★★",
+                "submissionFields": [
+                  {
+                    "type": "image",
+                    "name": "ooa_uml",
+                    "title": "物件導向分析 (OOA)",
+                    "description": "上傳你的 OOA 領域類別圖"
+                  },
+                  {
+                    "type": "image",
+                    "name": "ood_sequence_diagram",
+                    "title": "循序圖設計 (OOD)",
+                    "description": "上傳你的 OOD 循序圖設計"
+                  },
+                  {
+                    "type": "image",
+                    "name": "ood_uml",
+                    "title": "物件導向設計 (OOD)",
+                    "description": "上傳你的 OOD 類別圖"
+                  },
+                  {
+                    "type": "zip",
+                    "name": "code_files",
+                    "title": "專案壓縮檔",
+                    "description": "請將你專案的原始碼壓縮至 ZIP 中並且上傳。(只包含原始碼檔案就好囉,不要包含編譯後的檔案。)"
+                  }
+                ],
+                "recommendDurationInDays": 7,
+                "maxDurationInDays": 14
+              }
+            ],
+            "relatedLessonIds": [
+              "2_27",
+              "2_28",
+              "2_23"
+            ]
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "name": "副本三：掌握所有複雜行為變動",
+        "reward": {
+          "exp": 3000,
+          "coin": 12000,
+          "subscriptionExtensionInDays": 0,
+          "journeyId": 0,
+          "externalRewardDescription": ""
+        },
+        "passwordRequired": false,
+        "lessons": [
+          {
+            "id": 1,
+            "chapterId": 3,
+            "journeyId": 0,
+            "name": "景點 - 觀察者模式｜響應式行為變化",
+            "description": "總算進到了「進階型模式」這個副本了！前一個副本都還算是「暖身階段」，我們用了一個副本的時間來熟悉 OOD 的內涵，以及套用設計模式的感覺。在打完副本二的魔王題之後，想必各位都已經深深地感受到軟體設計的曲高和寡之處了吧？\n\n副本三的魔王很強喔！因此，我們要來讓實力再往上昇華一層才行！從觀察者模式開始吧！Go～～",
+            "coverImageUrl": "https://cdn.waterballsa.tw/software-design-pattern/content/c3m1/1699079003182-c3m1-cover",
+            "premiumOnly": true,
+            "type": "video",
+            "createdAt": 1686609948184,
+            "reward": {
+              "exp": 120,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            },
+            "videoLength": "21:50",
+            "relatedGymId": "3_5"
+          },
+          {
+            "id": 2,
+            "chapterId": 3,
+            "journeyId": 0,
+            "name": "複習 - 觀察者模式",
+            "premiumOnly": true,
+            "type": "google-form",
+            "createdAt": 1686609948184,
+            "reward": {
+              "exp": 120,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            }
+          },
+          {
+            "id": 19,
+            "chapterId": 3,
+            "journeyId": 0,
+            "name": "Force-行為變動性（響應式）：關鍵句型",
+            "description": "在行為型設計模式中，觀察者模式（Observer Pattern） 最常對應到「Force-行為變動性 (響應式)」這道和行為變化相關的 Force，此 Force 又稱之為「響應式行為變動性 (Reactive Behavioral Variation, 簡寫為Rx-BV）」。",
+            "premiumOnly": true,
+            "type": "scroll",
+            "createdAt": 1741767928000
+          },
+          {
+            "id": 7,
+            "chapterId": 3,
+            "journeyId": 0,
+            "name": "景點 - 指令模式｜解耦操作及能力",
+            "description": "這個模式旨在找出所有行為最抽象的共同點，並以此共同點為基準來將「行為物化」！當成功把「一道行為」視為是物件之後，我們就能存放它或是關聯它啦！",
+            "coverImageUrl": "https://cdn.waterballsa.tw/software-design-pattern/content/c3m7/1699079045572-c3m7-cover",
+            "premiumOnly": true,
+            "type": "video",
+            "createdAt": 1686609948184,
+            "reward": {
+              "exp": 120,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            },
+            "videoLength": "22:23",
+            "relatedGymId": "3_9"
+          },
+          {
+            "id": 8,
+            "chapterId": 3,
+            "journeyId": 0,
+            "name": "複習 - 指令模式",
+            "premiumOnly": true,
+            "type": "google-form",
+            "createdAt": 1686609948184,
+            "reward": {
+              "exp": 120,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            }
+          },
+          {
+            "id": 20,
+            "chapterId": 3,
+            "journeyId": 0,
+            "name": "Force-行為賦予：關鍵句型",
+            "description": "在行為型設計模式中，如果要套用指令模式，則必定你會先察覺到存有 Force-行為賦予 的情境。於是我們來更精準地定義一下 Force-行為賦予 的關鍵句型。",
+            "premiumOnly": true,
+            "type": "scroll",
+            "createdAt": 1741767999471
+          },
+          {
+            "id": 11,
+            "chapterId": 3,
+            "journeyId": 0,
+            "name": "景點 - 狀態模式｜梳理複雜行為變化",
+            "description": "★★：狀態模式——寶藏地圖\n\n 狀態模式——寶藏地圖\n\n 難度：★★☆☆☆ \n\n你要撰寫一個文字版的二維地圖冒險遊戲。使用二維陣列來呈現一個地圖 (Map)，地圖上每一個物件(Map Object) 都用一個符號表示。 並用箭頭符號（↑→↓←）呈現主角 (Character) 的位置，以及主角面向的方位 (Direction)。玩家藉由輸入指令來操控主角。 這樣一來就能夠設計一個二維地圖冒險遊戲了！",
+            "coverImageUrl": "https://cdn.waterballsa.tw/software-design-pattern/content/c3m11/1699079176217-c3m11-cover",
+            "premiumOnly": true,
+            "type": "video",
+            "createdAt": 1686609948184,
+            "reward": {
+              "exp": 300,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            },
+            "videoLength": "52:30",
+            "relatedGymId": "3_13"
+          },
+          {
+            "id": 12,
+            "chapterId": 3,
+            "journeyId": 0,
+            "name": "複習 - 狀態模式",
+            "premiumOnly": true,
+            "type": "google-form",
+            "createdAt": 1686609948184,
+            "reward": {
+              "exp": 120,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            }
+          },
+          {
+            "id": 21,
+            "chapterId": 3,
+            "journeyId": 0,
+            "name": "Force-行為變動性（狀態型）：關鍵句型",
+            "description": "在行為型設計模式中，在套用狀態模式（State Pattern） 之前，必定會先察覺到「Force-行為變動性（狀態型）」這道 Force。",
+            "premiumOnly": true,
+            "type": "scroll",
+            "createdAt": 1741768046298
+          }
+        ],
+        "gyms": [
+          {
+            "id": 5,
+            "chapterId": 3,
+            "journeyId": 0,
+            "code": "5.A",
+            "name": "掌握響應式行為約束",
+            "description": "觀察者模式——Youtube 訂閱機制\n難度：★☆☆☆☆\n\n需求\n你要簡單撰寫一個模擬 Youtube 頻道 (Channel) 和 頻道訂閱者 (Channel Subscriber) 之間互動的程式。",
+            "type": "CHALLENGE",
+            "difficulty": 1,
+            "createdAt": 1686609948184,
+            "reward": {
+              "exp": 300,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            },
+            "challenges": [
+              {
+                "id": 1,
+                "type": "PRACTICAL_CHALLENGE",
+                "name": "Youtube 訂閱機制 ★",
+                "submissionFields": [
+                  {
+                    "type": "image",
+                    "name": "ooa_uml",
+                    "title": "物件導向分析 (OOA)",
+                    "description": "上傳你的 OOA 領域類別圖"
+                  },
+                  {
+                    "type": "image",
+                    "name": "ood_sequence_diagram",
+                    "title": "循序圖設計 (OOD)",
+                    "description": "上傳你的 OOD 循序圖設計"
+                  },
+                  {
+                    "type": "image",
+                    "name": "ood_uml",
+                    "title": "物件導向設計 (OOD)",
+                    "description": "上傳你的 OOD 類別圖"
+                  },
+                  {
+                    "type": "zip",
+                    "name": "code_files",
+                    "title": "專案壓縮檔",
+                    "description": "請將你專案的原始碼壓縮至 ZIP 中並且上傳。(只包含原始碼檔案就好囉,不要包含編譯後的檔案。)"
+                  }
+                ],
+                "recommendDurationInDays": 7,
+                "maxDurationInDays": 14
+              },
+              {
+                "id": 2,
+                "type": "INSTANT_CHALLENGE",
+                "name": "Youtube 訂閱機制 ★",
+                "submissionFields": [
+                  {
+                    "type": "image",
+                    "name": "ooa_uml",
+                    "title": "物件導向分析 (OOA)",
+                    "description": "上傳你的 OOA 領域類別圖"
+                  },
+                  {
+                    "type": "image",
+                    "name": "ood_sequence_diagram",
+                    "title": "循序圖設計 (OOD)",
+                    "description": "上傳你的 OOD 循序圖設計"
+                  },
+                  {
+                    "type": "image",
+                    "name": "ood_uml",
+                    "title": "物件導向設計 (OOD)",
+                    "description": "上傳你的 OOD 類別圖"
+                  }
+                ],
+                "recommendDurationInDays": 7,
+                "maxDurationInDays": 3
+              }
+            ],
+            "relatedLessonIds": [
+              "3_1",
+              "3_16",
+              "3_2",
+              "3_19"
+            ]
+          },
+          {
+            "id": 9,
+            "chapterId": 3,
+            "journeyId": 0,
+            "code": "5.B",
+            "name": "透過「指令」來綁定行為",
+            "description": "主控制器 (MainController) 需要實作一套快捷鍵設置機制，該機制可用於與軍用裝置進行操作。主控制器上有一副鍵盤，由 a-z 26 個按鍵組成。軍方有兩種軍用裝置：坦克 (Tank) 和通訊設備 (Telecom)，它們具有不同的操作需求。",
+            "type": "CHALLENGE",
+            "difficulty": 1,
+            "createdAt": 1686609948184,
+            "reward": {
+              "exp": 300,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            },
+            "challenges": [
+              {
+                "id": 1,
+                "type": "PRACTICAL_CHALLENGE",
+                "name": "快捷鍵設置機制 ★",
+                "submissionFields": [
+                  {
+                    "type": "image",
+                    "name": "ooa_uml",
+                    "title": "物件導向分析 (OOA)",
+                    "description": "上傳你的 OOA 領域類別圖"
+                  },
+                  {
+                    "type": "image",
+                    "name": "ood_sequence_diagram",
+                    "title": "循序圖設計 (OOD)",
+                    "description": "上傳你的 OOD 循序圖設計"
+                  },
+                  {
+                    "type": "image",
+                    "name": "ood_uml",
+                    "title": "物件導向設計 (OOD)",
+                    "description": "上傳你的 OOD 類別圖"
+                  },
+                  {
+                    "type": "zip",
+                    "name": "code_files",
+                    "title": "專案壓縮檔",
+                    "description": "請將你專案的原始碼壓縮至 ZIP 中並且上傳。(只包含原始碼檔案就好囉,不要包含編譯後的檔案。)"
+                  }
+                ],
+                "recommendDurationInDays": 7,
+                "maxDurationInDays": 14
+              },
+              {
+                "id": 2,
+                "type": "INSTANT_CHALLENGE",
+                "name": "快捷鍵設置機制 ★",
+                "submissionFields": [
+                  {
+                    "type": "image",
+                    "name": "ooa_uml",
+                    "title": "物件導向分析 (OOA)",
+                    "description": "上傳你的 OOA 領域類別圖"
+                  },
+                  {
+                    "type": "image",
+                    "name": "ood_sequence_diagram",
+                    "title": "循序圖設計 (OOD)",
+                    "description": "上傳你的 OOD 循序圖設計"
+                  },
+                  {
+                    "type": "image",
+                    "name": "ood_uml",
+                    "title": "物件導向設計 (OOD)",
+                    "description": "上傳你的 OOD 類別圖"
+                  }
+                ],
+                "recommendDurationInDays": 7,
+                "maxDurationInDays": 3
+              }
+            ],
+            "relatedLessonIds": [
+              "3_7",
+              "3_8",
+              "3_20"
+            ]
+          },
+          {
+            "id": 13,
+            "chapterId": 3,
+            "journeyId": 0,
+            "code": "5.C",
+            "name": "用「狀態機」來精準套用「狀態模式」",
+            "description": "★★：狀態模式——二維地圖冒險遊戲\n\n難度：★★☆☆☆\n\n你要撰寫一個文字版的二維地圖冒險遊戲。使用二維陣列來呈現一個地圖 (Map)，地圖上每一個物件(Map Object) 都用一個符號表示。 並用箭頭符號（↑→↓←）呈現主角 (Character) 的位置，以及主角面向的方位 (Direction)。玩家藉由輸入指令來操控主角。 這樣一來就能夠設計一個二維地圖冒險遊戲了！",
+            "type": "CHALLENGE",
+            "difficulty": 2,
+            "createdAt": 1686609948184,
+            "reward": {
+              "exp": 600,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            },
+            "challenges": [
+              {
+                "id": 1,
+                "type": "PRACTICAL_CHALLENGE",
+                "name": "二維地圖冒險遊戲 ★★",
+                "submissionFields": [
+                  {
+                    "type": "image",
+                    "name": "ooa_uml",
+                    "title": "物件導向分析 (OOA)",
+                    "description": "上傳你的 OOA 領域類別圖"
+                  },
+                  {
+                    "type": "image",
+                    "name": "ood_sequence_diagram",
+                    "title": "循序圖設計 (OOD)",
+                    "description": "上傳你的 OOD 循序圖設計"
+                  },
+                  {
+                    "type": "image",
+                    "name": "ood_uml",
+                    "title": "物件導向設計 (OOD)",
+                    "description": "上傳你的 OOD 類別圖"
+                  },
+                  {
+                    "type": "zip",
+                    "name": "code_files",
+                    "title": "專案壓縮檔",
+                    "description": "請將你專案的原始碼壓縮至 ZIP 中並且上傳。(只包含原始碼檔案就好囉,不要包含編譯後的檔案。)"
+                  }
+                ],
+                "recommendDurationInDays": 7,
+                "maxDurationInDays": 14
+              }
+            ],
+            "relatedLessonIds": [
+              "3_11",
+              "3_17",
+              "3_12",
+              "3_21"
+            ]
+          },
+          {
+            "id": 15,
+            "chapterId": 3,
+            "journeyId": 0,
+            "code": "5",
+            "name": "多重設計難題解決實戰演練：RPG",
+            "description": "如果你通過了上一個道館，說明你可能已經熟悉，如何透過「Force 關鍵句型」來定位和分類 Forces，並且從 Forces 從適當定義 Problem，最後精準套用設計模式。\n\n這門課最重要的就是這個思路，只有懂得定位和分析問題，才知道如何「一一套用最適當的解方」。\n\n所以這等能力啊，你只練一次是不夠的，你要不斷挑戰更複雜、更有心機、更刁鑽的系統需求。然後這份需求中，又充滿各式各樣的 Problem 要你去解，這樣你才能在思路上有所成長！\n\n於是，你準備好了嗎？這個道館的題目很有挑戰性喔，至少要套用到「五個設計模式」才能解決所有設計問題喔！\n\n## 再學三個行為型模式，才有辦法通過此道館訓練！\n\n什麼？你說現在你只會三個模式是吧？只會「策略模式、樣板方法和責任鏈模式」。\n\n不要緊，在挑戰這一個道館之前，我們再學另外三個重要的進階行為型模式吧，也就是「觀察者模式、指令模式和狀態模式」。\n\n既然你會多學另外「三個行為型模式」，就說明你會多認識三種「行為相關的 Force」，那這三個分別是「響應式行為變動性、行為賦予和狀態型行為變動性」。切記，要用上一章所教的「Force 關鍵句型」來精準區分這幾種之間的不同。\n\n最後我再囉唆幾句，當你在挑戰本道館的題目時，你初次看的時候可能會覺得題目有一點點長，但不必急躁，你需要做的是「一句一句做單句分析」，每一句都確保你把該抓的「行為」和「行為相關的 Forces」都抓到，這樣才有足夠的底蘊在 OOD 時抓到足夠多的 Problem。\n\n反之，如果你的行為抓得不夠多、Forces 抓得不夠清楚、分類不夠到位，那就一定會少套設計模式，而讓整體架構設計做不到需求所要求的擴充性。\n\n記得，這一題至少要套用到「五個設計模式」才能解決所有設計問題喔！\n\n並且，當你在挑戰道館時，我會請求你闡述一下你遇到了哪些設計問題，請用「先用白話文的方式講 Force，再總結成 Problem」的方式闡述，最後再說「所以你套了什麼模式」，這樣表達力就會非常好，就像我實戰景點影片中所示範的那般。\n\n加油！相信你自己。這個道館通過之後，你就是一半的強者了，好好上課吧！",
+            "type": "BOSS",
+            "difficulty": 3,
+            "createdAt": 1686609948184,
+            "reward": {
+              "exp": 2000,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            },
+            "challenges": [
+              {
+                "id": 1,
+                "type": "PRACTICAL_CHALLENGE",
+                "name": "真・RPG 之對戰遊戲 ★★★",
+                "submissionFields": [
+                  {
+                    "type": "image",
+                    "name": "ooa_uml",
+                    "title": "物件導向分析 (OOA)",
+                    "description": "上傳你的 OOA 領域類別圖"
+                  },
+                  {
+                    "type": "image",
+                    "name": "ood_sequence_diagram",
+                    "title": "循序圖設計 (OOD)",
+                    "description": "上傳你的 OOD 循序圖設計"
+                  },
+                  {
+                    "type": "image",
+                    "name": "ood_uml",
+                    "title": "物件導向設計 (OOD)",
+                    "description": "上傳你的 OOD 類別圖"
+                  },
+                  {
+                    "type": "zip",
+                    "name": "code_files",
+                    "title": "專案壓縮檔",
+                    "description": "請將你專案的原始碼壓縮至 ZIP 中並且上傳。(只包含原始碼檔案就好囉,不要包含編譯後的檔案。)"
+                  }
+                ],
+                "recommendDurationInDays": 7,
+                "maxDurationInDays": 21
+              }
+            ],
+            "relatedLessonIds": [
+              "3_18"
+            ]
+          }
+        ]
+      },
+      {
+        "id": 4,
+        "name": "副本四：規模化架構思維",
+        "reward": {
+          "exp": 3000,
+          "coin": 12000,
+          "subscriptionExtensionInDays": 0,
+          "journeyId": 0,
+          "externalRewardDescription": ""
+        },
+        "passwordRequired": false,
+        "lessons": [
+          {
+            "id": 1,
+            "chapterId": 4,
+            "journeyId": 0,
+            "name": "景點 - 門面模式｜隱藏結構",
+            "description": "各位冒險者好，很開心我們終於來到了新的副本， 結構型模式 （Structural Pattern）。\n\n我們花了兩個副本的時間在精通「行為型模式」，在處理行為變動 Forces 的時候，我們感受到的是「大量行為變動」帶來的高邏輯複雜度，而透過行為型模式，我們就能有效地化解複雜度，讓物件各司其職。",
+            "coverImageUrl": "https://cdn.waterballsa.tw/software-design-pattern/content/c4m1/1699079429759-c4m1-cover",
+            "premiumOnly": true,
+            "type": "video",
+            "createdAt": 1686609948184,
+            "reward": {
+              "exp": 180,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            },
+            "videoLength": "23:28",
+            "relatedGymId": "4_3"
+          },
+          {
+            "id": 2,
+            "chapterId": 4,
+            "journeyId": 0,
+            "name": "複習 - 門面模式",
+            "premiumOnly": true,
+            "type": "google-form",
+            "createdAt": 1686609948184,
+            "reward": {
+              "exp": 180,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            }
+          },
+          {
+            "id": 22,
+            "chapterId": 4,
+            "journeyId": 0,
+            "name": "大補帖 - 軟體架構學：大道至簡",
+            "description": "架構 - 終於要教怎麼「劃分邊界」了",
+            "premiumOnly": true,
+            "type": "video",
+            "createdAt": 1732957517350,
+            "reward": {
+              "exp": 350,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            },
+            "videoLength": "31:25"
+          },
+          {
+            "id": 5,
+            "chapterId": 4,
+            "journeyId": 0,
+            "name": "景點 - 轉接器模式｜跨越邊界",
+            "description": "大家好！接下來的這個模式，相對來說比較輕鬆愜意。我們要來認識的是一個非常常用的結構型模式——轉接器模式。只要你的軟體結構在分層上做得越淋漓盡致，那就越常需要使用轉接器模式。\n\n並且，在這部影片中，我們還會藉由轉接器模式的案例，來進一步討論「如何用意圖的高低層次來嚴格定義『依賴反轉』以及『依賴反轉原則 (Dependency Inversion Principle, DIP)』」",
+            "coverImageUrl": "https://cdn.waterballsa.tw/software-design-pattern/content/c4m5/1699079726356-c4m5-cover",
+            "premiumOnly": true,
+            "type": "video",
+            "createdAt": 1686609948184,
+            "reward": {
+              "exp": 180,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            },
+            "videoLength": "26:54",
+            "relatedGymId": "4_7"
+          },
+          {
+            "id": 6,
+            "chapterId": 4,
+            "journeyId": 0,
+            "name": "複習 - 轉接器模式",
+            "premiumOnly": true,
+            "type": "google-form",
+            "createdAt": 1686609948184,
+            "reward": {
+              "exp": 180,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            }
+          },
+          {
+            "id": 9,
+            "chapterId": 4,
+            "journeyId": 0,
+            "name": "景點 - 代理人模式｜控制存取",
+            "description": "大家好。 今天我們又要再認識一個十分常用的結構型模式——代理人模式 (Proxy pattern)。\n\n代理人模式的概念也很簡單，但是卻隨處都能見到它的影子，而代理人模式的應用有著許多十分知名的案例——延遲載入、Copy-On-Write、遠端代理等應用！\n\n來吧！我們來認識這個有趣的模式。",
+            "coverImageUrl": "https://cdn.waterballsa.tw/software-design-pattern/content/c4m9/1699079511526-c4m9-cover",
+            "premiumOnly": true,
+            "type": "video",
+            "createdAt": 1686609948184,
+            "reward": {
+              "exp": 180,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            },
+            "videoLength": "25:24",
+            "relatedGymId": "4_11"
+          },
+          {
+            "id": 10,
+            "chapterId": 4,
+            "journeyId": 0,
+            "name": "複習 - 代理人模式",
+            "premiumOnly": true,
+            "type": "google-form",
+            "createdAt": 1686609948184,
+            "reward": {
+              "exp": 180,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            }
+          },
+          {
+            "id": 13,
+            "chapterId": 4,
+            "journeyId": 0,
+            "name": "景點 - 複合模式｜樹狀結構的透明度",
+            "description": "在結構型副本中，我們已經認識了門面模式、轉接器模式和代理人模式，這三個模式雖然解決了不同的 Problem，但大家的 Form 中都存在一個相同的特性——那就是：「他們都背著 Client，偷偷地組織物件」。那今天啊我們要來做一個總結，像這種「隱藏結構複雜度的事」啊，還是「複合模式 (Composite Pattern)」做得最極致—— 背著 Client 種出一棵樹都能不讓 Client 發現呢。那麼，你準備好要來認識結構型模式副本中最重要的模式了嗎！",
+            "coverImageUrl": "https://cdn.waterballsa.tw/software-design-pattern/content/c4m13/1699079768488-c4m13-cover",
+            "premiumOnly": false,
+            "type": "video",
+            "createdAt": 1686609948184,
+            "reward": {
+              "exp": 180,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            },
+            "videoLength": "34:22",
+            "relatedGymId": "4_16"
+          },
+          {
+            "id": 14,
+            "chapterId": 4,
+            "journeyId": 0,
+            "name": "複習：複合模式",
+            "premiumOnly": true,
+            "type": "google-form",
+            "createdAt": 1686609948184,
+            "reward": {
+              "exp": 180,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            }
+          },
+          {
+            "id": 18,
+            "chapterId": 4,
+            "journeyId": 0,
+            "name": "景點：裝飾者模式｜解決組合爆炸",
+            "description": "我們總算來到結構型模式副本中的最後一個景點啦！\n\n在學習裝飾者模式之前，記得要先了解上一個景點 — 「複合模式」唷！\n\n這是結構型模式中的最後一個景點了，摸了「複雜結構」這麼久了，是不是開始有點懷念「複雜行為」帶來的挑戰性呀？\n\n那麽，結合結構和行為兩者的「裝飾者模式」將會為這副本劃下一個非常浪漫的結尾，你即將學到如何使用強大的結構來組合多變的行為！各位準備好了嗎？Let’s Go！",
+            "coverImageUrl": "https://cdn.waterballsa.tw/software-design-pattern/content/c4m18/1699079849979-c4m18-cover",
+            "premiumOnly": true,
+            "type": "video",
+            "createdAt": 1686609948184,
+            "reward": {
+              "exp": 180,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            },
+            "videoLength": "32:33",
+            "relatedGymId": "4_20"
+          },
+          {
+            "id": 19,
+            "chapterId": 4,
+            "journeyId": 0,
+            "name": "複習：裝飾者模式",
+            "premiumOnly": true,
+            "type": "google-form",
+            "createdAt": 1686609948184,
+            "reward": {
+              "exp": 180,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            }
+          }
+        ],
+        "gyms": [
+          {
+            "id": 3,
+            "chapterId": 4,
+            "journeyId": 0,
+            "code": "6",
+            "name": "基礎架構思維、模式及邊界劃分",
+            "description": "恭喜你來到了旅程的黑段部分！\n\n經歷了白段的前五個道館訓練的你，現在肯定能在寫程式之前就能精準分析多道 Problems 並且一一套用設計模式，你已經有了架構師最重要的「抽象能力」。\n\n## 軟體架構師的鑑別度：抽象能力\n\n那麼，架構師到底需要什麼能力呢？什麼是關鍵能力，能直接區分出一般軟體工程師和軟體架構師之間的差別？\n\n1. 架構師負責針對企業需求及架構現況，盤點出各項待解難題，並針對持續增量的新需求來制定最剛好的架構方針，或是制定模組化、模組與模組之間相依關係及擴充路徑的方針。此為「宏觀」的設計能力。\n\n2. 架構師偶爾可能也要充當資深工程師，下去針對各個模組的程式架構做出大幅度的調整，以調整過後的版本作為範例來指導其他工程師對齊實踐。此為「微觀」的設計能力。\n\n總結來說，所謂的架構師，就是「任何一個層級的架構都難不倒他」才叫架構師嘛！從「宏觀」到「微觀」的設計能力你都要有，不管是從宏觀走到微觀 (Top-Down)，還是從微觀走到宏觀（Bottom-Up) 的能力你都要有。\n\n## 從「微觀」一路練到「宏觀」的設計能力\n\n那這門課至今啊，我們所鍛鍊的都是「微觀」的設計能力，直接定義了程式架構的性質，好比我們花了大多數時間在學的行為型模式啊，基本上都是在斷定「到底程式中哪些行為需要遵守開閉原則？如果有此等需求，那我該怎麼重構？」\n\n而從這個道館開始呢，要往上一個層級了，既然你會套設計模式了，就說明你已經知道該如何做最基本的程式架構。那下一步就是要學習「結構型模式」和「基本架構學問」來更充分地做到「精準的模組化設計」。\n\n別急呢，從這個道館開始吧！\n\n先學學門面模式這個最簡單的結構型模式吧，從中你不只會了解到「門面如何幫助解耦」，還會進一步了解到「阿～原來門面切分不同類型模組之間的邊界」。\n\n然後，用這個道館的二星題目來學以致用吧。\n\n這一題只有兩顆星，只要你單句分析做得沈穩，基本上應該會覺得「自己是相當游刃有餘」的，因為你可是從三顆星的第五道館來的呢，你早已變強了，黑段的強者們。\n\nLet's move on。",
+            "type": "CHALLENGE",
+            "difficulty": 2,
+            "createdAt": 1686609948184,
+            "reward": {
+              "exp": 500,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            },
+            "challenges": [
+              {
+                "id": 1,
+                "type": "PRACTICAL_CHALLENGE",
+                "name": "處方診斷系統 ★★",
+                "submissionFields": [
+                  {
+                    "type": "image",
+                    "name": "ooa_uml",
+                    "title": "物件導向分析 (OOA)",
+                    "description": "上傳你的 OOA 領域類別圖"
+                  },
+                  {
+                    "type": "image",
+                    "name": "ood_sequence_diagram",
+                    "title": "循序圖設計 (OOD)",
+                    "description": "上傳你的 OOD 循序圖設計"
+                  },
+                  {
+                    "type": "image",
+                    "name": "ood_uml",
+                    "title": "物件導向設計 (OOD)",
+                    "description": "上傳你的 OOD 類別圖"
+                  },
+                  {
+                    "type": "zip",
+                    "name": "code_files",
+                    "title": "專案壓縮檔",
+                    "description": "請將你專案的原始碼壓縮至 ZIP 中並且上傳。(只包含原始碼檔案就好囉,不要包含編譯後的檔案。)"
+                  }
+                ],
+                "recommendDurationInDays": 7,
+                "maxDurationInDays": 14
+              },
+              {
+                "id": 2,
+                "type": "INSTANT_CHALLENGE",
+                "name": "處方診斷系統 ★★",
+                "submissionFields": [
+                  {
+                    "type": "image",
+                    "name": "ooa_uml",
+                    "title": "物件導向分析 (OOA)",
+                    "description": "上傳你的 OOA 領域類別圖"
+                  },
+                  {
+                    "type": "image",
+                    "name": "ood_sequence_diagram",
+                    "title": "循序圖設計 (OOD)",
+                    "description": "上傳你的 OOD 循序圖設計"
+                  },
+                  {
+                    "type": "image",
+                    "name": "ood_uml",
+                    "title": "物件導向設計 (OOD)",
+                    "description": "上傳你的 OOD 類別圖"
+                  }
+                ],
+                "recommendDurationInDays": 7,
+                "maxDurationInDays": 3
+              }
+            ],
+            "relatedLessonIds": [
+              "4_1",
+              "4_22",
+              "4_2"
+            ]
+          },
+          {
+            "id": 7,
+            "chapterId": 4,
+            "journeyId": 0,
+            "code": "6.A",
+            "name": "跨越邊界 - 依賴反轉及轉接器",
+            "description": "轉接器模式——好友關係分析器\n\n難度：★☆☆☆☆\n\nA. 需求\n\n在現代網路社群平台上，人們透過社群平台的好友功能，可以與他人互相結為好友。現在你要開發一個簡易的好友關係分析器，我們首先使用此分析器制定的格式來撰寫一部分人們的好友關係腳本 (Script)（i.e., 使用一個特殊的語法格式來描述每個人分別有哪些好友），然後將此腳本餵入分析器，接著你就能夠讓分析器分析一些關係組成。",
+            "type": "CHALLENGE",
+            "difficulty": 1,
+            "createdAt": 1686609948184,
+            "reward": {
+              "exp": 300,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            },
+            "challenges": [
+              {
+                "id": 1,
+                "type": "PRACTICAL_CHALLENGE",
+                "name": "好友關係分析器 ★",
+                "submissionFields": [
+                  {
+                    "type": "image",
+                    "name": "ooa_uml",
+                    "title": "物件導向分析 (OOA)",
+                    "description": "上傳你的 OOA 領域類別圖"
+                  },
+                  {
+                    "type": "image",
+                    "name": "ood_sequence_diagram",
+                    "title": "循序圖設計 (OOD)",
+                    "description": "上傳你的 OOD 循序圖設計"
+                  },
+                  {
+                    "type": "image",
+                    "name": "ood_uml",
+                    "title": "物件導向設計 (OOD)",
+                    "description": "上傳你的 OOD 類別圖"
+                  },
+                  {
+                    "type": "zip",
+                    "name": "code_files",
+                    "title": "專案壓縮檔",
+                    "description": "請將你專案的原始碼壓縮至 ZIP 中並且上傳。(只包含原始碼檔案就好囉,不要包含編譯後的檔案。)"
+                  }
+                ],
+                "recommendDurationInDays": 7,
+                "maxDurationInDays": 14
+              },
+              {
+                "id": 2,
+                "type": "INSTANT_CHALLENGE",
+                "name": "好友關係分析器 ★",
+                "submissionFields": [
+                  {
+                    "type": "image",
+                    "name": "ooa_uml",
+                    "title": "物件導向分析 (OOA)",
+                    "description": "上傳你的 OOA 領域類別圖"
+                  },
+                  {
+                    "type": "image",
+                    "name": "ood_sequence_diagram",
+                    "title": "循序圖設計 (OOD)",
+                    "description": "上傳你的 OOD 循序圖設計"
+                  },
+                  {
+                    "type": "image",
+                    "name": "ood_uml",
+                    "title": "物件導向設計 (OOD)",
+                    "description": "上傳你的 OOD 類別圖"
+                  }
+                ],
+                "recommendDurationInDays": 7,
+                "maxDurationInDays": 3
+              }
+            ],
+            "relatedLessonIds": [
+              "4_5",
+              "4_23",
+              "4_25",
+              "4_6"
+            ]
+          },
+          {
+            "id": 11,
+            "chapterId": 4,
+            "journeyId": 0,
+            "code": "6.B",
+            "name": "透過「代理模式」來介入存取控制",
+            "description": "代理人模式——【延遲載入】員工資料表存取\n\n難度：★☆☆☆☆\n\nA. 需求\n\n你有一張員工資料表檔案，你需要為此資料表設計一個資料存取工具 (姑且稱它為 Database)。",
+            "type": "CHALLENGE",
+            "difficulty": 1,
+            "createdAt": 1686609948184,
+            "reward": {
+              "exp": 300,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            },
+            "challenges": [
+              {
+                "id": 1,
+                "type": "PRACTICAL_CHALLENGE",
+                "name": "【延遲載入】員工資料表存取 ★",
+                "submissionFields": [
+                  {
+                    "type": "image",
+                    "name": "ooa_uml",
+                    "title": "物件導向分析 (OOA)",
+                    "description": "上傳你的 OOA 領域類別圖"
+                  },
+                  {
+                    "type": "image",
+                    "name": "ood_sequence_diagram",
+                    "title": "循序圖設計 (OOD)",
+                    "description": "上傳你的 OOD 循序圖設計"
+                  },
+                  {
+                    "type": "image",
+                    "name": "ood_uml",
+                    "title": "物件導向設計 (OOD)",
+                    "description": "上傳你的 OOD 類別圖"
+                  },
+                  {
+                    "type": "zip",
+                    "name": "code_files",
+                    "title": "專案壓縮檔",
+                    "description": "請將你專案的原始碼壓縮至 ZIP 中並且上傳。(只包含原始碼檔案就好囉,不要包含編譯後的檔案。)"
+                  }
+                ],
+                "recommendDurationInDays": 7,
+                "maxDurationInDays": 14
+              },
+              {
+                "id": 2,
+                "type": "INSTANT_CHALLENGE",
+                "name": "【延遲載入】員工資料表存取 ★",
+                "submissionFields": [
+                  {
+                    "type": "image",
+                    "name": "ooa_uml",
+                    "title": "物件導向分析 (OOA)",
+                    "description": "上傳你的 OOA 領域類別圖"
+                  },
+                  {
+                    "type": "image",
+                    "name": "ood_sequence_diagram",
+                    "title": "循序圖設計 (OOD)",
+                    "description": "上傳你的 OOD 循序圖設計"
+                  },
+                  {
+                    "type": "image",
+                    "name": "ood_uml",
+                    "title": "物件導向設計 (OOD)",
+                    "description": "上傳你的 OOD 類別圖"
+                  }
+                ],
+                "recommendDurationInDays": 7,
+                "maxDurationInDays": 3
+              }
+            ],
+            "relatedLessonIds": [
+              "4_9",
+              "4_10"
+            ]
+          },
+          {
+            "id": 16,
+            "chapterId": 4,
+            "journeyId": 0,
+            "code": "6.C",
+            "name": "掌握樹狀結構 - 「複合模式」",
+            "description": "複合模式——日誌框\n\n難度：★★☆☆☆\n\n背景知識：何謂日誌 (Logs)？\n\n寫日誌 (Logging) 指的是在應用程式運行時，輸出訊息來描述每一個時間點的運行狀況，以便開發者偵錯。這些輸出的訊息就被稱之為是「日誌 (Logs) 」。而隨著應用程式的規模增大，日誌需要妥善的配置，如使用分級機制來管理日誌，以便開發者能在上千上萬行的日誌中快速找到重要的資訊。\n\n但是要如何允許開發者輕易地配置日誌？於是各個程式語言都會發展出對應的日誌框架。",
+            "type": "CHALLENGE",
+            "difficulty": 2,
+            "createdAt": 1686609948184,
+            "reward": {
+              "exp": 500,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            },
+            "challenges": [
+              {
+                "id": 1,
+                "type": "PRACTICAL_CHALLENGE",
+                "name": "日誌框架 ★★",
+                "submissionFields": [
+                  {
+                    "type": "image",
+                    "name": "ooa_uml",
+                    "title": "物件導向分析 (OOA)",
+                    "description": "上傳你的 OOA 領域類別圖"
+                  },
+                  {
+                    "type": "image",
+                    "name": "ood_sequence_diagram",
+                    "title": "循序圖設計 (OOD)",
+                    "description": "上傳你的 OOD 循序圖設計"
+                  },
+                  {
+                    "type": "image",
+                    "name": "ood_uml",
+                    "title": "物件導向設計 (OOD)",
+                    "description": "上傳你的 OOD 類別圖"
+                  },
+                  {
+                    "type": "zip",
+                    "name": "code_files",
+                    "title": "專案壓縮檔",
+                    "description": "請將你專案的原始碼壓縮至 ZIP 中並且上傳。(只包含原始碼檔案就好囉,不要包含編譯後的檔案。)"
+                  }
+                ],
+                "recommendDurationInDays": 7,
+                "maxDurationInDays": 14
+              },
+              {
+                "id": 2,
+                "type": "INSTANT_CHALLENGE",
+                "name": "日誌框架 ★★",
+                "submissionFields": [
+                  {
+                    "type": "image",
+                    "name": "ooa_uml",
+                    "title": "物件導向分析 (OOA)",
+                    "description": "上傳你的 OOA 領域類別圖"
+                  },
+                  {
+                    "type": "image",
+                    "name": "ood_sequence_diagram",
+                    "title": "循序圖設計 (OOD)",
+                    "description": "上傳你的 OOD 循序圖設計"
+                  },
+                  {
+                    "type": "image",
+                    "name": "ood_uml",
+                    "title": "物件導向設計 (OOD)",
+                    "description": "上傳你的 OOD 類別圖"
+                  }
+                ],
+                "recommendDurationInDays": 7,
+                "maxDurationInDays": 3
+              }
+            ],
+            "relatedLessonIds": [
+              "4_13",
+              "4_24",
+              "4_14"
+            ]
+          },
+          {
+            "id": 20,
+            "chapterId": 4,
+            "journeyId": 0,
+            "code": "7",
+            "name": "透過複雜結構來組合行為：裝飾者模式",
+            "description": "黑段的強者啊，有沒有覺得自己離「軟體架構師」又更進一步了呢？\n\n在上個道館中，你開始接收有別於行為型模式的訓練，你的關注點開始從「封裝行為變種」等微觀設計，前往「模組化架構設計」的宏觀。\n\n那有了基本的感受之後，一樣，接下來，我們一樣再橫向學習更多不同思想。\n\n## 學習更多結構型模式，來豐富解決設計問題的認知\n\n你可以相信，橫向學這些「結構型模式」對成為一位軟體架構師一定是有所幫助的，否則我不會放在課程中。\n\n（那些相較沒幫助、或是概念重複較高的四人幫模式，我都不會放在這門課中教，也不認為你有必要去學習。）\n\n結構型模式有趣的點，就是每個模式都會「用不同的情境和視角，教會你更多一些對不同種結構設計」的認知。\n\n我們學這些模式並不一定只是為了學以致用，更多時候是建立更豐富的認知。\n\n好比你不會太常用到「代理人模式」，但也只有在學習代理人模式的過程中，你才會從中學到「代理結構」可以長什麼樣子。\n\n那這份對於結構的認知，更不只適用於微觀的程式設計，還能適用於宏觀的模組化設計。（你把模組當成類別看待就行了）\n\n## 熟悉各種結構，然後來挑戰吧！\n\n總結來說，以這門課的 OOAD / Christopher Alexander 模式作為基礎，來學習這些有趣易懂的結構型模式有以下兩大好處。\n\n1. 熟悉五種不同結構設計的用途：轉接/相容、代理、隱藏結構複雜度及變化、行為組合。\n2. 熟悉新的結構相關的 Forces，擴大自己設計模式思路的適用範圍。\n\n好，那等你學完這些結構型模式之後啊，接著就來練習實作一個「服務探索機制套件 (Service Discovery Library)」吧！",
+            "type": "CHALLENGE",
+            "difficulty": 1,
+            "createdAt": 1686609948184,
+            "reward": {
+              "exp": 300,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            },
+            "challenges": [
+              {
+                "id": 1,
+                "type": "PRACTICAL_CHALLENGE",
+                "name": "服務探索/負載平衡 (Service Discovery/ Load Balancing) 機制 ★",
+                "submissionFields": [
+                  {
+                    "type": "image",
+                    "name": "ooa_uml",
+                    "title": "物件導向分析 (OOA)",
+                    "description": "上傳你的 OOA 領域類別圖"
+                  },
+                  {
+                    "type": "image",
+                    "name": "ood_sequence_diagram",
+                    "title": "循序圖設計 (OOD)",
+                    "description": "上傳你的 OOD 循序圖設計"
+                  },
+                  {
+                    "type": "image",
+                    "name": "ood_uml",
+                    "title": "物件導向設計 (OOD)",
+                    "description": "上傳你的 OOD 類別圖"
+                  },
+                  {
+                    "type": "zip",
+                    "name": "code_files",
+                    "title": "專案壓縮檔",
+                    "description": "請將你專案的原始碼壓縮至 ZIP 中並且上傳。(只包含原始碼檔案就好囉,不要包含編譯後的檔案。)"
+                  }
+                ],
+                "recommendDurationInDays": 7,
+                "maxDurationInDays": 14
+              },
+              {
+                "id": 2,
+                "type": "INSTANT_CHALLENGE",
+                "name": "服務探索/負載平衡 (Service Discovery/ Load Balancing) 機制 ★",
+                "submissionFields": [
+                  {
+                    "type": "image",
+                    "name": "ooa_uml",
+                    "title": "物件導向分析 (OOA)",
+                    "description": "上傳你的 OOA 領域類別圖"
+                  },
+                  {
+                    "type": "image",
+                    "name": "ood_sequence_diagram",
+                    "title": "循序圖設計 (OOD)",
+                    "description": "上傳你的 OOD 循序圖設計"
+                  },
+                  {
+                    "type": "image",
+                    "name": "ood_uml",
+                    "title": "物件導向設計 (OOD)",
+                    "description": "上傳你的 OOD 類別圖"
+                  }
+                ],
+                "recommendDurationInDays": 7,
+                "maxDurationInDays": 3
+              }
+            ],
+            "relatedLessonIds": [
+              "4_18",
+              "4_19"
+            ]
+          },
+          {
+            "id": 21,
+            "chapterId": 4,
+            "journeyId": 0,
+            "code": "8",
+            "name": "高級複雜框架實戰：有限狀態機框架",
+            "description": "黑段的強者，你終於走到這裡了。\n\n你知道嗎，很少工程師能夠在「真的實際寫程式」之前，就把規劃做得這麼快、這麼完整，這都是需要大量 OOAD 的苦工和汗水才做得到的。\n\n能走到這裡，你的學習成效早就已經見證了，就在你的類別圖設計上。\n\n那麼，你一定很希望自己能夠精益求精，變得更強對吧？\n\n要變得更強，只有一種做法——「那就是寫更難的題目」。\n\n那麼，你就一定也很好奇，水球到底能不能考倒現在的你，對吧？現在的你不只能抓出各式各樣的 Problem，還能夠快速套用多個模式依序化解程式複雜度。\n\n你一定很好奇，再更難的題目長什麼樣子，對吧？\n\n## 四星難題的邏輯大公開\n\n這個道館的題目是「四顆星」的題目，所以你一定會從中「被挑戰」到，而從中成長，這是非常神奇的一件事。\n\n但只要你懂我出題目的邏輯，就知道為什麼水球能夠這麼精準地控制學員每個時期的學習成效：\n1. 一顆星的題目：鍛鍊的重點是思路，只需要把 OOAD 做 60% 完整度，程式碼就不會寫得太挫折。\n2. 兩顆星的題目：需求中的概念複雜度為一星題的兩倍到三倍，OOAD 需要做到 90% 的完整度，才不至於漏抓 Problem 或者在實作時感到挫折。\n3. 三顆星的題目：需求中的 Forces 衝突組（也就是 Problem）至少超過 3 個，且每種 Problem 不同，至少要套用三個模式才能化解，否則寫程式時會很挫折。\n4. 四顆星的題目：不只是不同類型 Problem 的數量超過 3 個，還涉及 2 個以上的模組，並且最核心的模組至少從 「7~10 種」不同應用模組的行為中「萃取出最剛好的共同之處」，如果OOAD 不夠完整、萃取不夠細心，則是連寫都寫不太出來。\n\n從四星題目的出題邏輯來看，你有沒有發現，要變得更強的關鍵是什麼？\n\n## 變得再更強的關鍵能力：萃取\n\n那就是「萃取」——「留同存異」的能力。\n\n還記得在道館三時，你曾寫過一個撲克牌遊戲框架對嗎？\n當時你只需要針對「Uno」和「比大小遊戲」兩種應用模組來萃取剛剛好的撲克牌框架就好。\n\n那可想而知，如果你的應用越豐富，你要從這麼多各式各樣的不同應用中萃取出「核心框架」，肯定是非常考驗你 OOAD 的完整度以及細心。\n\n如果你跳了太多步驟，那最後就會因為「抽象層面上的資訊不足」而施力點不足，因而找不到剛剛好的「萃取」，這樣在寫程式的時候就會開始「有點痛苦」。\n\n所以各位強者們，一起來享受這一題吧。\n雖然有可能會被題目挑戰到，但千萬別忘記，受挫才是正常的，受挫才是變強的捷徑。\n\n這一題只要練過去了，我和你發誓，你要去自幹 Web framework 或其他 Framework 可能對你來說都不算是什麼難題了，因為這一題絕對比 Web Framework 的複雜度來得高。\n\n也就是說，你離成為硬核 Coding 高手，就只有一步之遙了。\n\n請你好好享受這道題目中的所有 Forces，願 Forces 與你同在！\n\nLet's move on.",
+            "type": "BOSS",
+            "difficulty": 4,
+            "createdAt": 1691024834003,
+            "reward": {
+              "exp": 4500,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            },
+            "challenges": [
+              {
+                "id": 1,
+                "type": "PRACTICAL_CHALLENGE",
+                "name": "社群機器人引擎 | 有限狀態機框架 ★★★★",
+                "submissionFields": [
+                  {
+                    "type": "image",
+                    "name": "ooa_uml",
+                    "title": "物件導向分析 (OOA)",
+                    "description": "上傳你的 OOA 領域類別圖"
+                  },
+                  {
+                    "type": "image",
+                    "name": "ood_sequence_diagram",
+                    "title": "循序圖設計 (OOD)",
+                    "description": "上傳你的 OOD 循序圖設計"
+                  },
+                  {
+                    "type": "image",
+                    "name": "ood_uml",
+                    "title": "物件導向設計 (OOD)",
+                    "description": "上傳你的 OOD 類別圖"
+                  },
+                  {
+                    "type": "zip",
+                    "name": "code_files",
+                    "title": "專案壓縮檔",
+                    "description": "請將你專案的原始碼壓縮至 ZIP 中並且上傳。(只包含原始碼檔案就好囉,不要包含編譯後的檔案。)"
+                  }
+                ],
+                "recommendDurationInDays": 7,
+                "maxDurationInDays": 40
+              }
+            ],
+            "relatedLessonIds": [
+              "4_26"
+            ]
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "name": "副本五：生命週期及控制反轉",
+        "reward": {
+          "exp": 3000,
+          "coin": 12000,
+          "subscriptionExtensionInDays": 0,
+          "journeyId": 0,
+          "externalRewardDescription": ""
+        },
+        "passwordRequired": false,
+        "lessons": [
+          {
+            "id": 1,
+            "chapterId": 5,
+            "journeyId": 0,
+            "name": "景點：單體模式｜資源約束",
+            "description": "我們來到創建型模式副本中的第一個景點——單體模式 (Singleton Pattern) 啦！ 對於新手而言，這可能是所有模式中「形式」最簡單，一下下就套完了的模式，所以你會倍感親切；而對於老手而言，我們要來聊聊進階的的單體模式話題：「單體模式究竟是不是『反模式 (Anti-Pattern)』？」",
+            "coverImageUrl": "https://cdn.waterballsa.tw/software-design-pattern/content/c5m1/1699079917641-c5m1-cover",
+            "premiumOnly": true,
+            "type": "video",
+            "createdAt": 1686609948184,
+            "reward": {
+              "exp": 200,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            },
+            "videoLength": "23:59",
+            "relatedGymId": "5_3"
+          },
+          {
+            "id": 2,
+            "chapterId": 5,
+            "journeyId": 0,
+            "name": "複習：單體模式",
+            "premiumOnly": true,
+            "type": "google-form",
+            "createdAt": 1686609948184,
+            "reward": {
+              "exp": 200,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            }
+          },
+          {
+            "id": 4,
+            "chapterId": 5,
+            "journeyId": 0,
+            "name": "景點：工廠方法｜生命週期約束",
+            "description": "大家好，我是水球潘。歡迎各位來到創建型模式副本中的第二個模式，工廠方法 (Factory method)！\n\n這個模式算是大家最耳熟能詳的模式之一啦！不過，不過，也是最容易濫用的模式。欸？怎麼又是這個開場白，好像在單體模式中也有說過。\n\n是的，工廠方法的形式也非常簡單，但同時也是非常容易濫用的，此影片會透過一個很實用的案例，來帶你感受一下工廠方法這個新模式面對的 Forces， 並且你要好好注意：水球到底是如何去佐證工廠方法的套用必要性的？\n\n那麼就來吧，上需求！",
+            "coverImageUrl": "https://cdn.waterballsa.tw/software-design-pattern/content/c5m4/1699079948663-c5m4-cover",
+            "premiumOnly": true,
+            "type": "video",
+            "createdAt": 1686609948184,
+            "reward": {
+              "exp": 300,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            },
+            "videoLength": "31:41",
+            "relatedGymId": "5_6"
+          },
+          {
+            "id": 5,
+            "chapterId": 5,
+            "journeyId": 0,
+            "name": "景點：抽象工廠｜從行為型模式一路到套創建型模式",
+            "description": "大家好，我是水球潘。歡迎各位來到創建型模式副本中的最後一個模式，抽象工廠(Abstract Factory Pattern)！\n\n在上一個景點中，我們學到了「工廠方法 (Factory Method)」，那現在怎麼又要再學一個「工廠」的模式呢？\n\n肯定是因為還有新的 Forces 還沒學完嘛，你以為「創建型模式」就「只是 new Product」而已嗎？一旦產品組合複雜起來之後，那麼工廠也是需要管理的呢。\n\n這一次的需求會比較複雜，且 OOAD 的流程會比較長，會用十分循序漸進的方式帶你認識抽象工廠模式，請你將重點放在思路上。\n\n那麼就來吧，上需求！",
+            "premiumOnly": true,
+            "type": "video",
+            "createdAt": 1698264708593,
+            "reward": {
+              "exp": 300,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            },
+            "videoLength": "56:19",
+            "relatedGymId": "5_8"
+          }
+        ],
+        "gyms": [
+          {
+            "id": 3,
+            "chapterId": 5,
+            "journeyId": 0,
+            "code": "9.A",
+            "name": "單體模式練習：計算模型",
+            "description": "黑段的強者，讓我問問你一個問題吧。\n\n當你已經學會了各式各樣的模式，知道如何拆解複雜行為，同時又知道如何做出宏觀、微觀的架構設計之後。\n\n下一件事要學什麼？\n\n很簡單，那肯定就是要讓「所有東西動起來」啊！\n\n做了這麼多結構設計拆了一堆小實作、一堆小插件之後，如果這些東西無法被有效地創建、組織起來，那也是沒用的啊！\n\n而這個過程中最需要細心學習的是什麼？\n那就是「創建物件」。\n\n所以囉，架構設計固然重要，但是想辦法把「所有物件」都在正確的時機創建出來也很重要，這也是為什麼我們最後才開始學「與物件創建相關的 Forces」，涉及到「單體」、「工廠方法」和「抽象工廠」三個主要模式，學完這三個就夠了。\n\n準備好了嗎？這是最後一個需要先吸收知識才能實戰的道館了！\n\nLet's move on",
+            "type": "CHALLENGE",
+            "difficulty": 1,
+            "createdAt": 1686609948184,
+            "reward": {
+              "exp": 320,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            },
+            "challenges": [
+              {
+                "id": 1,
+                "type": "PRACTICAL_CHALLENGE",
+                "name": "單體模式——計算模型 ★",
+                "submissionFields": [
+                  {
+                    "type": "image",
+                    "name": "ooa_uml",
+                    "title": "物件導向分析 (OOA)",
+                    "description": "上傳你的 OOA 領域類別圖"
+                  },
+                  {
+                    "type": "image",
+                    "name": "ood_sequence_diagram",
+                    "title": "循序圖設計 (OOD)",
+                    "description": "上傳你的 OOD 循序圖設計"
+                  },
+                  {
+                    "type": "image",
+                    "name": "ood_uml",
+                    "title": "物件導向設計 (OOD)",
+                    "description": "上傳你的 OOD 類別圖"
+                  },
+                  {
+                    "type": "zip",
+                    "name": "code_files",
+                    "title": "專案壓縮檔",
+                    "description": "請將你專案的原始碼壓縮至 ZIP 中並且上傳。(只包含原始碼檔案就好囉,不要包含編譯後的檔案。)"
+                  }
+                ],
+                "recommendDurationInDays": 7,
+                "maxDurationInDays": 14
+              }
+            ],
+            "relatedLessonIds": [
+              "5_1",
+              "5_2"
+            ]
+          },
+          {
+            "id": 6,
+            "chapterId": 5,
+            "journeyId": 0,
+            "code": "9",
+            "name": "劃破一切的「生命週期」約束",
+            "description": "工廠方法 ★★：基因演算法套件\n\n難度：★★☆☆☆\n\nA. 背景\n你在一間全台最大的電商購物網站中任職技術顧問。\n\n由於公司今年營收十分得好，決定要擴建新產品團隊，在核心競爭力上研發技術來打造更體貼的電商購物網站，像是：",
+            "type": "CHALLENGE",
+            "difficulty": 2,
+            "createdAt": 1686609948184,
+            "reward": {
+              "exp": 320,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            },
+            "challenges": [
+              {
+                "id": 1,
+                "type": "PRACTICAL_CHALLENGE",
+                "name": "工廠方法——基因演算法套件 ★★",
+                "submissionFields": [
+                  {
+                    "type": "image",
+                    "name": "ooa_uml",
+                    "title": "物件導向分析 (OOA)",
+                    "description": "上傳你的 OOA 領域類別圖"
+                  },
+                  {
+                    "type": "image",
+                    "name": "ood_sequence_diagram",
+                    "title": "循序圖設計 (OOD)",
+                    "description": "上傳你的 OOD 循序圖設計"
+                  },
+                  {
+                    "type": "image",
+                    "name": "ood_uml",
+                    "title": "物件導向設計 (OOD)",
+                    "description": "上傳你的 OOD 類別圖"
+                  },
+                  {
+                    "type": "zip",
+                    "name": "code_files",
+                    "title": "專案壓縮檔",
+                    "description": "請將你專案的原始碼壓縮至 ZIP 中並且上傳。(只包含原始碼檔案就好囉,不要包含編譯後的檔案。)"
+                  }
+                ],
+                "recommendDurationInDays": 7,
+                "maxDurationInDays": 14
+              }
+            ],
+            "relatedLessonIds": [
+              "5_4"
+            ]
+          },
+          {
+            "id": 8,
+            "chapterId": 5,
+            "journeyId": 0,
+            "code": "9.B",
+            "name": "二維度的模組化一致性",
+            "description": "★ 抽象工廠——ASCII 介面主題 (ASCII UI Theme)\n\n難度：★☆☆☆☆\n\n你正在開發一個基於 ASCII 文字的介面套件 (ASCII UI)，你希望這個套件能幫助開發者繪製以 ASCII 文字組成的字串作為命令行程式的 UI。然而，你想要實現「ASCII 主題風格 (Theme)」的切換功能，以便開發者能在不修改既有程式碼的前提下，自由切換不同 ASCII 主題風格。",
+            "type": "CHALLENGE",
+            "difficulty": 1,
+            "createdAt": 1698270560408,
+            "reward": {
+              "exp": 300,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            },
+            "challenges": [
+              {
+                "id": 1,
+                "type": "PRACTICAL_CHALLENGE",
+                "name": "抽象工廠——ASCII 介面主題 (ASCII UI Theme) ★",
+                "submissionFields": [
+                  {
+                    "type": "image",
+                    "name": "ooa_uml",
+                    "title": "物件導向分析 (OOA)",
+                    "description": "上傳你的 OOA 領域類別圖"
+                  },
+                  {
+                    "type": "image",
+                    "name": "ood_sequence_diagram",
+                    "title": "循序圖設計 (OOD)",
+                    "description": "上傳你的 OOD 循序圖設計"
+                  },
+                  {
+                    "type": "image",
+                    "name": "ood_uml",
+                    "title": "物件導向設計 (OOD)",
+                    "description": "上傳你的 OOD 類別圖"
+                  },
+                  {
+                    "type": "zip",
+                    "name": "code_files",
+                    "title": "專案壓縮檔",
+                    "description": "請將你專案的原始碼壓縮至 ZIP 中並且上傳。(只包含原始碼檔案就好囉,不要包含編譯後的檔案。)"
+                  }
+                ],
+                "recommendDurationInDays": 7,
+                "maxDurationInDays": 14
+              },
+              {
+                "id": 2,
+                "type": "INSTANT_CHALLENGE",
+                "name": "抽象工廠——ASCII 介面主題 (ASCII UI Theme) ★",
+                "submissionFields": [
+                  {
+                    "type": "image",
+                    "name": "ooa_uml",
+                    "title": "物件導向分析 (OOA)",
+                    "description": "上傳你的 OOA 領域類別圖"
+                  },
+                  {
+                    "type": "image",
+                    "name": "ood_sequence_diagram",
+                    "title": "循序圖設計 (OOD)",
+                    "description": "上傳你的 OOD 循序圖設計"
+                  },
+                  {
+                    "type": "image",
+                    "name": "ood_uml",
+                    "title": "物件導向設計 (OOD)",
+                    "description": "上傳你的 OOD 類別圖"
+                  }
+                ],
+                "recommendDurationInDays": 7,
+                "maxDurationInDays": 3
+              }
+            ],
+            "relatedLessonIds": [
+              "5_5"
+            ]
+          },
+          {
+            "id": 7,
+            "chapterId": 5,
+            "journeyId": 0,
+            "code": "10.A",
+            "name": "高級複雜框架實戰：控制反轉框架",
+            "description": "你要開發一個「單字學習系統 (Vocabulary Learning System)」，這個系統的功能架構如以下所示：\n    1. 管理單字 (Manage words)：讓使用者能管理自己的單字庫中的單字。\n        1. 查詢單字 (Search words)：輸入一個單字，系統上網幫忙查詢單字定義，並印出。使用者也能在此時決定將此單字加入單字庫 (Word Repository) 中。\n        2. 新增單字 (Add new words)：輸入一系列單字，系統上網幫忙查詢這一系列單字，並將查詢成功的單字加入單字庫中。\n        3. 刪除單字 (Delete words)：輸入一系列單字，系統從單字庫中尋找這些單字，並將他們刪除。\n    2. 複習單字 (Review words)",
+            "type": "BOSS",
+            "difficulty": 4,
+            "createdAt": 1691024854689,
+            "reward": {
+              "exp": 5500,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            },
+            "challenges": [
+              {
+                "id": 1,
+                "type": "PRACTICAL_CHALLENGE",
+                "name": "IoC 容器魔王參見 ★★★★",
+                "submissionFields": [
+                  {
+                    "type": "image",
+                    "name": "ooa_uml",
+                    "title": "物件導向分析 (OOA)",
+                    "description": "上傳你的 OOA 領域類別圖"
+                  },
+                  {
+                    "type": "image",
+                    "name": "ood_sequence_diagram",
+                    "title": "循序圖設計 (OOD)",
+                    "description": "上傳你的 OOD 循序圖設計"
+                  },
+                  {
+                    "type": "image",
+                    "name": "ood_uml",
+                    "title": "物件導向設計 (OOD)",
+                    "description": "上傳你的 OOD 類別圖"
+                  },
+                  {
+                    "type": "zip",
+                    "name": "code_files",
+                    "title": "專案壓縮檔",
+                    "description": "請將你專案的原始碼壓縮至 ZIP 中並且上傳。(只包含原始碼檔案就好囉,不要包含編譯後的檔案。)"
+                  }
+                ],
+                "recommendDurationInDays": 7,
+                "maxDurationInDays": 40
+              }
+            ],
+            "relatedLessonIds": [
+              "5_9"
+            ]
+          }
+        ]
+      },
+      {
+        "id": 6,
+        "name": "副本六：自幹高度擴充性的 Web Framework",
+        "reward": {
+          "exp": 3000,
+          "coin": 12000,
+          "subscriptionExtensionInDays": 0,
+          "journeyId": 0,
+          "externalRewardDescription": ""
+        },
+        "passwordRequired": false,
+        "lessons": [
+          {
+            "id": 1,
+            "chapterId": 6,
+            "journeyId": 0,
+            "name": "6.B 魔王題：★★★★ 自幹一個 Web Framework",
+            "description": "各位冒險者好，我們終於來到了本課程的「終極副本」。這個副本就只有一個魔王題，也就是我—— Web Framework。在這個魔王題中，你即將打造屬於你的大型系統作品。",
+            "coverImageUrl": "https://cdn.waterballsa.tw/software-design-pattern/content/c6m1/1691214520001-blob",
+            "premiumOnly": true,
+            "type": "boss",
+            "createdAt": 1691024024960,
+            "reward": {
+              "exp": 8000,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            }
+          }
+        ],
+        "gyms": [
+          {
+            "id": 1,
+            "chapterId": 6,
+            "journeyId": 0,
+            "code": "10",
+            "name": "期末專案 (Web Framework)",
+            "description": "各位黑段強者們好，我們終於來到了本課程的「終極副本」。這個副本就只有一個魔王題，也就是我—— Web Framework。在這個魔王題中，你即將打造屬於你的大型系統作品。\n\n我並不會給你太多的拘束，我僅提供給你一份完整的需求作為「你思考的起點」，當你開發出此份需求要求的初版 Web Framework 之後，接著我會繼續帶領你在「功能/非功能設計」上自由發揮、優化或是演化，只要你持續待在旅程中，水球領主就會持續引導你去挑戰 Web Framework 更多複雜的技術細節，直到你做出一份使你非常滿意的大型作品為止。\n\n這份作品將不屬於水球軟體學院，屬於你自己。這份作品包含你在整個過程中繪製的初版物件導向分析圖、設計圖，展現你游刃有餘思路的各組 Well-defined context，和你為每一道 problem 精準套用的設計模式——這一切都將屬於你個人，是你學有所成、是超越八成工程師實力水準的展現，是這旅程的尾聲，但同時也是你在軟體去登峰造極之路的開頭。\n\n給自己多一點時間來享受這份題目吧，我們身為工程師，能在有生之年內去細心雕磨一款屬於自己的作品並不容易。在過去五個副本中，我要求你當一位稱職的工程師，大多數時間都在訓練你如何迎合他人的需求，並快狠準地處理各種需求。不過現在，你可以當藝術家了，Make the big thing of yours!\n\n在開始閱讀需求之前，我想要再次提醒你一件重要的事，這份需求和以往需求相同的地方是，皆涉及了大量的領域知識，不過比較不同的地方是，這份需求涉及的是 Web 技術知識，而且這份需求更像是「技術規格文件」。所以這一題的難度是建立在「技術規格」的實作上，你個人即將扮演著一間 SI 廠商，你需要獨立分析這份技術規格文件，然後著手開發。\n\n不過走到這裡了，又怎麼會再害怕「領域知識」呢，不管是撲克牌遊戲的知識、交友配對的知識、RPG 遊戲、醫院診斷系統的 Know-how、還是服務探索機制的架構知識和這份 Web Framework 背景知識，只要是知識，就能仰賴物件導向分析與設計的技巧，有效地在需求分析、設計和開發上 make progress。（你甚至可以當作是買了水球的軟體設計模式精通之旅後，還附送水球的 Web 知識教學。）\n\n不瞞你說，這正是為什麼我想要以「Web Framework」作為旅程的結尾，Web Framework 涉及三大構成艱難需求的要素：\n\n1. Web Framework 涉及豐富無形且扎實的 Web/Http 技術背景知識。\n2. Web Framework 是許多公司後端開發賴以維生的框架，仰賴十分卓越的易用性和擴充彈性。\n3. Web Framework 的規模可大可小，只要你有耐心，你便能獨自一人開發出大規模的精緻系統。\n\n你的初版 Web Framework 可能只有 2000 行的程式碼，但接著在新功能需求的添加下，你會再添加到 4000 行程式碼。接著再考慮「資安相關」的需求，你的框架將演化成 16000 行程式碼。16000 行其實已經算是成熟的商用套件了，如 Javascript 後端開發者常用的 express.js，也差不多位於這個行數區間。接著你肯定還會想繼續加強細節（畢竟這作品可是你引以為傲的孩子），你會開始引入各種 middware，在架構上不斷積累至 40000 多行程式碼——不斷變強、變強，再變強。\n\n如果你是後端工程師，那很好，在完成這副本之後，你可以聲稱你自幹過一套 Web Framework，並在各種面試場合下分享他，這已經勝過了八成的面試者。而如果你是前端工程師，那更好，你不只展現出跨領域學習的潛能，習得了後端知識，甚至還做了一件後端工程師都不太敢做的事 — 你身為前端工程師，竟然在不熟悉後端開發的情況下，就開發出 Web Framework？這太扯了。\n\n閱讀到這裡之後，相信各位冒險者應該都已經「非常手癢」了吧。\n\n我們開始吧！給自己弄一杯好喝的咖啡或是鮮奶茶，打開你的 UML Editor。",
+            "type": "BOSS",
+            "difficulty": 4,
+            "createdAt": 1691024024960,
+            "reward": {
+              "exp": 8000,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            },
+            "challenges": [
+              {
+                "id": 1,
+                "type": "PRACTICAL_CHALLENGE",
+                "name": "自幹一個 Web Framework ★★★★",
+                "submissionFields": [
+                  {
+                    "type": "image",
+                    "name": "ooa_uml",
+                    "title": "物件導向分析 (OOA)",
+                    "description": "上傳你的 OOA 領域類別圖"
+                  },
+                  {
+                    "type": "image",
+                    "name": "ood_sequence_diagram",
+                    "title": "循序圖設計 (OOD)",
+                    "description": "上傳你的 OOD 循序圖設計"
+                  },
+                  {
+                    "type": "image",
+                    "name": "ood_uml",
+                    "title": "物件導向設計 (OOD)",
+                    "description": "上傳你的 OOD 類別圖"
+                  },
+                  {
+                    "type": "zip",
+                    "name": "code_files",
+                    "title": "專案壓縮檔",
+                    "description": "請將你專案的原始碼壓縮至 ZIP 中並且上傳。(只包含原始碼檔案就好囉,不要包含編譯後的檔案。)"
+                  }
+                ],
+                "recommendDurationInDays": 7,
+                "maxDurationInDays": 40
+              }
+            ],
+            "relatedLessonIds": []
+          }
+        ]
+      },
+      {
+        "id": 7,
+        "name": "副本七：領航員特訓",
+        "reward": {
+          "exp": 3000,
+          "coin": 12000,
+          "subscriptionExtensionInDays": 0,
+          "journeyId": 0,
+          "externalRewardDescription": ""
+        },
+        "passwordRequired": true,
+        "lessons": [
+          {
+            "id": 1,
+            "chapterId": 7,
+            "journeyId": 0,
+            "name": "【批改示範】副本二魔王題 Big 2",
+            "description": "各位冒險者們好，這邊有一項很重要的請求，要請各位喜歡本旅程教學內容的夥伴幫忙一下。那就是如果你喜歡軟體設計模式精通之旅的教學和服務，請留一下個人評價，為水球我的教學品質背書！",
+            "premiumOnly": true,
+            "type": "video",
+            "createdAt": 1691992840000,
+            "reward": {
+              "exp": 250,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            },
+            "videoLength": "00:00"
+          }
+        ],
+        "gyms": []
+      },
+      {
+        "id": 8,
+        "name": "課程介紹＆試聽",
+        "reward": {
+          "exp": 0,
+          "coin": 0,
+          "subscriptionExtensionInDays": 0,
+          "journeyId": 0,
+          "externalRewardDescription": ""
+        },
+        "passwordRequired": false,
+        "lessons": [
+          {
+            "id": 1,
+            "chapterId": 8,
+            "journeyId": 0,
+            "name": "課程介紹：這門課手把手帶你成為架構設計的高手",
+            "description": "思維升級：Christopher Alexander 模式六大要素及模式語言",
+            "premiumOnly": false,
+            "type": "video",
+            "createdAt": 1733294001561,
+            "reward": {
+              "exp": 0,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            },
+            "videoLength": "04:16"
+          },
+          {
+            "id": 2,
+            "chapterId": 8,
+            "journeyId": 0,
+            "name": "你該知道：在 AI 的時代下，只會下 prompt 絕對寫不出好 Code",
+            "description": "思維升級：Christopher Alexander 模式六大要素及模式語言",
+            "premiumOnly": false,
+            "type": "video",
+            "createdAt": 1745970817683,
+            "reward": {
+              "exp": 0,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            },
+            "videoLength": "02:15"
+          },
+          {
+            "id": 3,
+            "chapterId": 8,
+            "journeyId": 0,
+            "name": "課程試聽：架構師該學的 C.A. 模式六大要素及模式思維",
+            "description": "思維升級：Christopher Alexander 模式六大要素及模式語言",
+            "premiumOnly": false,
+            "type": "video",
+            "createdAt": 1745970822387,
+            "reward": {
+              "exp": 0,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            },
+            "videoLength": "31:01"
+          },
+          {
+            "id": 4,
+            "chapterId": 8,
+            "journeyId": 0,
+            "name": "入學之後：憑什麼這門課能保證你的學習成效？",
+            "description": "思維升級：Christopher Alexander 模式六大要素及模式語言",
+            "premiumOnly": false,
+            "type": "video",
+            "createdAt": 1745970826342,
+            "reward": {
+              "exp": 0,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            },
+            "videoLength": "14:47"
+          },
+          {
+            "id": 5,
+            "chapterId": 8,
+            "journeyId": 0,
+            "name": "Code Review 服務：你不夠強，我不會讓你畢業",
+            "description": "思維升級：Christopher Alexander 模式六大要素及模式語言",
+            "premiumOnly": false,
+            "type": "video",
+            "createdAt": 1745970830041,
+            "reward": {
+              "exp": 0,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            },
+            "videoLength": "03:16"
+          },
+          {
+            "id": 6,
+            "chapterId": 8,
+            "journeyId": 0,
+            "name": "學員訪談：他是如何靠這門課，成功錄取 Nvidia 軟體實戰職位的？",
+            "description": "思維升級：Christopher Alexander 模式六大要素及模式語言",
+            "premiumOnly": false,
+            "type": "video",
+            "createdAt": 1745970833203,
+            "reward": {
+              "exp": 0,
+              "coin": 0,
+              "subscriptionExtensionInDays": 0,
+              "journeyId": 0,
+              "externalRewardDescription": ""
+            },
+            "videoLength": "06:10"
+          }
+        ],
+        "gyms": []
+      }
+    ],
+    "missions": [
+      {
+        "id": 5,
+        "journeyId": 0,
+        "name": "白段任務三",
+        "description": "經過了副本三的旅程，你應該已經找到一種「在思考上至少一直能抓到施力點」、讓一切設計「剛剛好」的感覺。\n\n無論需求多複雜，你也習慣透過「有形的思路」，來促進設計。接下來就是開始應用所學挑戰白段的最終大魔王，加油，我會一直陪著你前進！",
+        "durationInDays": 30,
+        "prerequisites": [
+          {
+            "id": 1,
+            "name": "通過道館 4",
+            "description": "通過道館 4",
+            "type": "GYM_CHALLENGE_SUCCESS",
+            "requiredQuantity": 1,
+            "journeyId": 0,
+            "chapterId": 2,
+            "gymId": 17
+          }
+        ],
+        "criteria": [
+          {
+            "id": 1,
+            "name": "通過道館 5：實戰演練",
+            "description": "通過道館 5",
+            "type": "GYM_CHALLENGE_SUCCESS_PRACTICAL",
+            "requiredQuantity": 1,
+            "journeyId": 0,
+            "chapterId": 3,
+            "gymId": 15
+          }
+        ],
+        "reward": {
+          "exp": 0,
+          "coin": 0,
+          "subscriptionExtensionInDays": 90,
+          "journeyId": 0,
+          "externalRewardDescription": ""
+        }
+      },
+      {
+        "id": 2,
+        "journeyId": 0,
+        "name": "新手任務二",
+        "description": "你在這門課中踏出學習的第一步。\n\n再接再厲挑戰第一道館吧，在第一道館你會開始應用副本一中學到的技巧，戴上 OOAD 的眼鏡。\n\n加油，挑戰完第一道館吧！",
+        "durationInDays": 30,
+        "prerequisites": [
+          {
+            "id": 1,
+            "name": "完成新手任務一",
+            "description": "完成新手任務一",
+            "type": "MISSION_COMPLETED",
+            "requiredQuantity": 1,
+            "journeyId": 0,
+            "missionId": 1
+          }
+        ],
+        "criteria": [
+          {
+            "id": 1,
+            "name": "通過道館 1",
+            "description": "速戰速決或實戰演練進行挑戰並通過道館 1",
+            "type": "GYM_CHALLENGE_SUCCESS",
+            "requiredQuantity": 1,
+            "journeyId": 0,
+            "chapterId": 1,
+            "gymId": 10
+          }
+        ],
+        "reward": {
+          "exp": 0,
+          "coin": 0,
+          "subscriptionExtensionInDays": 30,
+          "journeyId": 0,
+          "externalRewardDescription": ""
+        }
+      },
+      {
+        "id": 1,
+        "journeyId": 0,
+        "name": "新手任務一",
+        "description": "\n依序看完以下幾部影片：\n1. 設計的關鍵是：把無形變有形\n2. UML 不是拿來寫文件的\n3. 行雲流水的 OOA | OOD | OOP\n4. 上這門課一定要有「空杯心態」\n5. 軟體抽象之一：點的萃取\n6. 練武 - 點的萃取\n\n看完這些影片後，請至水球軟體學院 Discord 社群的 [學員交流區](https://discord.com/channels/1295275227848249364/1295629540604776480) 分享一下你的心得（記得先綁定 DC 帳號），水球或助教很快就會回覆你囉～\n",
+        "durationInDays": 21,
+        "prerequisites": [],
+        "criteria": [
+          {
+            "id": 1,
+            "name": "私訊分享影片心得",
+            "description": "私訊分享影片心得",
+            "type": "EXTERNAL",
+            "requiredQuantity": 1
+          }
+        ],
+        "reward": {
+          "exp": 500,
+          "coin": 0,
+          "subscriptionExtensionInDays": 0,
+          "journeyId": 0,
+          "externalRewardDescription": ""
+        }
+      },
+      {
+        "id": 3,
+        "journeyId": 0,
+        "name": "白段任務一",
+        "description": "戴上了 OOAD 眼鏡的你有感覺到自己變強了嗎？ \n\n你已經在這門課中踏出學習的第一步，和大多數工程師相較之下，你更有學習的衝勁和意願，加油，我也是這樣一路練上來的 💪🏻\n\n接下來繼續成長，察覺 Forces 吧！",
+        "durationInDays": 30,
+        "prerequisites": [
+          {
+            "id": 1,
+            "name": "通過道館 1",
+            "description": "速戰速決或實戰演練進行挑戰並通過道館 1",
+            "type": "GYM_CHALLENGE_SUCCESS",
+            "requiredQuantity": 1,
+            "journeyId": 0,
+            "chapterId": 1,
+            "gymId": 10
+          }
+        ],
+        "criteria": [
+          {
+            "id": 1,
+            "name": "通過道館 2：實戰演練",
+            "description": "通過道館 2：實戰演練",
+            "type": "GYM_CHALLENGE_SUCCESS_PRACTICAL",
+            "requiredQuantity": 1,
+            "journeyId": 0,
+            "chapterId": 2,
+            "gymId": 6
+          },
+          {
+            "id": 2,
+            "name": "通過道館 3",
+            "description": "通過道館 3",
+            "type": "GYM_CHALLENGE_SUCCESS",
+            "requiredQuantity": 1,
+            "journeyId": 0,
+            "chapterId": 2,
+            "gymId": 11
+          }
+        ],
+        "reward": {
+          "exp": 0,
+          "coin": 0,
+          "subscriptionExtensionInDays": 30,
+          "journeyId": 0,
+          "externalRewardDescription": ""
+        }
+      },
+      {
+        "id": 9,
+        "journeyId": 0,
+        "name": "黑段任務三 (支線)",
+        "description": "恭喜你挑戰完副本四的魔王，接下來就來挑戰更複雜的框架吧",
+        "durationInDays": 30,
+        "prerequisites": [
+          {
+            "id": 1,
+            "name": "完成黑段任務二",
+            "description": "完成黑段任務二",
+            "type": "MISSION_COMPLETED",
+            "requiredQuantity": 1,
+            "journeyId": 0,
+            "missionId": 7
+          }
+        ],
+        "criteria": [
+          {
+            "id": 1,
+            "name": "通過道館 10.A",
+            "description": "通過道館 10.A",
+            "type": "GYM_CHALLENGE_SUCCESS",
+            "requiredQuantity": 1,
+            "journeyId": 0,
+            "chapterId": 5,
+            "gymId": 7
+          }
+        ],
+        "reward": {
+          "exp": 0,
+          "coin": 0,
+          "subscriptionExtensionInDays": 30,
+          "journeyId": 0,
+          "externalRewardDescription": ""
+        }
+      },
+      {
+        "id": 10,
+        "journeyId": 0,
+        "name": "黑段任務四",
+        "description": "恭喜你來到旅程的最後一關，這一關後通過後，你就成為了旅途的永久學員，加油吧！",
+        "durationInDays": 30,
+        "prerequisites": [
+          {
+            "id": 2,
+            "name": "完成黑段任務三",
+            "description": "完成黑段任務三",
+            "type": "MISSION_COMPLETED",
+            "requiredQuantity": 1,
+            "journeyId": 0,
+            "missionId": 8
+          }
+        ],
+        "criteria": [
+          {
+            "id": 1,
+            "name": "通過道館 10",
+            "description": "通過道館 10",
+            "type": "GYM_CHALLENGE_SUCCESS",
+            "requiredQuantity": 1,
+            "journeyId": 0,
+            "chapterId": 6,
+            "gymId": 1
+          }
+        ],
+        "reward": {
+          "exp": 0,
+          "coin": 0,
+          "subscriptionExtensionInDays": 0,
+          "journeyId": 0,
+          "externalRewardDescription": "終生學員"
+        }
+      },
+      {
+        "id": 7,
+        "journeyId": 0,
+        "name": "黑段任務二",
+        "description": "學了結構模式後，接下來就來挑戰副本四的魔王題吧",
+        "durationInDays": 30,
+        "prerequisites": [
+          {
+            "id": 1,
+            "name": "通過道館 7",
+            "description": "通過道館 7",
+            "type": "GYM_CHALLENGE_SUCCESS",
+            "requiredQuantity": 1,
+            "journeyId": 0,
+            "chapterId": 4,
+            "gymId": 20
+          }
+        ],
+        "criteria": [
+          {
+            "id": 1,
+            "name": "通過道館8：實戰演練",
+            "description": "通過道館8：實戰演練",
+            "type": "GYM_CHALLENGE_SUCCESS_PRACTICAL",
+            "requiredQuantity": 1,
+            "journeyId": 0,
+            "chapterId": 4,
+            "gymId": 21
+          }
+        ],
+        "reward": {
+          "exp": 0,
+          "coin": 0,
+          "subscriptionExtensionInDays": 30,
+          "journeyId": 0,
+          "externalRewardDescription": ""
+        }
+      },
+      {
+        "id": 4,
+        "journeyId": 0,
+        "name": "白段任務二",
+        "description": "在副本二的旅程中對「怎麼抓 Force」和「怎麼有憑有據地套模式」，已經打好一層「基礎」了。接下來就要慢慢「增加專案的規模大小」，並開始學比較特別的行為型模式。\n\n加油，繼續前進吧！",
+        "durationInDays": 30,
+        "prerequisites": [
+          {
+            "id": 1,
+            "name": "通過道館 3",
+            "description": "通過道館 3",
+            "type": "GYM_CHALLENGE_SUCCESS",
+            "requiredQuantity": 1,
+            "journeyId": 0,
+            "chapterId": 2,
+            "gymId": 11
+          }
+        ],
+        "criteria": [
+          {
+            "id": 1,
+            "name": "通過道館 4",
+            "description": "通過道館 4",
+            "type": "GYM_CHALLENGE_SUCCESS",
+            "requiredQuantity": 1,
+            "journeyId": 0,
+            "chapterId": 2,
+            "gymId": 17
+          }
+        ],
+        "reward": {
+          "exp": 0,
+          "coin": 0,
+          "subscriptionExtensionInDays": 30,
+          "journeyId": 0,
+          "externalRewardDescription": ""
+        }
+      },
+      {
+        "id": 8,
+        "journeyId": 0,
+        "name": "黑段任務三",
+        "description": "恭喜你挑戰完副本四的魔王，接下來就來挑戰更複雜的框架吧",
+        "durationInDays": 30,
+        "prerequisites": [
+          {
+            "id": 1,
+            "name": "完成黑段任務二",
+            "description": "完成黑段任務二",
+            "type": "MISSION_COMPLETED",
+            "requiredQuantity": 1,
+            "journeyId": 0,
+            "missionId": 7
+          }
+        ],
+        "criteria": [
+          {
+            "id": 2,
+            "name": "通過道館 9",
+            "description": "通過道館 9",
+            "type": "GYM_CHALLENGE_SUCCESS",
+            "requiredQuantity": 1,
+            "journeyId": 0,
+            "chapterId": 5,
+            "gymId": 6
+          }
+        ],
+        "reward": {
+          "exp": 0,
+          "coin": 0,
+          "subscriptionExtensionInDays": 30,
+          "journeyId": 0,
+          "externalRewardDescription": ""
+        }
+      },
+      {
+        "id": 6,
+        "journeyId": 0,
+        "name": "黑段任務一",
+        "description": "恭喜你踏上了黑段的旅程，從這裡開始，就要慢慢放大你能寫的程式規模了。\n\n在剛開始先學幾個簡單的結構模式，然後開始訓練架構方面的規劃能力。",
+        "durationInDays": 30,
+        "prerequisites": [
+          {
+            "id": 1,
+            "name": "完成白段任務三",
+            "description": "完成白段任務三",
+            "type": "MISSION_COMPLETED",
+            "requiredQuantity": 1,
+            "journeyId": 0,
+            "missionId": 5
+          }
+        ],
+        "criteria": [
+          {
+            "id": 1,
+            "name": "通過道館 6：實戰演練",
+            "description": "通過道館 6：實戰演練",
+            "type": "GYM_CHALLENGE_SUCCESS_PRACTICAL",
+            "requiredQuantity": 1,
+            "journeyId": 0,
+            "chapterId": 4,
+            "gymId": 3
+          },
+          {
+            "id": 8,
+            "name": "通過道館 7：實戰演練",
+            "description": "通過道館 7：實戰演練",
+            "type": "GYM_CHALLENGE_SUCCESS_PRACTICAL",
+            "requiredQuantity": 1,
+            "journeyId": 0,
+            "chapterId": 4,
+            "gymId": 20
+          }
+        ],
+        "reward": {
+          "exp": 0,
+          "coin": 0,
+          "subscriptionExtensionInDays": 30,
+          "journeyId": 0,
+          "externalRewardDescription": ""
+        }
+      }
+    ]
+  }
+]

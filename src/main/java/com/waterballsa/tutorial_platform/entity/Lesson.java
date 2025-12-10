@@ -1,12 +1,12 @@
 package com.waterballsa.tutorial_platform.entity;
 
 import jakarta.persistence.*;
-import lombok.*; // 引入 Lombok
+import lombok.*; // 務必引入 Lombok
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "lessons")
-@Data // ★ 自動生成 Getter/Setter (這就是為什麼找不到 getReward 的原因)
+@Data // ★★★ 救星：自動產生 getReward(), getName(), getDescription() 等方法
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -15,15 +15,15 @@ public class Lesson {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
-
-    // ★ 新增：控制排序
+    // 用來排序單元 (1, 2, 3...)
     @Column(name = "display_order")
     private Integer displayOrder;
 
-    // ★ 新增：控制顯示 (預設 true)
+    // 控制是否顯示 (true/false)
     @Builder.Default
     private Boolean visible = true;
+
+    private String name;
 
     @Column(columnDefinition = "TEXT")
     private String description;
@@ -36,9 +36,9 @@ public class Lesson {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "chapter_db_id")
     @JsonIgnore
+    @ToString.Exclude // 避免無窮迴圈
     private Chapter chapter;
 
-    // Lesson 也有 Reward (一對一)
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "reward_id")
     private Reward reward;

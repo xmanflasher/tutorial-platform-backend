@@ -2,6 +2,7 @@ package com.waterballsa.tutorial_platform.entity;
 
 import jakarta.persistence.*;
 import lombok.*; // 務必引入 Lombok
+import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -42,4 +43,8 @@ public class Lesson {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "reward_id")
     private Reward reward;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "lesson_id") // 建立單向關聯 (Skill table 會有 lesson_id)
+    private List<Skill> skills;
 }

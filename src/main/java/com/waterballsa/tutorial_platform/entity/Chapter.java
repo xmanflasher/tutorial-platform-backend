@@ -3,7 +3,6 @@ package com.waterballsa.tutorial_platform.entity;
 import jakarta.persistence.*;
 import lombok.*;
 import java.util.List;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "chapters")
@@ -17,21 +16,29 @@ public class Chapter {
     private Long id;
 
     private String name;
+    private String description;
 
-    // ★ 新增：控制排序
+    @Column(name = "chapter_no")
+    private Integer chapterNo;
+
+    // ★ 新增：對應資料庫的 display_order
     @Column(name = "display_order")
     private Integer displayOrder;
 
-    // ★ 新增：控制顯示 (預設 true)
-    @Builder.Default
+    // ★ 新增：對應資料庫的 visible
+    // 建議給預設值 true，避免舊資料 null 導致 NullPointerException
+    @Column(name = "visible")
     private Boolean visible = true;
 
-    // ★★★ 這就是 Key！對應到資料庫的 journey_db_id ★★★
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "journey_db_id") // 指定外鍵欄位名稱
-    @JsonIgnore // 防止 JSON 遞迴死循環
+    @JoinColumn(name = "journey_id")
+    @ToString.Exclude
     private Journey journey;
 
-    @OneToMany(mappedBy = "chapter", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "chapter", cascade = CascadeType.ALL)
+    @OrderBy("id ASC")
     private List<Lesson> lessons;
+
+    @OneToMany(mappedBy = "chapter", cascade = CascadeType.ALL)
+    private List<Gym> gyms;
 }

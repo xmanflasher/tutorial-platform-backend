@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collections;
-import java.util.Comparator; // ★ 記得引入 Comparator
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -20,6 +20,8 @@ public class JourneyService {
 
     public List<JourneyDetailDTO> getAllJourneys() {
         return journeyRepository.findAll().stream()
+                // ★ 1. [新增] 過濾 Journey：只回傳 visible 為 true 的
+                .filter(journey -> Boolean.TRUE.equals(journey.getVisible()))
                 .map(this::toDetailDTO)
                 .collect(Collectors.toList());
     }
@@ -27,6 +29,8 @@ public class JourneyService {
     @Transactional(readOnly = true)
     public JourneyDetailDTO getJourneyBySlug(String slug) {
         Journey journey = journeyRepository.findBySlug(slug)
+                // ★ 1. [新增] 過濾 Journey：即使是用 slug 查，若 invisible 也視為找不到
+                .filter(j -> Boolean.TRUE.equals(j.getVisible()))
                 .orElseThrow(() -> new RuntimeException("Journey not found: " + slug));
 
         return toDetailDTO(journey);
@@ -35,7 +39,7 @@ public class JourneyService {
     // --- 核心轉換邏輯 (Entity -> DTO) ---
     private JourneyDetailDTO toDetailDTO(Journey entity) {
 
-        // 1. 計算總影片數 (這裡計算所有存在的影片，包含隱藏的，如果是只要計算顯示的，要加 filter)
+        // 1. 計算總影片數
         int totalVideos = 0;
         if (entity.getChapters() != null) {
             totalVideos = entity.getChapters().stream()
@@ -51,25 +55,27 @@ public class JourneyService {
                     .collect(Collectors.toList());
         }
 
-        // 3. 轉換 Chapters & Lessons (加入 排序 與 過濾)
+        // 3. 轉換 Chapters & Lessons
         List<ChapterDTO> chapterDTOs = Collections.emptyList();
         if (entity.getChapters() != null) {
             chapterDTOs = entity.getChapters().stream()
-                    // ★ 1. 過濾 Chapter：只留下 visible 為 true 的
+                    // 過濾 Chapter：只留下 visible 為 true 的
                     .filter(ch -> Boolean.TRUE.equals(ch.getVisible()))
 
-                    // ★ 2. 排序 Chapter：依照 displayOrder
+                    // 排序 Chapter：依照 displayOrder (若您希望 Chapter 也依 ID 排，可在此修改)
                     .sorted(Comparator.comparing(Chapter::getDisplayOrder, Comparator.nullsLast(Comparator.naturalOrder())))
 
                     .map(chapter -> {
                         List<LessonDTO> lessonDTOs = Collections.emptyList();
                         if (chapter.getLessons() != null) {
                             lessonDTOs = chapter.getLessons().stream()
-                                    // ★ 3. 過濾 Lesson：只留下 visible 為 true 的
+                                    // ★ 2. 過濾 Lesson：只留下 visible 為 true 的
                                     .filter(lesson -> Boolean.TRUE.equals(lesson.getVisible()))
 
-                                    // ★ 4. 排序 Lesson：依照 displayOrder
-                                    .sorted(Comparator.comparing(Lesson::getDisplayOrder, Comparator.nullsLast(Comparator.naturalOrder())))
+                                    // ★ 3. [修改] 排序 Lesson：依照 ID 排序
+                                    // 註：因為這裡已經在特定 Chapter 的迴圈內，所有 Lesson 的 chapter_id 都相同，
+                                    // 所以直接對 ID 排序即可達成「先 Chapter 後 ID」的效果。
+                                    .sorted(Comparator.comparing(Lesson::getId))
 
                                     .map(lesson -> {
                                         RewardDTO lessonRewardDTO = null;
@@ -107,13 +113,14 @@ public class JourneyService {
         // 4. 轉換 Menus
         List<JourneyMenuDTO> menuDTOs = Collections.emptyList();
         if (entity.getMenus() != null) {
-            menuDTOs = entity.getMenus().stream().map(menu ->
-                    JourneyMenuDTO.builder()
+            menuDTOs = entity.getMenus().stream()
+                    .filter(menu -> Boolean.TRUE.equals(menu.getVisible())) // 只撈 visible 的
+                    .map(menu -> JourneyMenuDTO.builder()
                             .name(menu.getName())
                             .href(menu.getHref())
-                            .icon(menu.getIcon())
+                            .icon(menu.getIcon()) // 確保這裡傳回字串 (e.g., "gift", "map")
                             .build()
-            ).collect(Collectors.toList());
+                    ).collect(Collectors.toList());
         }
 
         // 5. 組裝最終 JourneyDetailDTO

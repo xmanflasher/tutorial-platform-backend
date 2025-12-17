@@ -16,6 +16,7 @@ public class Skill {
     private Long id;
 
     private String name;
+    private String description;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "journey_db_id")

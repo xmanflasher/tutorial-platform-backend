@@ -22,6 +22,9 @@ public class Journey {
     @Column(columnDefinition = "TEXT")
     private String description;
 
+    @Column(name = "visible")
+    private Boolean visible = true;
+
     // 關聯：章節
     @OneToMany(mappedBy = "journey", cascade = CascadeType.ALL, orphanRemoval = true)
     @Builder.Default

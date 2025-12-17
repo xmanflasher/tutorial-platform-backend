@@ -1,24 +1,23 @@
 package com.waterballsa.tutorial_platform.entity;
 
 import jakarta.persistence.*;
-import lombok.*; // 引入 Lombok
+import lombok.*;
 
 @Entity
 @Table(name = "rewards")
-@Data // ★ 自動生成所有 Getter/Setter
+@Data // ★★★ 關鍵：這會自動產生 setId() 方法
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 public class Reward {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long dbId;
+    private Long id; // ★ 必須要有 ID，DataSeeder 才能呼叫 setId(null)
 
     private Integer exp;
     private Integer coin;
 
-    private String externalRewardDescription;
-
+    // 根據你的 JSON，可能還有這兩個欄位
     private Integer subscriptionExtensionInDays;
-    private Long journeyId;
+    private String externalRewardDescription;
 }

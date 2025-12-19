@@ -47,4 +47,8 @@ public class Lesson {
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "lesson_id") // 建立單向關聯 (Skill table 會有 lesson_id)
     private List<Skill> skills;
+
+    @OneToMany(mappedBy = "lesson", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OrderBy("sortOrder ASC") // 讓取出來的內容自動依照順序排列
+    private List<LessonContent> contents;
 }

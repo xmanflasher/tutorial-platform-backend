@@ -4917,40 +4917,28 @@
       }
     ],
     "missions": [
+
+
       {
-        "id": 5,
+        "id": 1,
         "journeyId": 0,
-        "name": "白段任務三",
-        "description": "經過了副本三的旅程，你應該已經找到一種「在思考上至少一直能抓到施力點」、讓一切設計「剛剛好」的感覺。\n\n無論需求多複雜，你也習慣透過「有形的思路」，來促進設計。接下來就是開始應用所學挑戰白段的最終大魔王，加油，我會一直陪著你前進！",
-        "durationInDays": 30,
-        "prerequisites": [
-          {
-            "id": 1,
-            "name": "通過道館 4",
-            "description": "通過道館 4",
-            "type": "GYM_CHALLENGE_SUCCESS",
-            "requiredQuantity": 1,
-            "journeyId": 0,
-            "chapterId": 2,
-            "gymId": 17
-          }
-        ],
+        "name": "新手任務一",
+        "description": "\n依序看完以下幾部影片：\n1. 設計的關鍵是：把無形變有形\n2. UML 不是拿來寫文件的\n3. 行雲流水的 OOA | OOD | OOP\n4. 上這門課一定要有「空杯心態」\n5. 軟體抽象之一：點的萃取\n6. 練武 - 點的萃取\n\n看完這些影片後，請至水球軟體學院 Discord 社群的 [學員交流區](https://discord.com/channels/1295275227848249364/1295629540604776480) 分享一下你的心得（記得先綁定 DC 帳號），水球或助教很快就會回覆你囉～\n",
+        "durationInDays": 21,
+        "prerequisites": [],
         "criteria": [
           {
             "id": 1,
-            "name": "通過道館 5：實戰演練",
-            "description": "通過道館 5",
-            "type": "GYM_CHALLENGE_SUCCESS_PRACTICAL",
-            "requiredQuantity": 1,
-            "journeyId": 0,
-            "chapterId": 3,
-            "gymId": 15
+            "name": "私訊分享影片心得",
+            "description": "私訊分享影片心得",
+            "type": "EXTERNAL",
+            "requiredQuantity": 1
           }
         ],
         "reward": {
-          "exp": 0,
+          "exp": 500,
           "coin": 0,
-          "subscriptionExtensionInDays": 90,
+          "subscriptionExtensionInDays": 0,
           "journeyId": 0,
           "externalRewardDescription": ""
         }
@@ -4993,30 +4981,6 @@
         }
       },
       {
-        "id": 1,
-        "journeyId": 0,
-        "name": "新手任務一",
-        "description": "\n依序看完以下幾部影片：\n1. 設計的關鍵是：把無形變有形\n2. UML 不是拿來寫文件的\n3. 行雲流水的 OOA | OOD | OOP\n4. 上這門課一定要有「空杯心態」\n5. 軟體抽象之一：點的萃取\n6. 練武 - 點的萃取\n\n看完這些影片後，請至水球軟體學院 Discord 社群的 [學員交流區](https://discord.com/channels/1295275227848249364/1295629540604776480) 分享一下你的心得（記得先綁定 DC 帳號），水球或助教很快就會回覆你囉～\n",
-        "durationInDays": 21,
-        "prerequisites": [],
-        "criteria": [
-          {
-            "id": 1,
-            "name": "私訊分享影片心得",
-            "description": "私訊分享影片心得",
-            "type": "EXTERNAL",
-            "requiredQuantity": 1
-          }
-        ],
-        "reward": {
-          "exp": 500,
-          "coin": 0,
-          "subscriptionExtensionInDays": 0,
-          "journeyId": 0,
-          "externalRewardDescription": ""
-        }
-      },
-      {
         "id": 3,
         "journeyId": 0,
         "name": "白段任務一",
@@ -5054,6 +5018,204 @@
             "journeyId": 0,
             "chapterId": 2,
             "gymId": 11
+          }
+        ],
+        "reward": {
+          "exp": 0,
+          "coin": 0,
+          "subscriptionExtensionInDays": 30,
+          "journeyId": 0,
+          "externalRewardDescription": ""
+        }
+      },
+      {
+        "id": 4,
+        "journeyId": 0,
+        "name": "白段任務二",
+        "description": "在副本二的旅程中對「怎麼抓 Force」和「怎麼有憑有據地套模式」，已經打好一層「基礎」了。接下來就要慢慢「增加專案的規模大小」，並開始學比較特別的行為型模式。\n\n加油，繼續前進吧！",
+        "durationInDays": 30,
+        "prerequisites": [
+          {
+            "id": 1,
+            "name": "通過道館 3",
+            "description": "通過道館 3",
+            "type": "GYM_CHALLENGE_SUCCESS",
+            "requiredQuantity": 1,
+            "journeyId": 0,
+            "chapterId": 2,
+            "gymId": 11
+          }
+        ],
+        "criteria": [
+          {
+            "id": 1,
+            "name": "通過道館 4",
+            "description": "通過道館 4",
+            "type": "GYM_CHALLENGE_SUCCESS",
+            "requiredQuantity": 1,
+            "journeyId": 0,
+            "chapterId": 2,
+            "gymId": 17
+          }
+        ],
+        "reward": {
+          "exp": 0,
+          "coin": 0,
+          "subscriptionExtensionInDays": 30,
+          "journeyId": 0,
+          "externalRewardDescription": ""
+        }
+      },
+      {
+        "id": 5,
+        "journeyId": 0,
+        "name": "白段任務三",
+        "description": "經過了副本三的旅程，你應該已經找到一種「在思考上至少一直能抓到施力點」、讓一切設計「剛剛好」的感覺。\n\n無論需求多複雜，你也習慣透過「有形的思路」，來促進設計。接下來就是開始應用所學挑戰白段的最終大魔王，加油，我會一直陪著你前進！",
+        "durationInDays": 30,
+        "prerequisites": [
+          {
+            "id": 1,
+            "name": "通過道館 4",
+            "description": "通過道館 4",
+            "type": "GYM_CHALLENGE_SUCCESS",
+            "requiredQuantity": 1,
+            "journeyId": 0,
+            "chapterId": 2,
+            "gymId": 17
+          }
+        ],
+        "criteria": [
+          {
+            "id": 1,
+            "name": "通過道館 5：實戰演練",
+            "description": "通過道館 5",
+            "type": "GYM_CHALLENGE_SUCCESS_PRACTICAL",
+            "requiredQuantity": 1,
+            "journeyId": 0,
+            "chapterId": 3,
+            "gymId": 15
+          }
+        ],
+        "reward": {
+          "exp": 0,
+          "coin": 0,
+          "subscriptionExtensionInDays": 90,
+          "journeyId": 0,
+          "externalRewardDescription": ""
+        }
+      },
+      {
+        "id": 6,
+        "journeyId": 0,
+        "name": "黑段任務一",
+        "description": "恭喜你踏上了黑段的旅程，從這裡開始，就要慢慢放大你能寫的程式規模了。\n\n在剛開始先學幾個簡單的結構模式，然後開始訓練架構方面的規劃能力。",
+        "durationInDays": 30,
+        "prerequisites": [
+          {
+            "id": 1,
+            "name": "完成白段任務三",
+            "description": "完成白段任務三",
+            "type": "MISSION_COMPLETED",
+            "requiredQuantity": 1,
+            "journeyId": 0,
+            "missionId": 5
+          }
+        ],
+        "criteria": [
+          {
+            "id": 1,
+            "name": "通過道館 6：實戰演練",
+            "description": "通過道館 6：實戰演練",
+            "type": "GYM_CHALLENGE_SUCCESS_PRACTICAL",
+            "requiredQuantity": 1,
+            "journeyId": 0,
+            "chapterId": 4,
+            "gymId": 3
+          },
+          {
+            "id": 8,
+            "name": "通過道館 7：實戰演練",
+            "description": "通過道館 7：實戰演練",
+            "type": "GYM_CHALLENGE_SUCCESS_PRACTICAL",
+            "requiredQuantity": 1,
+            "journeyId": 0,
+            "chapterId": 4,
+            "gymId": 20
+          }
+        ],
+        "reward": {
+          "exp": 0,
+          "coin": 0,
+          "subscriptionExtensionInDays": 30,
+          "journeyId": 0,
+          "externalRewardDescription": ""
+        }
+      },
+      {
+        "id": 7,
+        "journeyId": 0,
+        "name": "黑段任務二",
+        "description": "學了結構模式後，接下來就來挑戰副本四的魔王題吧",
+        "durationInDays": 30,
+        "prerequisites": [
+          {
+            "id": 1,
+            "name": "通過道館 7",
+            "description": "通過道館 7",
+            "type": "GYM_CHALLENGE_SUCCESS",
+            "requiredQuantity": 1,
+            "journeyId": 0,
+            "chapterId": 4,
+            "gymId": 20
+          }
+        ],
+        "criteria": [
+          {
+            "id": 1,
+            "name": "通過道館8：實戰演練",
+            "description": "通過道館8：實戰演練",
+            "type": "GYM_CHALLENGE_SUCCESS_PRACTICAL",
+            "requiredQuantity": 1,
+            "journeyId": 0,
+            "chapterId": 4,
+            "gymId": 21
+          }
+        ],
+        "reward": {
+          "exp": 0,
+          "coin": 0,
+          "subscriptionExtensionInDays": 30,
+          "journeyId": 0,
+          "externalRewardDescription": ""
+        }
+      },
+      {
+        "id": 8,
+        "journeyId": 0,
+        "name": "黑段任務三",
+        "description": "恭喜你挑戰完副本四的魔王，接下來就來挑戰更複雜的框架吧",
+        "durationInDays": 30,
+        "prerequisites": [
+          {
+            "id": 1,
+            "name": "完成黑段任務二",
+            "description": "完成黑段任務二",
+            "type": "MISSION_COMPLETED",
+            "requiredQuantity": 1,
+            "journeyId": 0,
+            "missionId": 7
+          }
+        ],
+        "criteria": [
+          {
+            "id": 2,
+            "name": "通過道館 9",
+            "description": "通過道館 9",
+            "type": "GYM_CHALLENGE_SUCCESS",
+            "requiredQuantity": 1,
+            "journeyId": 0,
+            "chapterId": 5,
+            "gymId": 6
           }
         ],
         "reward": {
@@ -5136,166 +5298,6 @@
           "subscriptionExtensionInDays": 0,
           "journeyId": 0,
           "externalRewardDescription": "終生學員"
-        }
-      },
-      {
-        "id": 7,
-        "journeyId": 0,
-        "name": "黑段任務二",
-        "description": "學了結構模式後，接下來就來挑戰副本四的魔王題吧",
-        "durationInDays": 30,
-        "prerequisites": [
-          {
-            "id": 1,
-            "name": "通過道館 7",
-            "description": "通過道館 7",
-            "type": "GYM_CHALLENGE_SUCCESS",
-            "requiredQuantity": 1,
-            "journeyId": 0,
-            "chapterId": 4,
-            "gymId": 20
-          }
-        ],
-        "criteria": [
-          {
-            "id": 1,
-            "name": "通過道館8：實戰演練",
-            "description": "通過道館8：實戰演練",
-            "type": "GYM_CHALLENGE_SUCCESS_PRACTICAL",
-            "requiredQuantity": 1,
-            "journeyId": 0,
-            "chapterId": 4,
-            "gymId": 21
-          }
-        ],
-        "reward": {
-          "exp": 0,
-          "coin": 0,
-          "subscriptionExtensionInDays": 30,
-          "journeyId": 0,
-          "externalRewardDescription": ""
-        }
-      },
-      {
-        "id": 4,
-        "journeyId": 0,
-        "name": "白段任務二",
-        "description": "在副本二的旅程中對「怎麼抓 Force」和「怎麼有憑有據地套模式」，已經打好一層「基礎」了。接下來就要慢慢「增加專案的規模大小」，並開始學比較特別的行為型模式。\n\n加油，繼續前進吧！",
-        "durationInDays": 30,
-        "prerequisites": [
-          {
-            "id": 1,
-            "name": "通過道館 3",
-            "description": "通過道館 3",
-            "type": "GYM_CHALLENGE_SUCCESS",
-            "requiredQuantity": 1,
-            "journeyId": 0,
-            "chapterId": 2,
-            "gymId": 11
-          }
-        ],
-        "criteria": [
-          {
-            "id": 1,
-            "name": "通過道館 4",
-            "description": "通過道館 4",
-            "type": "GYM_CHALLENGE_SUCCESS",
-            "requiredQuantity": 1,
-            "journeyId": 0,
-            "chapterId": 2,
-            "gymId": 17
-          }
-        ],
-        "reward": {
-          "exp": 0,
-          "coin": 0,
-          "subscriptionExtensionInDays": 30,
-          "journeyId": 0,
-          "externalRewardDescription": ""
-        }
-      },
-      {
-        "id": 8,
-        "journeyId": 0,
-        "name": "黑段任務三",
-        "description": "恭喜你挑戰完副本四的魔王，接下來就來挑戰更複雜的框架吧",
-        "durationInDays": 30,
-        "prerequisites": [
-          {
-            "id": 1,
-            "name": "完成黑段任務二",
-            "description": "完成黑段任務二",
-            "type": "MISSION_COMPLETED",
-            "requiredQuantity": 1,
-            "journeyId": 0,
-            "missionId": 7
-          }
-        ],
-        "criteria": [
-          {
-            "id": 2,
-            "name": "通過道館 9",
-            "description": "通過道館 9",
-            "type": "GYM_CHALLENGE_SUCCESS",
-            "requiredQuantity": 1,
-            "journeyId": 0,
-            "chapterId": 5,
-            "gymId": 6
-          }
-        ],
-        "reward": {
-          "exp": 0,
-          "coin": 0,
-          "subscriptionExtensionInDays": 30,
-          "journeyId": 0,
-          "externalRewardDescription": ""
-        }
-      },
-      {
-        "id": 6,
-        "journeyId": 0,
-        "name": "黑段任務一",
-        "description": "恭喜你踏上了黑段的旅程，從這裡開始，就要慢慢放大你能寫的程式規模了。\n\n在剛開始先學幾個簡單的結構模式，然後開始訓練架構方面的規劃能力。",
-        "durationInDays": 30,
-        "prerequisites": [
-          {
-            "id": 1,
-            "name": "完成白段任務三",
-            "description": "完成白段任務三",
-            "type": "MISSION_COMPLETED",
-            "requiredQuantity": 1,
-            "journeyId": 0,
-            "missionId": 5
-          }
-        ],
-        "criteria": [
-          {
-            "id": 1,
-            "name": "通過道館 6：實戰演練",
-            "description": "通過道館 6：實戰演練",
-            "type": "GYM_CHALLENGE_SUCCESS_PRACTICAL",
-            "requiredQuantity": 1,
-            "journeyId": 0,
-            "chapterId": 4,
-            "gymId": 3
-          },
-          {
-            "id": 8,
-            "name": "通過道館 7：實戰演練",
-            "description": "通過道館 7：實戰演練",
-            "type": "GYM_CHALLENGE_SUCCESS_PRACTICAL",
-            "requiredQuantity": 1,
-            "journeyId": 0,
-            "chapterId": 4,
-            "gymId": 20
-          }
-        ],
-        "reward": {
-          "exp": 0,
-          "coin": 0,
-          "subscriptionExtensionInDays": 30,
-          "journeyId": 0,
-          "externalRewardDescription": ""
         }
       }
     ]

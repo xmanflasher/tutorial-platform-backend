@@ -1,23 +1,18 @@
 package com.waterballsa.tutorial_platform.entity;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Embeddable;
 import lombok.*;
 
-@Entity
-@Table(name = "rewards")
-@Data // ★★★ 關鍵：這會自動產生 setId() 方法
+@Embeddable // 標記為可嵌入物件
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 public class Reward {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id; // ★ 必須要有 ID，DataSeeder 才能呼叫 setId(null)
+    // 不需要 ID 了，因為它現在只是 Mission 資料表的一部分
 
     private Integer exp;
     private Integer coin;
-
-    // 根據你的 JSON，可能還有這兩個欄位
     private Integer subscriptionExtensionInDays;
     private String externalRewardDescription;
 }

@@ -18,9 +18,6 @@ public class Chapter {
     private String name;
     private String description;
 
-    @Column(name = "chapter_no")
-    private Integer chapterNo;
-
     // ★ 新增：對應資料庫的 display_order
     @Column(name = "display_order")
     private Integer displayOrder;
@@ -41,4 +38,15 @@ public class Chapter {
 
     @OneToMany(mappedBy = "chapter", cascade = CascadeType.ALL)
     private List<Gym> gyms;
+
+    @Embedded
+    @AttributeOverrides({
+            // 建議加上這個，避免欄位名稱衝突，且在 DB 中看得很清楚這是獎勵欄位
+            @AttributeOverride(name = "exp", column = @Column(name = "reward_exp")),
+            @AttributeOverride(name = "coin", column = @Column(name = "reward_coin")),
+            @AttributeOverride(name = "subscriptionExtensionInDays", column = @Column(name = "reward_sub_days")),
+            @AttributeOverride(name = "externalRewardDescription", column = @Column(name = "reward_desc"))
+    })
+    private Reward reward;
+
 }

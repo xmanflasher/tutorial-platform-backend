@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "members")
@@ -38,4 +39,5 @@ public class Member {
     // 其他欄位 (如 sex, birthDate 等)
     private String sex;
     private String birthDate;
+    private LocalDateTime subscriptionEndDate;
 }

@@ -40,8 +40,14 @@ public class Lesson {
     @ToString.Exclude // 避免無窮迴圈
     private Chapter chapter;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "reward_id")
+    @Embedded
+    @AttributeOverrides({
+            // 建議加上這個，避免欄位名稱衝突，且在 DB 中看得很清楚這是獎勵欄位
+            @AttributeOverride(name = "exp", column = @Column(name = "reward_exp")),
+            @AttributeOverride(name = "coin", column = @Column(name = "reward_coin")),
+            @AttributeOverride(name = "subscriptionExtensionInDays", column = @Column(name = "reward_sub_days")),
+            @AttributeOverride(name = "externalRewardDescription", column = @Column(name = "reward_desc"))
+    })
     private Reward reward;
 
     @OneToMany(cascade = CascadeType.ALL)
@@ -50,5 +56,6 @@ public class Lesson {
 
     @OneToMany(mappedBy = "lesson", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @OrderBy("sortOrder ASC") // 讓取出來的內容自動依照順序排列
+    @ToString.Exclude
     private List<LessonContent> contents;
 }

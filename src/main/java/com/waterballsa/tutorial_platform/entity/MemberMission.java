@@ -11,14 +11,17 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Builder
 public class MemberMission {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
+    // ★ 修正 1：改用 @ManyToOne 關聯物件，不要只存 Long memberId
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
     private Member member;
 
-    @ManyToOne
+    // ★ 修正 2：改用 @ManyToOne 關聯物件，不要只存 Long missionId
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "mission_id")
     private Mission mission;
 
@@ -30,11 +33,13 @@ public class MemberMission {
     private LocalDateTime completedAt;
 
     public enum MissionStatus {
-        AVAILABLE,   // 可接取 (未接)
-        LOCKED,      // 未達標 (不能接)
-        IN_PROGRESS, // 進行中
-        COMPLETED,   // 已完成 (未領獎)
-        CLAIMED,     // 已領獎
-        FAILED       // 失敗/過期
+        AVAILABLE, LOCKED, IN_PROGRESS, COMPLETED, CLAIMED, FAILED
+    }
+    @Column(name = "opportunity_cards_used")
+    private Integer opportunityCardsUsed = 0; // 預設 0
+
+    // 檢查是否還能使用機會卡 (Max 2)
+    public boolean canExtendDeadline() {
+        return this.opportunityCardsUsed < 2;
     }
 }

@@ -15,6 +15,9 @@ public class Skill {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "original_id")
+    private String originalId;
+
     private String name;
     private String description;
 

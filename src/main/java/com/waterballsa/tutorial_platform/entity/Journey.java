@@ -16,6 +16,9 @@ public class Journey {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "original_id")
+    private String originalId;
+
     private String name;
     private String slug;
 
@@ -23,6 +26,7 @@ public class Journey {
     private String description;
 
     @Column(name = "visible")
+    @Builder.Default
     private Boolean visible = true;
 
     // 關聯：章節

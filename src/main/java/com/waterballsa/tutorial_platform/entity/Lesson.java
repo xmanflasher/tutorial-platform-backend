@@ -16,6 +16,9 @@ public class Lesson {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "original_id")
+    private String originalId;
+
     // 用來排序單元 (1, 2, 3...)
     @Column(name = "display_order")
     private Integer displayOrder;

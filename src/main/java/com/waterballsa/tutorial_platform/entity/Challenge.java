@@ -15,6 +15,9 @@ public class Challenge {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "original_id")
+    private String originalId;
+
     private String name;  // 例如："Showdown ! 撲克牌遊戲建模 ★"
 
     private String type;  // 例如："PRACTICAL_CHALLENGE" (實作), "INSTANT_CHALLENGE" (即時)

@@ -20,6 +20,9 @@ public class MissionRequirement {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "original_id")
+    private String originalId;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "mission_id")
     @JsonIgnore // 避免循環引用

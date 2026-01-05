@@ -3,6 +3,8 @@ package com.waterballsa.tutorial_platform.entity;
 import jakarta.persistence.*;
 import lombok.*;
 import java.util.List;
+import java.util.ArrayList;
+
 
 @Entity
 @Table(name = "chapters")
@@ -14,6 +16,9 @@ public class Chapter {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name = "original_id")
+    private String originalId;
 
     private String name;
     private String description;
@@ -34,10 +39,11 @@ public class Chapter {
 
     @OneToMany(mappedBy = "chapter", cascade = CascadeType.ALL)
     @OrderBy("id ASC")
-    private List<Lesson> lessons;
+    @Builder.Default
+    private List<Lesson> lessons = new ArrayList<>();
 
     @OneToMany(mappedBy = "chapter", cascade = CascadeType.ALL)
-    private List<Gym> gyms;
+    private List<Gym> gyms = new ArrayList<>();;
 
     @Embedded
     @AttributeOverrides({

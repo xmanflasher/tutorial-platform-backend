@@ -8,6 +8,7 @@ import org.hibernate.annotations.Where; // ★ 引入這個
 
 import java.util.ArrayList;
 import java.util.List;
+import org.hibernate.annotations.SQLRestriction; // ★ 引入這個
 
 @Entity
 @Table(name = "missions")
@@ -19,6 +20,9 @@ public class Mission {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name = "original_id")
+    private String originalId;
 
     private String name;
 
@@ -50,7 +54,7 @@ public class Mission {
     // 加入 @Where 讓 Hibernate 撈資料時只撈 category = 'PREREQUISITE' 的項目
     @Builder.Default
     @OneToMany(mappedBy = "mission", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-    @Where(clause = "category = 'PREREQUISITE'")
+    @SQLRestriction("category = 'PREREQUISITE'")
     @JsonProperty("prerequisites")
     private List<MissionRequirement> prerequisites = new ArrayList<>();
 
@@ -58,7 +62,7 @@ public class Mission {
     // 加入 @Where 讓 Hibernate 撈資料時只撈 category = 'CRITERIA' 的項目
     @Builder.Default
     @OneToMany(mappedBy = "mission", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-    @Where(clause = "category = 'CRITERIA'") // 假設資料庫存的是 "CRITERIA" (如果存 "COMPLETION" 請自行修改)
+    @SQLRestriction("category = 'CRITERIA'") // 假設資料庫存的是 "CRITERIA" (如果存 "COMPLETION" 請自行修改)
     @JsonProperty("criteria")
     private List<MissionRequirement> criteria = new ArrayList<>();
 

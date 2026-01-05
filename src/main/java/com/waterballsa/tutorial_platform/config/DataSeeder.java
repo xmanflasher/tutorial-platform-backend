@@ -13,137 +13,162 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.InputStream;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 @Configuration
 @RequiredArgsConstructor
 public class DataSeeder {
 
+    private final LessonRepository lessonRepository; // 注入 LessonRepository 用來查關聯
+
     @Bean
-    @Transactional // 加入 Transactional 確保資料一致性
+    @Transactional
     CommandLineRunner initDatabase(JourneyRepository journeyRepository) {
         return args -> {
             if (journeyRepository.count() == 0) {
                 System.out.println("🚀 [1/3] 開始匯入 Journey JSON ...");
                 ObjectMapper mapper = new ObjectMapper();
-                // 忽略 JSON 中有但 Entity 沒有的欄位 (例如 unknown properties)
                 mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
                 try {
-                    // 確認你的檔案放在 src/main/resources/data.json
                     InputStream inputStream = new ClassPathResource("data.json").getInputStream();
                     List<Journey> journeys = mapper.readValue(inputStream, new TypeReference<List<Journey>>() {});
 
-                    // 準備一個 Map 來暫存: 舊的 Lesson ID -> 也就是 JSON 裡的 ID -> 對應到 Lesson 物件
-                    // 用於稍後 Gym 綁定 relatedLessons
-                    Map<Long, Lesson> originalLessonIdMap = new HashMap<>();
-
+                    // ---------------------------------------------------------
+                    // 第一階段：設定 Original ID 並清除 DB ID，建立層級關聯
+                    // ---------------------------------------------------------
                     journeys.forEach(journey -> {
-                        journey.setId(null); // 清除 ID，讓 DB 自動生成
+                        // 1. Journey
+                        journey.setOriginalId(String.valueOf(journey.getId()));
+                        journey.setId(null);
 
-                        // 1. 處理 Skills (建立雙向關聯)
+                        // 2. Skills
                         if (journey.getSkills() != null) {
                             journey.getSkills().forEach(skill -> {
+                                skill.setOriginalId(String.valueOf(skill.getId()));
                                 skill.setId(null);
-                                skill.setJourney(journey); // ★ 綁定 FK
+                                skill.setJourney(journey);
                             });
                         }
 
-                        // 2. 處理 Missions
+                        // 3. Missions
                         if (journey.getMissions() != null) {
                             journey.getMissions().forEach(mission -> {
+                                mission.setOriginalId(String.valueOf(mission.getId()));
                                 mission.setId(null);
-                                mission.setJourney(journey); // ★ 綁定 FK
+                                mission.setJourney(journey);
 
-                                // (A) 處理 Prerequisites (前置條件)
+                                // Prerequisites
                                 if (mission.getPrerequisites() != null) {
                                     mission.getPrerequisites().forEach(req -> {
+                                        req.setOriginalId(String.valueOf(req.getId()));
                                         req.setId(null);
-                                        req.setMission(mission); // ★ 綁定 FK
-                                        req.setCategory("PREREQUISITE"); // ★ 手動補上類別
+                                        req.setMission(mission);
+                                        req.setCategory("PREREQUISITE");
                                     });
                                 }
-
-                                // (B) 處理 Criteria (驗收標準)
+                                // Criteria
                                 if (mission.getCriteria() != null) {
                                     mission.getCriteria().forEach(req -> {
+                                        req.setOriginalId(String.valueOf(req.getId()));
                                         req.setId(null);
-                                        req.setMission(mission); // ★ 綁定 FK
-                                        req.setCategory("CRITERIA"); // ★ 手動補上類別
+                                        req.setMission(mission);
+                                        req.setCategory("CRITERIA");
                                     });
                                 }
                             });
                         }
 
-                        // 3. 處理 Chapters & Lessons (重要：先處理 Lesson 才能讓 Gym 關聯)
+                        // 4. Chapters (Lessons & Gyms)
                         if (journey.getChapters() != null) {
                             journey.getChapters().forEach(chapter -> {
+                                chapter.setOriginalId(String.valueOf(chapter.getId()));
                                 chapter.setId(null);
-                                chapter.setJourney(journey); // ★ 綁定 FK
+                                chapter.setJourney(journey);
 
-                                // 處理 Lessons
+                                // Lessons
                                 if (chapter.getLessons() != null) {
                                     chapter.getLessons().forEach(lesson -> {
-                                        Long oldId = lesson.getId(); // 暫存 JSON 裡的舊 ID
-                                        if (oldId != null) {
-                                            originalLessonIdMap.put(oldId, lesson);
-                                        }
-
+                                        lesson.setOriginalId(String.valueOf(lesson.getId()));
                                         lesson.setId(null);
-                                        lesson.setChapter(chapter); // ★ 綁定 FK
+                                        lesson.setChapter(chapter);
                                     });
                                 }
-                            });
 
-                            // 4. 處理 Gyms (必須在 Lesson 處理完後，因為 Gym 可能會參照 Lesson)
-                            // 注意：這裡需要第二次遍歷 Chapters，或者確保邏輯順序
-                            journey.getChapters().forEach(chapter -> {
+                                // Gyms (先只處理基本屬性與 Challenge，Lesson 關聯留到第二階段)
                                 if (chapter.getGyms() != null) {
                                     chapter.getGyms().forEach(gym -> {
+                                        gym.setOriginalId(String.valueOf(gym.getId()));
                                         gym.setId(null);
-                                        gym.setChapter(chapter); // ★ 綁定 FK
+                                        gym.setChapter(chapter);
 
-                                        // ★ 處理 Challenges
                                         if (gym.getChallenges() != null) {
                                             gym.getChallenges().forEach(challenge -> {
+                                                challenge.setOriginalId(String.valueOf(challenge.getId()));
                                                 challenge.setId(null);
-                                                challenge.setGym(gym); // ★ 綁定 FK
+                                                challenge.setGym(gym);
                                             });
                                         }
-
-                                        // ★★★ 處理 Gym 與 Lesson 的關聯 (relatedLessonIds) ★★★
-                                        // 假設 Gym 有一個欄位 List<Long> relatedLessonIds 來自 JSON
-                                        // 我們需要把它轉換成 List<Lesson> relatedLessons
-                                        /* if (gym.getRelatedLessonIds() != null) {
-                                            List<Lesson> lessons = gym.getRelatedLessonIds().stream()
-                                                .map(originalLessonIdMap::get) // 用舊 ID 找回 Lesson 物件
-                                                .filter(java.util.Objects::nonNull)
-                                                .collect(Collectors.toList());
-                                            gym.setRelatedLessons(lessons);
-                                        }
-                                        */
                                     });
                                 }
                             });
                         }
                     });
 
-                    // 一次性儲存整個 Journey 結構 (因為有 CascadeType.ALL，會自動儲存所有子物件)
+                    // ---------------------------------------------------------
+                    // 第二階段：保存資料，讓 Lesson 進入 DB 並產生可被查詢的狀態
+                    // ---------------------------------------------------------
+                    System.out.println("💾 [2/3] 正在寫入資料庫...");
                     journeyRepository.saveAll(journeys);
-                    System.out.println("✅ Journey JSON 匯入成功！");
+                    journeyRepository.flush(); // 強制同步到資料庫
+
+                    // ---------------------------------------------------------
+                    // 第三階段：處理 Gym -> Lesson 的關聯 (relatedLessons)
+                    // ---------------------------------------------------------
+                    System.out.println("🔗 [3/3] 正在建立 Gym 與 Lesson 的關聯...");
+                    boolean needUpdate = false;
+
+                    for (Journey journey : journeys) {
+                        if (journey.getChapters() != null) {
+                            for (Chapter chapter : journey.getChapters()) {
+                                if (chapter.getGyms() != null) {
+                                    for (Gym gym : chapter.getGyms()) {
+
+                                        // ★★★ 修改這裡 ★★★
+                                        if (gym.getRelatedLessonIds() != null && !gym.getRelatedLessonIds().isEmpty()) {
+
+                                            // 因為現在 getRelatedLessonIds() 已經是 List<String> 了，直接拿來用即可
+                                            List<String> targetOriginalIds = gym.getRelatedLessonIds();
+
+                                            // 去 DB 透過 original_id 找回真正的 Lesson Entity
+                                            List<Lesson> lessons = lessonRepository.findByOriginalIdIn(targetOriginalIds);
+
+                                            // 設定關聯
+                                            gym.setRelatedLessons(lessons);
+                                            needUpdate = true;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    // 如果有建立新的關聯，再存一次
+                    if (needUpdate) {
+                        journeyRepository.saveAll(journeys);
+                    }
+
+                    System.out.println("✅ Journey JSON 匯入成功！Original ID 與關聯皆已建立。");
 
                 } catch (Exception e) {
                     System.err.println("❌ Journey 匯入失敗: " + e.getMessage());
                     e.printStackTrace();
+                    throw e; // 拋出異常讓 Transaction Rollback
                 }
             } else {
                 System.out.println("ℹ️ Journey 資料已存在，跳過匯入。");
             }
-
-            System.out.println("🎉 所有資料初始化完成！");
         };
     }
 }

@@ -114,6 +114,15 @@ public class DataSeeder {
                                 }
                             });
                         }
+                        // ★★★ [4] 補上 Menus 處理邏輯 (之前漏掉了這裡！) ★★★
+                        if (journey.getMenus() != null) {
+                            journey.getMenus().forEach(menu -> {
+                                // menu 沒有 original_id 沒關係，主要是要清除 ID 並綁定 Parent
+                                menu.setId(null);
+                                menu.setJourney(journey); // 關鍵：綁定 Foreign Key
+                            });
+                        }
+
                     });
 
                     // ---------------------------------------------------------

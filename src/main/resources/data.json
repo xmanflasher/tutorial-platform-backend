@@ -5312,24 +5312,17 @@
     ],
     "menus": [
       {
-        "name": "獎勵任務",
-        "icon": "gift",
-        "href": "/journeys/software-design-pattern/missions",
-        "displayOrder": 1,
-        "visible": true
-      },
-      {
         "name": "挑戰地圖",
         "icon": "map",
         "href": "/journeys/software-design-pattern/roadmap",
-        "displayOrder": 2,
+        "displayOrder": 1,
         "visible": true
       },
       {
         "name": "SOP 寶典",
         "icon": "book-open",
         "href": "/journeys/software-design-pattern/sop",
-        "displayOrder": 3,
+        "displayOrder": 2,
         "visible": true
       }
     ]

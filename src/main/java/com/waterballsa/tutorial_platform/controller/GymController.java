@@ -17,11 +17,11 @@ public class GymController {
 
     private final GymService gymService;
 
-    // 1. 取得使用者挑戰歷程
-    @GetMapping("/users/{userId}/journeys/gyms/challenges/records")
-    public ResponseEntity<List<ChallengeRecordDTO>> getChallengeRecords(@PathVariable Long userId) {
-        return ResponseEntity.ok(gymService.getUserChallengeRecords(userId));
-    }
+//    // 1. 取得使用者挑戰歷程
+//    @GetMapping("/users/{userId}/journeys/gyms/challenges/records")
+//    public ResponseEntity<List<ChallengeRecordDTO>> getChallengeRecords(@PathVariable Long userId) {
+//        return ResponseEntity.ok(gymService.getUserChallengeRecords(userId));
+//    }
 
     // 2. 取得旅程徽章 (★ 修改重點)
     // 加上 @RequestParam Long userId，讓前端傳入 "是誰要看這些徽章"

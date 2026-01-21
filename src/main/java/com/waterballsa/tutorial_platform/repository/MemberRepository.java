@@ -12,4 +12,6 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
 
     // 排行榜用：依照經驗值 (exp) 降序排列，取前 100 名
     List<Member> findTop100ByOrderByExpDesc();
+
+    List<Member> findByIdIn(List<Long> ids);
 }

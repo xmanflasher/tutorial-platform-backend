@@ -21,6 +21,11 @@ public class Member {
     private String email;
     private String avatar;
     private String jobTitle;
+    private String nickName;   // 暱稱 (e.g. CW)
+    private String occupation; // 職業代碼 (e.g. JUNIOR_PROGRAMMER)
+
+    @Builder.Default
+    private Long nextLevelExp = 2000L; // 下一級所需經驗值 (可設預設值)
 
     @Builder.Default
     private Integer level = 1;

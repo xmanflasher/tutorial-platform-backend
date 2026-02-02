@@ -7,209 +7,219 @@ import com.waterballsa.tutorial_platform.entity.*;
 import com.waterballsa.tutorial_platform.repository.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.InputStream;
 import java.util.List;
 
-@Configuration
+@Component
 @RequiredArgsConstructor
-public class DataSeeder {
+public class DataSeeder implements CommandLineRunner {
 
+    private final JourneyRepository journeyRepository;
+    private final ChapterRepository chapterRepository;
     private final LessonRepository lessonRepository;
-    // 注入 GymRepository 確保我們可以獨立儲存 Gym (有時候只存 Journey 關聯會沒更新到)
     private final GymRepository gymRepository;
+    private final MissionRepository missionRepository;
+    private final RequirementRepository requirementRepository;
 
-    @Bean
+    private final IdMapper idMapper = new IdMapper();
+    private final ObjectMapper mapper = new ObjectMapper()
+            .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+
+    @Override
     @Transactional
-    CommandLineRunner initDatabase(JourneyRepository journeyRepository) {
-        return args -> {
-            if (journeyRepository.count() == 0) {
-                System.out.println("🚀 [1/3] 開始匯入 Journey JSON ...");
-                ObjectMapper mapper = new ObjectMapper();
-                // 忽略 JSON 裡有但 Entity 裡沒有的欄位
-                mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+    public void run(String... args) throws Exception {
+        if (journeyRepository.count() > 0) {
+            System.out.println("ℹ️ 資料庫已有資料，跳過 Seeder。");
+            return;
+        }
 
-                try {
-                    InputStream inputStream = new ClassPathResource("data.json").getInputStream();
-                    List<Journey> journeys = mapper.readValue(inputStream, new TypeReference<List<Journey>>() {});
+        System.out.println("🚀 開始 DataSeeder...");
 
-                    // ---------------------------------------------------------
-                    // 第一階段：清理 ID 並建立層級關聯 (Parent-Child)
-                    // ---------------------------------------------------------
-                    journeys.forEach(journey -> {
-                        journey.setOriginalId(String.valueOf(journey.getId()));
-                        journey.setId(null);
+        // 1. 匯入實體
+        importEntities();
 
-                        // Skills
-                        if (journey.getSkills() != null) {
-                            journey.getSkills().forEach(skill -> {
-                                skill.setOriginalId(String.valueOf(skill.getId()));
-                                skill.setId(null);
-                                skill.setJourney(journey);
-                            });
+        // 2. 建立關聯
+        linkRelationships();
+
+        System.out.println("🎉 全部完成！");
+    }
+
+    private void importEntities() throws Exception {
+        System.out.println("Processing Pass 1: Saving Entities...");
+
+        try (InputStream inputStream = new ClassPathResource("data.json").getInputStream()) {
+            List<Journey> journeys = mapper.readValue(inputStream, new TypeReference<List<Journey>>() {});
+
+            for (Journey journey : journeys) {
+                // 備份子物件並切斷關聯
+                List<Mission> missions = journey.getMissions();
+                List<Chapter> chapters = journey.getChapters();
+                List<Skill> skills = journey.getSkills();
+                List<JourneyMenu> menus = journey.getMenus();
+
+                journey.setMissions(null);
+                journey.setChapters(null);
+                journey.setSkills(null);
+                journey.setMenus(null);
+
+                // 儲存 Journey
+                journey.setOriginalId(journey.getId());
+                journey.setId(null);
+                Journey savedJourney = journeyRepository.save(journey);
+                idMapper.putJourney(journey.getOriginalId(), savedJourney.getId());
+
+                // Missions
+                if (missions != null) {
+                    for (Mission m : missions) {
+                        List<MissionRequirement> prereqs = m.getPrerequisites();
+                        List<MissionRequirement> criteria = m.getCriteria();
+                        m.setPrerequisites(null);
+                        m.setCriteria(null);
+
+                        m.setOriginalId(m.getId());
+                        m.setId(null);
+                        m.setJourney(savedJourney);
+                        Mission savedMission = missionRepository.save(m);
+                        idMapper.putMission(journey.getOriginalId(), m.getOriginalId(), savedMission.getId());
+
+                        if (prereqs != null) saveRequirements(savedMission, prereqs, "PREREQUISITE");
+                        if (criteria != null) saveRequirements(savedMission, criteria, "CRITERIA");
+                    }
+                }
+
+                // Chapters
+                if (chapters != null) {
+                    for (Chapter c : chapters) {
+                        List<Lesson> lessons = c.getLessons();
+                        List<Gym> gyms = c.getGyms();
+                        c.setLessons(null);
+                        c.setGyms(null);
+
+                        c.setOriginalId(c.getId());
+                        c.setId(null);
+                        c.setJourney(savedJourney);
+                        Chapter savedChapter = chapterRepository.save(c);
+                        idMapper.putChapter(journey.getOriginalId(), c.getOriginalId(), savedChapter.getId());
+
+                        // Lessons
+                        if (lessons != null) {
+                            for (Lesson l : lessons) {
+                                l.setOriginalId(l.getId());
+                                l.setId(null);
+                                l.setChapter(savedChapter);
+                                l.setJourney(savedJourney);
+                                lessonRepository.save(l);
+                                idMapper.putLesson(journey.getOriginalId(), c.getOriginalId(), l.getOriginalId(), l.getId());
+                            }
                         }
 
-                        // 3. Missions
-                        if (journey.getMissions() != null) {
-                            journey.getMissions().forEach(mission -> {
-                                // 3-1. 清洗 Mission 本身的 ID
-                                mission.setOriginalId(String.valueOf(mission.getId()));
-                                mission.setId(null); // ★ 必做：清除 Mission ID
-                                mission.setJourney(journey);
-
-                                // 3-2. 處理 Prerequisites (前置條件)
-                                // JSON 對應欄位: "prerequisites"
-                                if (mission.getPrerequisites() != null) {
-                                    mission.getPrerequisites().forEach(req -> {
-                                        // 備份舊 ID (如果有的話)
-                                        if (req.getId() != null) {
-                                            req.setOriginalId(String.valueOf(req.getId()));
-                                        }
-
-                                        // ★★★ 關鍵修正：徹底清除 ID，讓 Hibernate 視為新資料 ★★★
-                                        req.setId(null);
-
-                                        // ★ 補上 DB 必填欄位 (Entity 中 nullable=false)
-                                        req.setCategory("PREREQUISITE");
-
-                                        // ★ 建立關聯
-                                        req.setMission(mission);
+                        // Gyms
+                        if (gyms != null) {
+                            for (Gym g : gyms) {
+                                if (g.getChallenges() != null) {
+                                    g.getChallenges().forEach(ch -> {
+                                        ch.setOriginalId(ch.getId());
+                                        ch.setId(null);
+                                        ch.setGym(g);
                                     });
                                 }
-
-                                // 3-3. 處理 Criteria (驗收條件)
-                                // JSON 對應欄位: "criteria"
-                                if (mission.getCriteria() != null) {
-                                    mission.getCriteria().forEach(req -> {
-                                        if (req.getId() != null) {
-                                            req.setOriginalId(String.valueOf(req.getId()));
-                                        }
-
-                                        // ★★★ 關鍵修正：徹底清除 ID ★★★
-                                        req.setId(null);
-
-                                        // ★ 補上 DB 必填欄位
-                                        req.setCategory("CRITERIA");
-
-                                        // ★ 建立關聯
-                                        req.setMission(mission);
-                                    });
-                                }
-                            });
+                                g.setOriginalId(g.getId());
+                                g.setId(null);
+                                g.setChapter(savedChapter);
+                                g.setJourney(savedJourney);
+                                gymRepository.save(g);
+                                idMapper.putGym(journey.getOriginalId(), c.getOriginalId(), g.getOriginalId(), g.getId());
+                            }
                         }
+                    }
+                }
 
-                        // Menus (選單)
-                        if (journey.getMenus() != null) {
-                            journey.getMenus().forEach(menu -> {
-                                menu.setId(null);
-                                menu.setJourney(journey);
-                            });
-                        }
+                if (menus != null) {
+                    menus.forEach(m -> { m.setId(null); m.setJourney(savedJourney); });
+                }
+                if (skills != null) {
+                    skills.forEach(s -> { s.setOriginalId(s.getId()); s.setId(null); s.setJourney(savedJourney); });
+                }
+            }
+            journeyRepository.flush();
+        }
+    }
 
-                        // Chapters
-                        if (journey.getChapters() != null) {
-                            journey.getChapters().forEach(chapter -> {
-                                chapter.setOriginalId(String.valueOf(chapter.getId()));
-                                chapter.setId(null);
-                                chapter.setJourney(journey);
+    private void linkRelationships() throws Exception {
+        System.out.println("Processing Pass 2: Linking Gym-Lesson Relationships...");
 
-                                // Lessons
-                                if (chapter.getLessons() != null) {
-                                    chapter.getLessons().forEach(lesson -> {
-                                        lesson.setOriginalId(String.valueOf(lesson.getId()));
-                                        lesson.setId(null);
-                                        lesson.setChapter(chapter);
-                                    });
-                                }
+        try (InputStream inputStream = new ClassPathResource("data.json").getInputStream()) {
+            List<Journey> journeys = mapper.readValue(inputStream, new TypeReference<List<Journey>>() {});
 
-                                // Gyms
-                                if (chapter.getGyms() != null) {
-                                    chapter.getGyms().forEach(gym -> {
-                                        gym.setOriginalId(String.valueOf(gym.getId()));
-                                        gym.setId(null);
-                                        gym.setChapter(chapter);
-                                        // Challenges
-                                        if (gym.getChallenges() != null) {
-                                            gym.getChallenges().forEach(c -> {
-                                                c.setOriginalId(String.valueOf(c.getId()));
-                                                c.setId(null);
-                                                c.setGym(gym);
-                                            });
-                                        }
-                                    });
-                                }
-                            });
-                        }
-                    });
+            for (Journey journeyJson : journeys) {
+                // ★★★ 修正點 1：讀取新 JSON 時，ID 是存在 getId() 裡 (因為 JSON key 是 "id")
+                Long jOid = journeyJson.getId();
 
-                    // ---------------------------------------------------------
-                    // 第二階段：先存檔，讓 Lesson 產生 ID，這樣後續才能查
-                    // ---------------------------------------------------------
-                    System.out.println("💾 [2/3] 正在寫入資料庫 (第一次儲存)...");
-                    journeyRepository.saveAll(journeys);
-                    journeyRepository.flush(); // 強制寫入
+                if (journeyJson.getChapters() != null) {
+                    for (Chapter chapterJson : journeyJson.getChapters()) {
+                        Long cOid = chapterJson.getId(); // ★★★ 修正點 2
 
-                    // ---------------------------------------------------------
-                    // 第三階段：建立 Gym <-> Lesson 多對多關聯 (修正 ID 格式問題)
-                    // ---------------------------------------------------------
-                    System.out.println("🔗 [3/3] 正在解析 relatedLessonIds 並建立關聯...");
+                        if (chapterJson.getGyms() != null) {
+                            for (Gym gymJson : chapterJson.getGyms()) {
+                                Long gOid = gymJson.getId(); // ★★★ 修正點 3
 
-                    for (Journey journey : journeys) {
-                        if (journey.getChapters() != null) {
-                            for (Chapter chapter : journey.getChapters()) {
-                                if (chapter.getGyms() != null) {
-                                    for (Gym gym : chapter.getGyms()) {
+                                List<String> links = gymJson.getRelatedLessonIds();
 
-                                        List<String> rawIds = gym.getRelatedLessonIds();
+                                if (links != null && !links.isEmpty()) {
+                                    System.out.println("🔎 Gym " + gOid + " 需連結 " + links.size() + " 堂課");
 
-                                        if (rawIds != null && !rawIds.isEmpty()) {
+                                    // 透過正確的 Original ID (gOid) 去 Mapper 查 DB ID
+                                    Long gymDbId = idMapper.getGym(jOid, cOid, gOid);
 
-                                            // ★★★ 修正重點：清洗 ID 格式 ★★★
-                                            // 將 "3_18" 這種格式轉換成 "18"
-                                            List<String> cleanIds = rawIds.stream()
-                                                    .map(id -> {
-                                                        if (id.contains("_")) {
-                                                            // 取底線後面那一段 (假設 ID 是唯一的)
-                                                            return id.substring(id.lastIndexOf("_") + 1);
-                                                        }
-                                                        return id;
-                                                    })
-                                                    .toList(); // Java 16+ 寫法，如果是舊版可用 .collect(Collectors.toList())
+                                    if (gymDbId != null) {
+                                        Gym gymRef = gymRepository.getReferenceById(gymDbId);
 
-                                            // 使用清洗後的 ID 去找 Lesson
-                                            List<Lesson> lessons = lessonRepository.findByOriginalIdIn(cleanIds);
+                                        for (String link : links) {
+                                            try {
+                                                String[] parts = link.split("_");
+                                                Long targetCOid = Long.parseLong(parts[0]);
+                                                Long targetLOid = Long.parseLong(parts[1]);
 
-                                            if (!lessons.isEmpty()) {
-                                                // (選用) 印出除錯資訊，確認是否有找到正確數量
-                                                // System.out.println("   - Gym [" + gym.getName() + "] 原始ID: " + rawIds + " -> 找到: " + lessons.size() + " 堂課");
+                                                Long lessonDbId = idMapper.getLesson(jOid, targetCOid, targetLOid);
 
-                                                gym.setRelatedLessons(lessons);
-                                                gymRepository.save(gym);
-                                            } else {
-                                                // 如果清洗後還是找不到，印出更詳細的資訊方便除錯
-                                                System.err.println("   ! 警告: Gym [" + gym.getName() + "] 找不到 Lesson。搜尋 ID: " + cleanIds);
+                                                if (lessonDbId != null) {
+                                                    Lesson lessonInDb = lessonRepository.findById(lessonDbId).orElse(null);
+                                                    if (lessonInDb != null) {
+                                                        lessonInDb.setGym(gymRef);
+                                                        lessonRepository.save(lessonInDb);
+                                                        System.out.println("   ✅ 成功連結: Gym(" + gOid + ") -> Lesson(" + targetLOid + ")");
+                                                    }
+                                                } else {
+                                                    System.err.println("   ❌ 找不到 Lesson DB ID: " + targetLOid);
+                                                }
+                                            } catch (Exception e) {
+                                                System.err.println("   ❌ 解析失敗: " + link);
                                             }
                                         }
+                                    } else {
+                                        System.err.println("   ❌ 找不到 Gym DB ID (Mapper 查無資料): " + gOid);
                                     }
                                 }
                             }
                         }
                     }
-
-                    System.out.println("✅ 資料匯入完成！");
-
-                } catch (Exception e) {
-                    System.err.println("❌ 匯入失敗: " + e.getMessage());
-                    e.printStackTrace();
-                    throw e;
                 }
-            } else {
-                System.out.println("ℹ️ 資料庫已有資料，跳過 Seeder。");
             }
-        };
+        }
+    }
+
+    private void saveRequirements(Mission parent, List<MissionRequirement> list, String category) {
+        if (list == null) return;
+        for (MissionRequirement r : list) {
+            r.setOriginalId(r.getId());
+            r.setId(null);
+            r.setMission(parent);
+            r.setCategory(category);
+            requirementRepository.save(r);
+        }
     }
 }

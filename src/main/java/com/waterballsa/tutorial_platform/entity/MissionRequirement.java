@@ -1,6 +1,6 @@
 package com.waterballsa.tutorial_platform.entity;
 
-import com.fasterxml.jackson.annotation.JsonAnySetter; // ★ 要加這個
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
@@ -21,15 +21,14 @@ public class MissionRequirement {
     private Long id;
 
     @Column(name = "original_id")
-    private String originalId;
+    private Long originalId;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "mission_id")
-    @JsonIgnore // 避免循環引用
+    @JsonIgnore
     @ToString.Exclude
     private Mission mission;
 
-    // 我們會在 Seeder 裡手動設定這個值 ('PREREQUISITE' 或 'CRITERIA')
     @Column(nullable = false)
     private String category;
 
@@ -43,12 +42,25 @@ public class MissionRequirement {
     @Column(name = "required_quantity")
     private Integer requiredQuantity;
 
-    // ★★★ 魔法修正：讓 Jackson 自動把 gymId, chapterId 等未知欄位塞進來 ★★★
+    // ------------------------------------------------------------------
+    // ★★★ 新增：解析後的真實 DB ID (給後端邏輯快速查詢用) ★★★
+    // ------------------------------------------------------------------
+
+    // 如果條件是 GYM_CHALLENGE_SUCCESS，Seeder 會填入這裡
+    @Column(name = "target_gym_id")
+    private Long targetGymId;
+
+    // 如果條件是 MISSION_COMPLETED，Seeder 會填入這裡
+    @Column(name = "target_mission_id")
+    private Long targetMissionId;
+
+    // ------------------------------------------------------------------
+    // 下面這區維持原樣：保留原始 JSON 參數 (給前端顯示或是除錯用)
+    // ------------------------------------------------------------------
     @JdbcTypeCode(SqlTypes.JSON)
     @Column(columnDefinition = "jsonb")
     private Map<String, Object> params = new HashMap<>();
 
-    // 這個方法告訴 Jackson：「看到你認不得的欄位 (如 gymId)，就塞進 params Map 裡」
     @JsonAnySetter
     public void addParam(String key, Object value) {
         this.params.put(key, value);

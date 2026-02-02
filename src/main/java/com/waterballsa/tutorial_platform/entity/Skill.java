@@ -16,13 +16,13 @@ public class Skill {
     private Long id;
 
     @Column(name = "original_id")
-    private String originalId;
+    private Long originalId;
 
     private String name;
     private String description;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "journey_db_id")
+    @JoinColumn(name = "journey_id")
     @JsonIgnore
     private Journey journey;
 }

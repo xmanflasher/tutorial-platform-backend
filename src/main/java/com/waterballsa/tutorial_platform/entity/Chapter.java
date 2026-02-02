@@ -18,7 +18,7 @@ public class Chapter {
     private Long id;
 
     @Column(name = "original_id")
-    private String originalId;
+    private Long originalId;
 
     private String name;
     private String description;
@@ -29,11 +29,11 @@ public class Chapter {
 
     // ★ 新增：對應資料庫的 visible
     // 建議給預設值 true，避免舊資料 null 導致 NullPointerException
+    @Builder.Default
     @Column(name = "visible")
     private Boolean visible = true;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "journey_id")
     @ToString.Exclude
     private Journey journey;
 

@@ -4,10 +4,12 @@ import jakarta.persistence.*;
 import lombok.*;
 import java.util.List;
 import java.util.ArrayList;
+import com.waterballsa.tutorial_platform.enums.GymType;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
 @Table(name = "gyms")
-@Data // ★ 確保有這個，才有 getReward()
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -17,15 +19,31 @@ public class Gym {
     private Long id;
 
     @Column(name = "original_id")
-    private String originalId;
+    private Long originalId;
+
+    @Column(name = "code")
+    private String code;
 
     private String name;
 
     @Column(columnDefinition = "TEXT")
     private String description;
 
+    @Column(name = "display_order")
     private Integer displayOrder;
+
+    private Integer difficulty;
+
+    @Enumerated(EnumType.STRING)
+    @Column(length = 20)
+    private GymType type;
+
     private Integer maxStars;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "journey_id")
+    @ToString.Exclude
+    private Journey journey;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "chapter_id")
@@ -34,7 +52,6 @@ public class Gym {
 
     @Embedded
     @AttributeOverrides({
-            // 建議加上這個，避免欄位名稱衝突，且在 DB 中看得很清楚這是獎勵欄位
             @AttributeOverride(name = "exp", column = @Column(name = "reward_exp")),
             @AttributeOverride(name = "coin", column = @Column(name = "reward_coin")),
             @AttributeOverride(name = "subscriptionExtensionInDays", column = @Column(name = "reward_sub_days")),
@@ -49,22 +66,47 @@ public class Gym {
     @Builder.Default
     private List<Challenge> challenges = new ArrayList<>();
 
-    // ★★★ 1. 真實的資料庫關聯 (存 Lesson 物件) ★★★
-    // 這裡使用 @ManyToMany 是因為一個 Lesson 可能被多個 Gym 關聯，
-    // 或者一個 Gym 關聯多個 Lesson。如果是一對多，可以用 @OneToMany。
-    // 為了簡單起見，這裡建立一個中間表 gyms_lessons
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinTable(
-            name = "gym_related_lessons",
-            joinColumns = @JoinColumn(name = "gym_id"),
-            inverseJoinColumns = @JoinColumn(name = "lesson_id")
-    )
+    // =================================================================
+    // ★★★ [核心修正] 改為 @ManyToMany 以建立獨立中間表 ★★★
+    // =================================================================
+    //@ManyToMany(fetch = FetchType.LAZY)
+    //@JoinTable(
+//            name = "gym_lessons", // 產生的中間表名稱
+//            joinColumns = @JoinColumn(name = "gym_id"),
+//            inverseJoinColumns = @JoinColumn(name = "lesson_id")
+//    )
     @Builder.Default
+    @ToString.Exclude // 避免循環引用導致 StackOverflow
+    @OneToMany(mappedBy = "gym", fetch = FetchType.LAZY)// 意思：去 Lesson 類別找一個叫做 "gym" 的屬性，以它為主
     private List<Lesson> relatedLessons = new ArrayList<>();
 
-    // ★★★ 2. 暫存欄位 (接收 JSON 裡的 ID 列表) ★★★
-    // @Transient 代表這個欄位「不」對應資料庫的任何欄位
-    // Jackson (JSON parser) 會寫入它，但 Hibernate (JPA) 會忽略它
+    // 用於接收 JSON 資料，不存入資料庫欄位
     @Transient
-    private List<String> relatedLessonIds;
+    @JsonProperty("relatedLessonIds")
+    @Builder.Default
+    private List<String> relatedLessonIds = new ArrayList<>();
+
+    // =================================================================
+    // ★★★ Helper Methods ★★★
+    // =================================================================
+    @JsonProperty("rewardExp")
+    public Integer getRewardExp() {
+        return (reward != null && reward.getExp() != null) ? reward.getExp() : 0;
+    }
+
+    public Integer getRewardCoin() {
+        return (reward != null && reward.getCoin() != null) ? reward.getCoin() : 0;
+    }
+
+    /**
+     * 加入課程的 Helper Method，確保不重複加入
+     */
+    public void addRelatedLesson(Lesson lesson) {
+        if (this.relatedLessons == null) {
+            this.relatedLessons = new ArrayList<>();
+        }
+        if (!this.relatedLessons.contains(lesson)) {
+            this.relatedLessons.add(lesson);
+        }
+    }
 }

@@ -17,7 +17,7 @@ public class Lesson {
     private Long id;
 
     @Column(name = "original_id")
-    private String originalId;
+    private Long originalId;
 
     // 用來排序單元 (1, 2, 3...)
     @Column(name = "display_order")
@@ -38,7 +38,7 @@ public class Lesson {
     private Boolean passwordRequired;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "chapter_db_id")
+    @JoinColumn(name = "chapter_id")
     @JsonIgnore
     @ToString.Exclude // 避免無窮迴圈
     private Chapter chapter;
@@ -61,4 +61,22 @@ public class Lesson {
     @OrderBy("sortOrder ASC") // 讓取出來的內容自動依照順序排列
     @ToString.Exclude
     private List<LessonContent> contents;
+
+    // ★★★ 新增 1：Lesson 對 Gym 的多對一關聯 (假設一個單元對應一個道館) ★★★
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "gym_id") // DB 欄位名稱
+    private Gym gym;
+
+    // ★★★ 新增 2：接收 JSON 字串的暫存欄位 (e.g., "5_6") ★★★
+    @Transient
+    private String relatedGymId;
+
+    @Column(name = "is_core_lesson")
+    private boolean isCoreLesson = false; // 預設為 false (弱關聯)
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "journey_id") // 這會在資料庫新增 journey_id 欄位
+    @JsonIgnore // 通常不需要從 Lesson 反查 Journey 的詳細 JSON，避免迴圈
+    private Journey journey;
+
 }

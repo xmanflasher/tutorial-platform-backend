@@ -22,7 +22,7 @@ public class Mission {
     private Long id;
 
     @Column(name = "original_id")
-    private String originalId;
+    private Long originalId;
 
     private String name;
 

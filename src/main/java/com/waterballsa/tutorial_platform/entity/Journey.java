@@ -16,8 +16,8 @@ public class Journey {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "original_id")
-    private String originalId;
+    @Column(name = "original_id", unique = true, nullable = false)
+    private Long originalId;
 
     private String name;
     private String slug;
@@ -43,6 +43,12 @@ public class Journey {
     @OneToMany(mappedBy = "journey", cascade = CascadeType.ALL, orphanRemoval = true)
     @Builder.Default
     private List<Skill> skills = new ArrayList<>();
+
+    // ★★★ [新增] 道館關聯 (對應 Gym.java 的 journey 屬性) ★★★
+    @OneToMany(mappedBy = "journey", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @Builder.Default
+    @ToString.Exclude // 建議加這個，避免 Lombok 生成 toString 時發生無限遞迴
+    private List<Gym> gyms = new ArrayList<>();
 
     // 關聯：選單
     @OneToMany(mappedBy = "journey", cascade = CascadeType.ALL, orphanRemoval = true)

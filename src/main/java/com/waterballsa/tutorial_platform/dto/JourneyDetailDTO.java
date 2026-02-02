@@ -20,6 +20,8 @@ public class JourneyDetailDTO {
     private List<String> skills;
     private List<ChapterDTO> chapters;
     private List<JourneyMenuDTO> menus;
+    // ★★★ [新增] 缺少的 gyms 欄位 ★★★
+    private List<GymDTO> gyms;
 
     // 前端需要的額外欄位
     private String subtitle;

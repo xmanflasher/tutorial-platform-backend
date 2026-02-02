@@ -24,6 +24,10 @@ public class JourneyProgressDTO {
     private Integer currentExp;
     private Integer maxExp;
 
+    // ★★★ 必須補上這兩個，RoadmapView 才能畫圖 ★★★
+    private List<ChapterDTO> chapters;
+    private List<GymDTO> gyms;
+
     // 引用 MemberMissionDTO (請確保 MemberMissionDTO 也是 Lombok 格式)
     private List<MemberMissionDTO> missions;
 

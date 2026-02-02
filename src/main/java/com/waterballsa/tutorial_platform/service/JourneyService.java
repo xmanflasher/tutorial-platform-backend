@@ -110,7 +110,25 @@ public class JourneyService {
                     }).collect(Collectors.toList());
         }
 
-        // 4. 轉換 Menus
+        // ★★★ 4. [新增] 轉換 Gyms ★★★
+        List<GymDTO> gymDTOs = Collections.emptyList();
+        if (entity.getGyms() != null) {
+            gymDTOs = entity.getGyms().stream()
+                    // 這裡可以依需求排序，例如依照 Code 或 ID
+                    .sorted(Comparator.comparing(Gym::getId))
+                    .map(gym -> GymDTO.builder()
+                            .id(gym.getId())
+                            .code(gym.getCode())
+                            .name(gym.getName())
+                            .description(gym.getDescription())
+                            .code(gym.getCode())
+                            .chapterId(gym.getChapter() != null ? gym.getChapter().getId() : null) // 確保前端能正確分組
+                            .maxStars(gym.getMaxStars())
+                            .build())
+                    .collect(Collectors.toList());
+        }
+
+        // 5. 轉換 Menus
         List<JourneyMenuDTO> menuDTOs = Collections.emptyList();
         if (entity.getMenus() != null) {
             menuDTOs = entity.getMenus().stream()
@@ -134,6 +152,8 @@ public class JourneyService {
                 .totalVideos(totalVideos)
                 .skills(skills)
                 .chapters(chapterDTOs)
+                // ★★★ 把 gyms 塞進去 ★★★
+                .gyms(gymDTOs)
                 .actionButtons(JourneyDetailDTO.ActionButtons.builder()
                         .primary("立即加入課程")
                         .secondary("預約 1v1 諮詢")

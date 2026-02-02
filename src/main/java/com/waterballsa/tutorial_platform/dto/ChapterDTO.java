@@ -10,6 +10,10 @@ import java.util.List;
 public class ChapterDTO {
     private String id;
     private String name;
+
+    // ★★★ [新增] 用來標示段位 (WHITE / BLACK) ★★★
+    private String belt;
+
     private List<LessonDTO> lessons; // 對應到下方的 LessonDTO
 
     // Getters and Setters

@@ -30,4 +30,7 @@ public abstract class MissionConditionDto {
     private String description;
     private String type; // 必須有這個欄位讓 Jackson 辨識
     private Integer requiredQuantity;
+
+    private Long targetMissionId;
+    private Long targetGymId;
 }

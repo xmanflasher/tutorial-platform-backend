@@ -21,4 +21,9 @@ public class MemberDTO {
     private String email;      // 注意：公開 API 不該回傳這個
     private String sex;
     private String birthDate;
+
+    // ★ 新增個人檔案欄位
+    private String region;
+    private String githubUrl;
+    private String discordId;
 }

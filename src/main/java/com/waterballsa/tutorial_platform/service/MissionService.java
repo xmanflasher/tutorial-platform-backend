@@ -245,6 +245,8 @@ public class MissionService {
             dto.setDescription(req.getDescription());
             dto.setType(req.getConditionType());
             dto.setRequiredQuantity(req.getRequiredQuantity());
+            dto.setTargetMissionId(req.getTargetMissionId());
+            dto.setTargetGymId(req.getTargetGymId());
 
             return dto;
         } catch (Exception e) {

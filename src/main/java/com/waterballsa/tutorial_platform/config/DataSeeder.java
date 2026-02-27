@@ -12,7 +12,9 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.InputStream;
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 
 @Component
 @RequiredArgsConstructor
@@ -24,6 +26,9 @@ public class DataSeeder implements CommandLineRunner {
     private final GymRepository gymRepository;
     private final MissionRepository missionRepository;
     private final RequirementRepository requirementRepository;
+    private final MemberRepository memberRepository;
+    private final GymSubmissionRepository gymSubmissionRepository;
+    private final MemberMissionRepository memberMissionRepository;
 
     private final IdMapper idMapper = new IdMapper();
     private final ObjectMapper mapper = new ObjectMapper()
@@ -45,7 +50,100 @@ public class DataSeeder implements CommandLineRunner {
         // 2. 建立關聯
         linkRelationships();
 
+        // 3. 修正 MissionRequirements 的 targetIds (新創帳號開啟條件)
+        resolveMissionRequirements();
+
+        // 4. 建立通關帳號
+        seedMasterAccount();
+
         System.out.println("🎉 全部完成！");
+    }
+
+    private void seedMasterAccount() {
+        System.out.println("Processing Pass 4: Seeding Master Account...");
+        String email = "master@test.com";
+
+        if (memberRepository.findByEmail(email).isPresent()) {
+            System.out.println("   ℹ️ Master account already exists.");
+            return;
+        }
+
+        Member master = Member.builder()
+                .name("傳說中的通關者")
+                .email(email)
+                .password("pass123")
+                .occupation("架構師")
+                .avatar("https://api.dicebear.com/7.x/miniavs/svg?seed=master")
+                .nickName("再一次就掛機")
+                .region("台北市")
+                .githubUrl("https://github.com/Waterballsa")
+                .discordId("Legendary#9999")
+                .level(99)
+                .exp(999999L)
+                .coin(999999L)
+                .subscriptionEndDate(LocalDateTime.now().plusYears(100))
+                .build();
+
+        master = memberRepository.save(master);
+        final Member finalMaster = master;
+
+        // 1. 通關所有道館
+        gymRepository.findAll().forEach(gym -> {
+            gymSubmissionRepository.save(GymSubmission.builder()
+                    .member(finalMaster)
+                    .gym(gym)
+                    .status(GymSubmission.SubmissionStatus.SUCCESS)
+                    .submittedAt(LocalDateTime.now())
+                    .build());
+        });
+
+        // 2. 完成所有任務並領取獎勵
+        missionRepository.findAll().forEach(mission -> {
+            memberMissionRepository.save(MemberMission.builder()
+                    .member(finalMaster)
+                    .mission(mission)
+                    .status(MemberMission.MissionStatus.CLAIMED)
+                    .currentProgress(100)
+                    .completedAt(LocalDateTime.now())
+                    .build());
+        });
+
+        System.out.println("   ✅ Master account created successfully.");
+    }
+
+    private void resolveMissionRequirements() {
+        System.out.println("Processing Pass 3: Resolving MissionRequirement Target IDs...");
+        List<MissionRequirement> allReqs = requirementRepository.findAll();
+        
+        for (MissionRequirement req : allReqs) {
+            String type = req.getConditionType();
+            Map<String, Object> params = req.getParams();
+            if (params == null) continue;
+
+            try {
+                if ("MISSION_COMPLETED".equals(type)) {
+                    Long jOid = ((Number) params.get("journeyId")).longValue();
+                    Long mOid = ((Number) params.get("missionId")).longValue();
+                    Long targetMid = idMapper.getMission(jOid, mOid);
+                    if (targetMid != null) {
+                        req.setTargetMissionId(targetMid);
+                        requirementRepository.save(req);
+                    }
+                } else if (type.startsWith("GYM_CHALLENGE")) {
+                    Long jOid = ((Number) params.get("journeyId")).longValue();
+                    Long cOid = ((Number) params.get("chapterId")).longValue();
+                    Long gOid = ((Number) params.get("gymId")).longValue();
+                    Long targetGid = idMapper.getGym(jOid, cOid, gOid);
+                    if (targetGid != null) {
+                        req.setTargetGymId(targetGid);
+                        requirementRepository.save(req);
+                    }
+                }
+            } catch (Exception e) {
+                System.err.println("   ❌ 無法解析 Requirement ID: " + req.getId() + " - " + e.getMessage());
+            }
+        }
+        System.out.println("   ✅ Requirement Target IDs 解析完畢");
     }
 
     private void importEntities() throws Exception {

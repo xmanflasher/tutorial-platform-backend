@@ -18,6 +18,6 @@ public class ConditionEvaluator {
                 .filter(checker -> checker.supports(condition.getType()))
                 .findFirst()
                 .map(checker -> checker.check(condition, userId))
-                .orElse(true); // 如果找不到 Checker (例如 External)，預設回傳 true 或 false 視你的需求
+                .orElse(false); // 修改：找不到 Checker 預設應為 false (不通過)
     }
 }

@@ -38,17 +38,19 @@ public class SecurityConfig {
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .authorizeHttpRequests(auth -> auth
                         // 既有的公開路徑
-                        .requestMatchers(HttpMethod.GET, "/api/leaderboard").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/api/journeys/**").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/api/gyms/**").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/api/missions/**").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/api/lessons/**").permitAll()
+                        .requestMatchers("/api/leaderboard").permitAll()
+                        .requestMatchers("/api/journeys/**").permitAll()
+                        .requestMatchers("/api/gyms/**").permitAll()
+                        .requestMatchers("/api/missions/**").permitAll()
+                        .requestMatchers("/api/lessons/**").permitAll()
 
-                        // ★ 修改重點 2: 新增這一行，允許公開讀取使用者的資料 (包含挑戰歷程)
-                        .requestMatchers(HttpMethod.GET, "/api/users/**").permitAll()
+                        // ★ 修改重點 2: 新增這一行，允許公開讀取/變更使用者的資料
+                        .requestMatchers("/api/users/**").permitAll()
 
+                        .requestMatchers(HttpMethod.GET, "/api/announcements/**").permitAll()
                         .requestMatchers("/", "/sign-in", "/error", "/images/**", "/logo.png", "/favicon.ico").permitAll()
                         .requestMatchers("/api/auth/dev-login").permitAll()
+                        .requestMatchers("/api/auth/register", "/api/auth/quick-register").permitAll()
                         .anyRequest().authenticated()
                 )
                 .oauth2ResourceServer(oauth2 -> oauth2.jwt(Customizer.withDefaults()))
@@ -62,7 +64,13 @@ public class SecurityConfig {
                         .failureUrl("/sign-in?error")
                 )
                 .logout(logout -> logout
-                        .logoutSuccessUrl("/")
+                        .logoutUrl("/api/auth/logout")
+                        .invalidateHttpSession(true)
+                        .clearAuthentication(true)
+                        .deleteCookies("JSESSIONID")
+                        .logoutSuccessHandler((request, response, authentication) -> {
+                            response.setStatus(HttpServletResponse.SC_OK);
+                        })
                         .permitAll()
                 );
 
@@ -81,7 +89,7 @@ public class SecurityConfig {
     public UrlBasedCorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowedOrigins(List.of("http://localhost:3000")); // 允許前端
-        config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+        config.setAllowedMethods(List.of("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(List.of("*"));
         config.setAllowCredentials(true);
 

@@ -14,17 +14,17 @@
 ## Todo List
 
 ### 1. High Priority: Leaderboard Refinement
-- [ ] **Backend**: Ensure `LeaderboardController` is fully implemented and integrated with the Service.
-- [ ] **Frontend**: Polishing the `app/(public)/leaderboard` page (styling, animations).
+- [x] **Backend**: Ensure `LeaderboardController` is fully implemented and integrated with the Service.
+- [x] **Frontend**: Polishing the `app/(public)/leaderboard` page (styling, animations).
 
 ### 2. Enhancement: Portfolio Visualization
-- [ ] **Frontend**: Implement a Radar Chart or Matrix view in `ChallengePortfolio.tsx` to replace or supplement the current tag-based ratings.
-- [ ] **Backend**: Ensure `ratings` JSON in `GymChallengeRecord` consistently uses the OOA/OOD/OOP mapping.
+- [x] **Frontend**: Implement a Radar Chart or Matrix view in `ChallengePortfolio.tsx`.
+- [x] **Backend**: Ensure `ratings` JSON in `GymChallengeRecord` consistently uses the OOA/OOD/OOP mapping.
 
 ### 3. Feature: User Settings
-- [ ] **Frontend**: Create a profile edit page to allow users to update `nickName`, `occupation`, and `avatar`.
-- [ ] **Backend**: Verify `MemberController` has update endpoints (likely exists but needs verification).
+- [x] **Frontend**: Create a profile edit page for `nickName`, `occupation`, and `avatar`.
+- [x] **Backend**: Verify `MemberController` has update endpoints.
 
 ### 4. Polishing: Course Content
-- [ ] **Content**: Synchronize Journey, Chapter, and Lesson data with the official platform's structure.
-- [ ] **UI**: Enhancing `VideoPlayer` and `MarkdownRenderer` for better educational experience.
+- [x] **Content**: Synchronize Journey, Chapter, and Lesson data.
+- [x] **UI**: Enhancing `VideoPlayer` and `MarkdownRenderer`.

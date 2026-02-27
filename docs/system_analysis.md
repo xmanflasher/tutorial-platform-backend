@@ -32,6 +32,10 @@ The frontend is built with **Next.js 16** and **React 19**, utilizing the **App 
 - **Role Sync**: Captures user role (HR/Tech Lead/etc.) and syncs with `Member` profile in backend.
 - **Desktop Sprite**: Persistent floating helper for revisiting guide content.
 
+### 4. Auth & Logout mechanism
+- **Absolute Logout**: Implemented a multi-layer cleanup (clearing `localStorage`, invalidating server session, and injecting expired `JSESSIONID` cookies).
+- **Session Management**: REST-friendly logout endpoint at `/api/auth/logout`.
+
 ## Component Relationship Diagram
 ```mermaid
 graph TD

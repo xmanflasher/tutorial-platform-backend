@@ -3,6 +3,9 @@ package com.waterballsa.tutorial_platform.controller;
 import com.waterballsa.tutorial_platform.dto.*;
 import com.waterballsa.tutorial_platform.entity.*;
 import com.waterballsa.tutorial_platform.repository.JourneyRepository;
+import com.waterballsa.tutorial_platform.repository.MemberRepository;
+import com.waterballsa.tutorial_platform.service.MemberService;
+import com.waterballsa.tutorial_platform.service.MissionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,17 +23,23 @@ import java.util.ArrayList;
 public class JourneyProgressController {
 
     private final JourneyRepository journeyRepository;
+    private final MemberRepository memberRepository;
+    private final MissionService missionService;
+    private final MemberService memberService;
 
     @GetMapping("/{slug}/progress")
     public ResponseEntity<JourneyProgressDTO> getUserProgress(
             @PathVariable String slug,
-            @RequestParam(required = false) Long userId // userId 設為非必填，方便測試
+            org.springframework.security.core.Authentication auth
     ) {
         // 1. 從 DB 撈資料
         Journey journey = journeyRepository.findBySlug(slug)
                 .orElseThrow(() -> new RuntimeException("Journey not found: " + slug));
 
+        Long memberId = memberService.getCurrentMemberId(auth);
+        
         JourneyProgressDTO response = new JourneyProgressDTO();
+        // ... (rest of basic field mapping unchanged)
 
         // 2. 基礎欄位映射
         response.setId(String.valueOf(journey.getId()));
@@ -104,21 +113,22 @@ public class JourneyProgressController {
             response.setGyms(Collections.emptyList());
         }
 
-        // 6. 任務部分 (Mock)
-        response.setMissions(List.of(
-                MemberMissionDTO.builder()
-                        .missionId(1L)
-                        .name("新手任務一")
-                        .status("AVAILABLE")
-                        .currentProgress(0)
-                        .maxOpportunityCards(2)
-                        .build()
-        ));
+        // 6. 任務部分 (實作讀取)
+        if (memberId != null) {
+            response.setMissions(missionService.getMissionsByJourneySlug(memberId, slug));
 
-        // 7. 等級部分 (Mock 或從 MemberService 撈)
-        response.setLevel(1);
-        response.setCurrentExp(0);
-        response.setMaxExp(100);
+            // 7. 等級部分 (從資料庫讀取)
+            memberRepository.findById(memberId).ifPresent(member -> {
+                response.setLevel(member.getLevel());
+                response.setCurrentExp(member.getExp() != null ? member.getExp().intValue() : 0);
+                response.setMaxExp(member.getNextLevelExp() != null ? member.getNextLevelExp().intValue() : 2000);
+            });
+        } else {
+            response.setMissions(Collections.emptyList());
+            response.setLevel(1);
+            response.setCurrentExp(0);
+            response.setMaxExp(2000);
+        }
 
         return ResponseEntity.ok(response);
     }

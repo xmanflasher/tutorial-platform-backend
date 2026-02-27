@@ -7,6 +7,7 @@ import com.waterballsa.tutorial_platform.dto.LessonDTO;
 import com.waterballsa.tutorial_platform.entity.Gym;
 import com.waterballsa.tutorial_platform.repository.GymRepository;
 import com.waterballsa.tutorial_platform.service.GymService;
+import com.waterballsa.tutorial_platform.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,12 +24,14 @@ public class GymController {
 
     private final GymService gymService;
     private final GymRepository gymRepository;
+    private final MemberService memberService;
 
     @GetMapping("/journeys/{journeyId}/gym-badges")
     public ResponseEntity<List<GymBadgeDTO>> getGymBadges(
             @PathVariable Long journeyId,
-            @RequestParam(required = false, defaultValue = "0") Long userId
+            org.springframework.security.core.Authentication auth
     ) {
+        Long userId = memberService.getCurrentMemberId(auth);
         return ResponseEntity.ok(gymService.getBadgesByJourney(userId, journeyId));
     }
 

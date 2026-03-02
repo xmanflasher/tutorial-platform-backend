@@ -35,6 +35,7 @@ public class MemberMission {
     public enum MissionStatus {
         AVAILABLE, LOCKED, IN_PROGRESS, COMPLETED, CLAIMED, FAILED
     }
+    @Builder.Default
     @Column(name = "opportunity_cards_used")
     private Integer opportunityCardsUsed = 0; // 預設 0
 

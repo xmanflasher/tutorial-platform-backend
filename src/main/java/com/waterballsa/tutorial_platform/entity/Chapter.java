@@ -42,8 +42,9 @@ public class Chapter {
     @Builder.Default
     private List<Lesson> lessons = new ArrayList<>();
 
+    @Builder.Default
     @OneToMany(mappedBy = "chapter", cascade = CascadeType.ALL)
-    private List<Gym> gyms = new ArrayList<>();;
+    private List<Gym> gyms = new ArrayList<>();
 
     @Embedded
     @AttributeOverrides({

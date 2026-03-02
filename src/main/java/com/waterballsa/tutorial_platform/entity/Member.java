@@ -54,4 +54,8 @@ public class Member {
     private String visitorCategory; // GUEST, PASSERBY
 
     private String password;
+
+    @Column(updatable = false)
+    @Builder.Default
+    private LocalDateTime createdAt = LocalDateTime.now();
 }

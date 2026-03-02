@@ -10,13 +10,24 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/api/users/{userId}/journeys/gyms/challenges/records")
+@RequestMapping("/api/gym-challenge-records")
 @RequiredArgsConstructor
 public class GymChallengeRecordController {
 
     private final GymChallengeRecordRepository repository;
+    private final com.waterballsa.tutorial_platform.service.MemberService memberService;
 
-    @GetMapping
+    @GetMapping("/me")
+    public List<GymChallengeRecordDTO> getMyRecords(org.springframework.security.core.Authentication auth) {
+        Long userId = memberService.getCurrentMemberId(auth);
+        if (userId == null) return java.util.Collections.emptyList();
+        return repository.findByUserIdOrderByCreatedAtDesc(userId)
+                .stream()
+                .map(this::toDto)
+                .collect(Collectors.toList());
+    }
+
+    @GetMapping("/user/{userId}")
     public List<GymChallengeRecordDTO> getRecords(@PathVariable Long userId) {
         return repository.findByUserIdOrderByCreatedAtDesc(userId)
                 .stream()

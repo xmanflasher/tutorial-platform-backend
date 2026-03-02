@@ -71,6 +71,7 @@ public class Lesson {
     @Transient
     private String relatedGymId;
 
+    @Builder.Default
     @Column(name = "is_core_lesson")
     private boolean isCoreLesson = false; // 預設為 false (弱關聯)
 

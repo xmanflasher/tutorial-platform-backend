@@ -9,6 +9,8 @@ import com.waterballsa.tutorial_platform.entity.GymSubmission;
 import com.waterballsa.tutorial_platform.repository.GymBadgeRepository;
 import com.waterballsa.tutorial_platform.repository.GymRepository;
 import com.waterballsa.tutorial_platform.repository.GymSubmissionRepository;
+import com.waterballsa.tutorial_platform.entity.MemberBadge;
+import com.waterballsa.tutorial_platform.repository.MemberBadgeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -24,7 +26,8 @@ public class GymService {
 
     private final GymRepository gymRepository;
     private final GymSubmissionRepository submissionRepository;
-    private final GymBadgeRepository gymBadgeRepository; // 記得建立這個 Repository
+    private final GymBadgeRepository gymBadgeRepository;
+    private final MemberBadgeRepository memberBadgeRepository;
 
     // --- 功能 1: 取得道館地圖狀態 (主線/支線解鎖邏輯) ---
     public List<GymStatusDTO> getGymMap(Long memberId) {
@@ -92,10 +95,9 @@ public class GymService {
         // 1. 從 DB 撈出該旅程的所有徽章 (這裡會拿到你在 DB 看的 19 筆或 7 筆)
         List<GymBadge> badges = gymBadgeRepository.findByJourneyId(journeyId);
 
-        // 2. 撈出該使用者 "SUCCESS" 的道館 ID 列表
-        List<Long> passedGymIds = submissionRepository.findByMemberId(userId).stream()
-                .filter(s -> s.getStatus() == GymSubmission.SubmissionStatus.SUCCESS)
-                .map(s -> s.getGym().getId())
+        // 2. 撈出該使用者已獲得的徽章 ID 列表
+        List<Long> unlockedBadgeIds = memberBadgeRepository.findByMemberId(userId).stream()
+                .map(MemberBadge::getBadgeId)
                 .toList();
 
         // 3. 組裝 DTO 並設定 unlocked 狀態
@@ -107,8 +109,8 @@ public class GymService {
                         .gymId(badge.getGym().getId())
                         .journeyId(badge.getJourneyId())
                         .chapterId(badge.getChapterId())
-                        // ★ 核心邏輯：如果 user 通過的道館 ID 包含這個徽章的 gymId，就是 true
-                        .unlocked(passedGymIds.contains(badge.getGym().getId()))
+                        // ★ 核心邏輯：如果使用者已獲得的徽章 ID 包含這個徽章的 id，就是 true
+                        .unlocked(unlockedBadgeIds.contains(badge.getId()))
                         .build())
                 .collect(Collectors.toList());
     }

@@ -56,7 +56,16 @@ public class DataSeeder implements CommandLineRunner {
         // 4. 建立通關帳號
         seedMasterAccount();
 
+        // 5. 匯入額外紀錄 (如果 JSON 有的話)
+        importUserProgress();
+
         System.out.println("🎉 全部完成！");
+    }
+
+    private void importUserProgress() throws Exception {
+        System.out.println("Processing Pass 5: Importing User Progress (if available)...");
+        // 如果未來 JSON 改為物件型態，可以在這裡擴充讀取 gymSubmissions 或 learningRecords
+        // 目前暫由 SQL 腳本補足使用者紀錄
     }
 
     private void seedMasterAccount() {

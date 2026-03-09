@@ -20,12 +20,14 @@ erDiagram
     GYM ||--o{ LESSON : relates_to
     GYM_CHALLENGE_RECORD }|--|| MEMBER : "links to"
     GYM_CHALLENGE_RECORD }|--|| GYM : "links to"
+    MISSION ||--o{ MISSION_REQUIREMENT : defines
 ```
 
 ### Key Entities
 - **Member**: Stores user profile, `exp`, `coin`, `level`, and `jobTitle`. Added fields for `githubUrl` and `discordId`.
 - **VisitorLog**: Tracks guest/visitor activity prior to registration.
 - **Mission**: Defines specific goals within a Journey, evaluated by `ConditionEvaluator`.
+- **MissionRequirement**: Stores criteria (e.g., `GYM_CHALLENGE_SUCCESS`) and pre-requisites (`PREREQUISITE`), explicitly querying via `targetGymId` or `targetMissionId` for sequential unlocking logic.
 
 ## API Endpoints
 - **Auth**: `/api/auth/register`, `/api/auth/quick-register`, `/api/auth/logout`.
@@ -35,6 +37,7 @@ erDiagram
     - `GET /api/users/{userId}`: User profile.
     - `PATCH /api/users/{userId}`: Update profile (e.g., jobTitle/role).
     - `GET /api/leaderboard`: Leaderboard data.
+- **DemoController**: Helper endpoints for hybrid demo simulations (e.g., `POST /api/demo/complete-current-gym`, `POST /api/demo/complete-current-mission`).
 
 ## Tech Stack
 - **Language**: Java

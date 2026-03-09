@@ -22,15 +22,17 @@ The frontend is built with **Next.js 16** and **React 19**, utilizing the **App 
     - Markdown rendering for tutor feedback.
     - Skill rating visualization (Radar/Matrix style based on OOA/OOD/OOP).
 
-### 2. Journey Subsystem (`app/journeys`)
+### 2. Journey Subsystem (`app/(public)/journeys`)
+- **Unified Routing**: Consolidated `journeys` under `(public)` to prevent Next.js 404 route collisions and share global Context smoothly.
 - **Dynamic Routing**: Uses `[slug]` for different learning paths.
+- **Immersive Full-Screen**: Pages like `roadmap` and `lessons` use dynamic layout toggles to hide the Sidebar for focused, immersive viewing while retaining global App contexts.
 - **Gyms & SOPs**: Sub-routes for specific exercise areas.
 
 ### 3. Onboarding Subsystem (`components/layout/OnboardingOverlay.tsx`)
-- **Purpose**: First-time user guidance and role identification.
+- **Purpose**: First-time user guidance, role identification, and Demo Simulation helper.
 - **Flow**: Role Selection -> 6-step Guided Tour.
 - **Role Sync**: Captures user role (HR/Tech Lead/etc.) and syncs with `Member` profile in backend.
-- **Desktop Sprite**: Persistent floating helper for revisiting guide content.
+- **Desktop Sprite (Spirit / Waterball Fairy)**: Persistent floating helper for revisiting guide content, now strictly bounded by its icon bounds to prevent accidental hover expansion. It also provides tools to trigger `Demo Mode` backend endpoints (auto-completing gyms and missions).
 
 ### 4. Auth & Logout mechanism
 - **Absolute Logout**: Implemented a multi-layer cleanup (clearing `localStorage`, invalidating server session, and injecting expired `JSESSIONID` cookies).

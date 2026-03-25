@@ -27,13 +27,14 @@ import java.util.Map;
 public class DevAuthController {
 
     private final MemberRepository memberRepository;
+    private final com.waterballsa.tutorial_platform.service.JwtService jwtService;
 
     /**
      * 開發專用登入 API (Mock Login)
      */
     @PostMapping("/dev-login")
     // 3. 修改回傳型別 String -> ResponseEntity<Member>
-    public ResponseEntity<Member> devLogin(@RequestParam String email, HttpServletRequest request) {
+    public ResponseEntity<Map<String, Object>> devLogin(@RequestParam String email, HttpServletRequest request) {
         // 1. 根據 Email 找使用者
         Member member = memberRepository.findByEmail(email)
                 .orElseThrow(() -> new RuntimeException("User not found: " + email));
@@ -66,7 +67,31 @@ public class DevAuthController {
         HttpSession session = request.getSession(true);
         session.setAttribute("SPRING_SECURITY_CONTEXT", sc);
 
-        // 6. ★★★ 關鍵修正 ★★★：回傳 JSON 物件，而不是字串
-        return ResponseEntity.ok(member);
+        // 6. ★ 生成 Token
+        String token = jwtService.generateToken(authentication, member.getEmail());
+
+        // 7. 回傳 MemberDTO + Token
+        com.waterballsa.tutorial_platform.dto.MemberDTO dto = com.waterballsa.tutorial_platform.dto.MemberDTO.builder()
+                .id(member.getId())
+                .name(member.getName())
+                .email(member.getEmail())
+                .nickName(member.getNickName())
+                .jobTitle(member.getJobTitle())
+                .occupation(member.getOccupation())
+                .level(member.getLevel())
+                .exp(member.getExp())
+                .nextLevelExp(member.getNextLevelExp())
+                .avatar(member.getAvatar())
+                .pictureUrl(member.getAvatar())
+                .region(member.getRegion())
+                .githubUrl(member.getGithubUrl())
+                .discordId(member.getDiscordId())
+                .build();
+
+        Map<String, Object> result = new HashMap<>();
+        result.put("user", dto);
+        result.put("token", token);
+        
+        return ResponseEntity.ok(result);
     }
 }

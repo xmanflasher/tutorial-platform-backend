@@ -36,6 +36,7 @@ public class Member {
     @Builder.Default
     private Long coin = 0L;
 
+    @com.fasterxml.jackson.annotation.JsonIgnore
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
     @Builder.Default
     private List<LearningRecord> learningRecords = new ArrayList<>();

@@ -16,6 +16,7 @@ public class MemberMission {
     private Long id;
 
     // ★ 修正 1：改用 @ManyToOne 關聯物件，不要只存 Long memberId
+    @com.fasterxml.jackson.annotation.JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
     private Member member;

@@ -7,4 +7,7 @@ public interface LearningRecordRepository extends JpaRepository<LearningRecord, 
 
     // 檢查某人是否看過某單元 (回傳 true/false)
     boolean existsByMemberIdAndLessonId(Long memberId, Long lessonId);
+
+    // 取得某人的所有學習紀錄
+    java.util.List<LearningRecord> findByMemberId(Long memberId);
 }

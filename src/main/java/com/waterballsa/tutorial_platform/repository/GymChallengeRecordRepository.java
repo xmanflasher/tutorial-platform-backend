@@ -2,9 +2,13 @@ package com.waterballsa.tutorial_platform.repository;
 
 import com.waterballsa.tutorial_platform.entity.GymChallengeRecord;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
 import java.util.List;
 
+@Repository
 public interface GymChallengeRecordRepository extends JpaRepository<GymChallengeRecord, Long> {
-    // 根據 userId 查詢，並依建立時間倒序排列
     List<GymChallengeRecord> findByUserIdOrderByCreatedAtDesc(Long userId);
+    List<GymChallengeRecord> findByGymIdAndUserIdOrderByCreatedAtDesc(Long gymId, Long userId);
+    List<GymChallengeRecord> findByGymIdAndGymChallengeIdAndUserIdOrderByCreatedAtDesc(Long gymId, Long gymChallengeId, Long userId);
 }

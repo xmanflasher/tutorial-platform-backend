@@ -3,6 +3,8 @@ package com.waterballsa.tutorial_platform.entity;
 import com.waterballsa.tutorial_platform.converter.JsonToMapConverter;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 import java.time.LocalDateTime;
 import java.util.Map;
 
@@ -32,12 +34,12 @@ public class GymSubmission {
     @Enumerated(EnumType.STRING)
     private SubmissionStatus status;
 
+    @JdbcTypeCode(SqlTypes.JSON)
     @Column(name = "files_json", columnDefinition = "jsonb")
-    @Convert(converter = JsonToMapConverter.class)
     private Map<String, String> submissionFiles;
 
+    @JdbcTypeCode(SqlTypes.JSON)
     @Column(columnDefinition = "jsonb")
-    @Convert(converter = JsonToMapConverter.class)
     private Map<String, String> ratings;
 
     @Column(columnDefinition = "TEXT")

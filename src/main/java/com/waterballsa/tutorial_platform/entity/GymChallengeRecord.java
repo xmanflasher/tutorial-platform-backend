@@ -67,6 +67,6 @@ public class GymChallengeRecord {
     private Date reviewedAt;
 
     public enum ChallengeStatus {
-        SUCCESS, FAILED, SUBMITTED
+        STARTED, SUCCESS, FAILED, SUBMITTED
     }
 }

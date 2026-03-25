@@ -75,9 +75,22 @@ public class GymController {
                                 .id(String.valueOf(l.getId()))
                                 .name(l.getName())
                                 .type(l.getType())
+                                .content(toContentDtoList(l.getContents()))
                                 .build())
                         .collect(Collectors.toList()))
                 .rewardExp(gym.getRewardExp())
                 .build();
+    }
+
+    private List<java.util.Map<String, Object>> toContentDtoList(List<com.waterballsa.tutorial_platform.entity.LessonContent> contents) {
+        if (contents == null || contents.isEmpty()) {
+            return Collections.emptyList();
+        }
+        return contents.stream().map(content -> java.util.Map.<String, Object>of(
+                "id", content.getId(),
+                "type", content.getContentType() != null ? content.getContentType().toLowerCase() : "video",
+                "url", content.getUrl() != null ? content.getUrl() : "",
+                "content", content.getContent() != null ? content.getContent() : ""
+        )).collect(Collectors.toList());
     }
 }

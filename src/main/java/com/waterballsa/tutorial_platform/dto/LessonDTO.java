@@ -18,4 +18,7 @@ public class LessonDTO {
     // ★★★ 補上這兩個 ID 欄位 ★★★
     private String chapterId;
     private String journeyId;
+
+    // ★★★ 加入 lesson content 以支援前端影片及文章播放 ★★★
+    private java.util.List<java.util.Map<String, Object>> content;
 }

@@ -21,6 +21,7 @@ import java.util.Arrays;
 public class CustomAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
 
     private final MemberRepository memberRepo;
+    private final JwtService jwtService;
 
     @Override
     @Transactional
@@ -64,6 +65,9 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
             redirectUrl = request.getParameter("redirect");
         }
 
-        response.sendRedirect("http://localhost:3000" + redirectUrl);
+        // ★ 生成 JWT 並帶入重定向 URL
+        String token = jwtService.generateToken(authentication, email);
+        String finalRedirectUrl = "http://localhost:3000" + redirectUrl + (redirectUrl.contains("?") ? "&" : "?") + "token=" + token;
+        response.sendRedirect(finalRedirectUrl);
     }
 }

@@ -3,7 +3,6 @@ package com.waterballsa.tutorial_platform.config;
 import com.waterballsa.tutorial_platform.service.CustomAuthenticationSuccessHandler;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -11,14 +10,10 @@ import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
-import org.springframework.security.oauth2.jwt.JwtDecoder;
-import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.web.cors.CorsConfiguration; // ★ 新增 Import
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource; // ★ 新增 Import
-
-import javax.crypto.spec.SecretKeySpec;
-import java.util.List; // ★ 新增 Import
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import java.util.List;
 
 @Configuration
 @EnableWebSecurity
@@ -27,9 +22,6 @@ public class SecurityConfig {
 
     private final CustomAuthenticationSuccessHandler customAuthenticationSuccessHandler;
 
-    @Value("${jwt.secret-key}")
-    private String secretKey;
-
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
@@ -37,6 +29,9 @@ public class SecurityConfig {
                 // ★ 修改重點 1: 掛載 CORS 設定
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .authorizeHttpRequests(auth -> auth
+                        // 允許 CORS Preflight requests
+                        .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+
                         // 既有的公開路徑
                         .requestMatchers("/api/leaderboard").permitAll()
                         .requestMatchers("/api/journeys/**").permitAll()
@@ -46,6 +41,9 @@ public class SecurityConfig {
 
                         // ★ 修改重點 2: 新增這一行，允許公開讀取/變更使用者的資料
                         .requestMatchers("/api/users/**").permitAll()
+                        .requestMatchers("/api/orders/**").permitAll()
+                        .requestMatchers("/api/gym-challenge-records/**").permitAll()
+                        .requestMatchers("/api/learning-records/**").permitAll()
 
                         .requestMatchers(HttpMethod.GET, "/api/announcements/**").permitAll()
                         .requestMatchers("/", "/sign-in", "/error", "/images/**", "/logo.png", "/favicon.ico").permitAll()
@@ -77,12 +75,6 @@ public class SecurityConfig {
         return http.build();
     }
 
-    @Bean
-    public JwtDecoder jwtDecoder() {
-        byte[] keyBytes = secretKey.getBytes();
-        SecretKeySpec secretKeySpec = new SecretKeySpec(keyBytes, "HmacSHA256");
-        return NimbusJwtDecoder.withSecretKey(secretKeySpec).build();
-    }
 
     // ★ 修改重點 3: 定義 CORS 規則 (允許 localhost:3000)
     @Bean

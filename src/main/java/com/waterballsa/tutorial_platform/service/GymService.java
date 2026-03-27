@@ -3,6 +3,7 @@ package com.waterballsa.tutorial_platform.service;
 import com.waterballsa.tutorial_platform.dto.ChallengeRecordDTO;
 import com.waterballsa.tutorial_platform.dto.GymBadgeDTO;
 import com.waterballsa.tutorial_platform.dto.GymStatusDTO;
+import com.waterballsa.tutorial_platform.dto.GymDetailDTO;
 import com.waterballsa.tutorial_platform.entity.Gym;
 import com.waterballsa.tutorial_platform.entity.GymBadge;
 import com.waterballsa.tutorial_platform.entity.GymSubmission;
@@ -11,6 +12,7 @@ import com.waterballsa.tutorial_platform.repository.GymRepository;
 import com.waterballsa.tutorial_platform.repository.GymSubmissionRepository;
 import com.waterballsa.tutorial_platform.entity.MemberBadge;
 import com.waterballsa.tutorial_platform.repository.MemberBadgeRepository;
+import com.waterballsa.tutorial_platform.converter.GymMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -28,6 +30,7 @@ public class GymService {
     private final GymSubmissionRepository submissionRepository;
     private final GymBadgeRepository gymBadgeRepository;
     private final MemberBadgeRepository memberBadgeRepository;
+    private final GymMapper gymMapper;
 
     // --- 功能 1: 取得道館地圖狀態 (主線/支線解鎖邏輯) ---
     public List<GymStatusDTO> getGymMap(Long memberId) {
@@ -113,6 +116,13 @@ public class GymService {
                         .unlocked(unlockedBadgeIds.contains(badge.getId()))
                         .build())
                 .collect(Collectors.toList());
+    }
+
+    // --- 功能 4: 取得特定道館的詳細資料 (包含 Mapper 轉換) ---
+    public GymDetailDTO getGymDetail(Long id) {
+        return gymRepository.findById(id)
+                .map(gymMapper::toDetailDTO)
+                .orElse(null);
     }
 
     // --- Helper: Entity 轉 DTO ---

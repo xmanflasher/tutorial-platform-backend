@@ -3,6 +3,7 @@ package com.waterballsa.tutorial_platform.controller;
 import com.waterballsa.tutorial_platform.dto.GymStatusDTO;
 import com.waterballsa.tutorial_platform.dto.LeaderboardDTO;
 import com.waterballsa.tutorial_platform.dto.MemberDTO;
+import com.waterballsa.tutorial_platform.dto.MemberUpdateDTO;
 import com.waterballsa.tutorial_platform.entity.Member;
 import com.waterballsa.tutorial_platform.repository.MemberRepository;
 import com.waterballsa.tutorial_platform.service.GymService;
@@ -48,11 +49,19 @@ public class MemberController {
                 .level(member.getLevel())
                 .exp(member.getExp())
                 .nextLevelExp(member.getNextLevelExp())
-                .pictureUrl(member.getAvatar())
+                .avatar(member.getAvatar()) // 修正欄位名稱與 Member 一致
                 .region(member.getRegion())
                 .githubUrl(member.getGithubUrl())
                 .discordId(member.getDiscordId())
                 .build();
+    }
+
+    // 1.1 更新當前登入者資料 (Phase 7)
+    @PutMapping("/api/members/me")
+    public MemberDTO updateCurrentMember(Authentication auth, @RequestBody MemberUpdateDTO updateDTO) {
+        Long memberId = memberService.getCurrentMemberId(auth);
+        if (memberId == null) throw new RuntimeException("Unauthorized");
+        return memberService.updateMemberProfile(memberId, updateDTO);
     }
 
     // 2. 獲取公開使用者資料

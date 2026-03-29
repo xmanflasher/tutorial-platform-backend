@@ -1,7 +1,9 @@
 package com.waterballsa.tutorial_platform.service;
 
 import com.waterballsa.tutorial_platform.dto.MemberDTO;
+import com.waterballsa.tutorial_platform.dto.MemberUpdateDTO;
 import com.waterballsa.tutorial_platform.entity.Member;
+import com.waterballsa.tutorial_platform.exception.BusinessException;
 import com.waterballsa.tutorial_platform.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -52,6 +54,42 @@ public class MemberService {
                 .exp(member.getExp())
                 .nextLevelExp(member.getNextLevelExp())
                 .avatar(member.getAvatar())
+                .email(member.getEmail())
+                .sex(member.getSex())
+                .birthDate(member.getBirthDate())
+                .region(member.getRegion())
+                .githubUrl(member.getGithubUrl())
+                .discordId(member.getDiscordId())
+                .build();
+    }
+
+    // --- Phase 7: 更新個人資料 ---
+    public MemberDTO updateMemberProfile(Long memberId, MemberUpdateDTO updateDTO) {
+        Member member = memberRepository.findById(memberId)
+                .orElseThrow(() -> new BusinessException("Member not found with id: " + memberId));
+
+        if (updateDTO.getNickName() != null) member.setNickName(updateDTO.getNickName());
+        if (updateDTO.getAvatar() != null) member.setAvatar(updateDTO.getAvatar());
+        if (updateDTO.getJobTitle() != null) member.setJobTitle(updateDTO.getJobTitle());
+        if (updateDTO.getRegion() != null) member.setRegion(updateDTO.getRegion());
+        if (updateDTO.getOccupation() != null) member.setOccupation(updateDTO.getOccupation());
+
+        Member saved = memberRepository.save(member);
+        return toDTO(saved);
+    }
+
+    private MemberDTO toDTO(Member member) {
+        return MemberDTO.builder()
+                .id(member.getId())
+                .name(member.getName())
+                .nickName(member.getNickName())
+                .jobTitle(member.getJobTitle())
+                .occupation(member.getOccupation())
+                .level(member.getLevel())
+                .exp(member.getExp())
+                .nextLevelExp(member.getNextLevelExp())
+                .avatar(member.getAvatar())
+                .pictureUrl(member.getAvatar())
                 .email(member.getEmail())
                 .sex(member.getSex())
                 .birthDate(member.getBirthDate())

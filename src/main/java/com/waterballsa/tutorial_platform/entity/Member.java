@@ -45,12 +45,10 @@ public class Member {
     private String birthDate;
     private LocalDateTime subscriptionEndDate;
 
-    // ★ 新增個人檔案欄位
     private String region;
     private String githubUrl;
     private String discordId;
 
-    // ★ 訪客追蹤相關
     private String originVisitorId;
     private String visitorCategory; // GUEST, PASSERBY
 
@@ -59,4 +57,44 @@ public class Member {
     @Column(updatable = false)
     @Builder.Default
     private LocalDateTime createdAt = LocalDateTime.now();
+
+    /**
+     * 【領域行為】獲取獎勵並處理等級提升邏輯
+     */
+    public void earnReward(Reward reward) {
+        if (reward == null) return;
+        
+        // 1. 金幣發放
+        this.coin = (this.coin == null ? 0L : this.coin) + (reward.getCoin() != null ? reward.getCoin() : 0);
+
+        // 2. 經驗發放與升級演算
+        if (reward.getExp() != null) {
+            this.exp = (this.exp == null ? 0L : this.exp) + reward.getExp().longValue();
+            checkAndPerformLevelUp();
+        }
+
+        // 3. 訂閱期限延長
+        if (reward.getSubscriptionExtensionInDays() != null) {
+            extendSubscription(reward.getSubscriptionExtensionInDays());
+        }
+    }
+
+    public void extendSubscription(int days) {
+        if (days <= 0) return;
+        LocalDateTime baseDate = (this.subscriptionEndDate == null || this.subscriptionEndDate.isBefore(LocalDateTime.now())) 
+                                ? LocalDateTime.now() 
+                                : this.subscriptionEndDate;
+        this.subscriptionEndDate = baseDate.plusDays(days);
+    }
+
+    private void checkAndPerformLevelUp() {
+        if (this.nextLevelExp == null) this.nextLevelExp = 2000L;
+        if (this.level == null) this.level = 1;
+
+        while (this.exp >= this.nextLevelExp) {
+            this.exp -= this.nextLevelExp;
+            this.level++;
+            this.nextLevelExp = (long)(this.nextLevelExp * 1.2);
+        }
+    }
 }

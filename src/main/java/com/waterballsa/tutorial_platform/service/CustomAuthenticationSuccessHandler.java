@@ -67,7 +67,14 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
 
         // ★ 生成 JWT 並帶入重定向 URL
         String token = jwtService.generateToken(authentication, email);
-        String finalRedirectUrl = "http://localhost:3000" + redirectUrl + (redirectUrl.contains("?") ? "&" : "?") + "token=" + token;
+        
+        // 從環境變數讀取前端網址，若無則預設為 localhost:3000
+        String frontendUrl = System.getenv("FRONTEND_URL");
+        if (frontendUrl == null || frontendUrl.isEmpty()) {
+            frontendUrl = "http://localhost:3000";
+        }
+        
+        String finalRedirectUrl = frontendUrl + redirectUrl + (redirectUrl.contains("?") ? "&" : "?") + "token=" + token;
         response.sendRedirect(finalRedirectUrl);
     }
 }

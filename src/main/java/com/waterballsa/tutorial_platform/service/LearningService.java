@@ -42,14 +42,7 @@ public class LearningService {
 
         // 3. 發放獎勵
         if (lesson.getReward() != null) {
-            // ★★★ 修正 2 的前提：Member 必須要有 getExp/getCoin 方法
-            // 為了避免 NullPointerException，建議先判斷是否為 null，或在 Entity 設定預設值
-            long currentExp = member.getExp() == null ? 0 : member.getExp();
-            long currentCoin = member.getCoin() == null ? 0 : member.getCoin();
-
-            member.setExp(currentExp + lesson.getReward().getExp());
-            member.setCoin(currentCoin + lesson.getReward().getCoin());
-
+            member.earnReward(lesson.getReward());
             memberRepo.save(member);
         }
     }

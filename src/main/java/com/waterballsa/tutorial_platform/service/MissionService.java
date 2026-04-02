@@ -167,19 +167,7 @@ public class MissionService {
 
         Reward reward = mission.getReward();
         if (reward != null) {
-            if (reward.getExp() != null && reward.getExp() > 0) {
-                member.setExp(member.getExp() + reward.getExp());
-            }
-            if (reward.getCoin() != null && reward.getCoin() > 0) {
-                member.setCoin(member.getCoin() + reward.getCoin());
-            }
-            if (reward.getSubscriptionExtensionInDays() != null && reward.getSubscriptionExtensionInDays() > 0) {
-                LocalDateTime currentExpiry = member.getSubscriptionEndDate();
-                if (currentExpiry == null || currentExpiry.isBefore(LocalDateTime.now())) {
-                    currentExpiry = LocalDateTime.now();
-                }
-                member.setSubscriptionEndDate(currentExpiry.plusDays(reward.getSubscriptionExtensionInDays()));
-            }
+            member.earnReward(reward);
         }
 
         record.setStatus(MemberMission.MissionStatus.CLAIMED);

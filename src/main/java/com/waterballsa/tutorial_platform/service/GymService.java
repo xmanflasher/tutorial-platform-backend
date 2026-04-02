@@ -14,6 +14,7 @@ import com.waterballsa.tutorial_platform.entity.MemberBadge;
 import com.waterballsa.tutorial_platform.repository.MemberBadgeRepository;
 import com.waterballsa.tutorial_platform.converter.GymMapper;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -22,6 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class GymService {
@@ -103,19 +105,65 @@ public class GymService {
                 .map(MemberBadge::getBadgeId)
                 .toList();
 
+        log.info("🔍 [Debug Badge] UserID: {}, JourneyID: {}", userId, journeyId);
+        log.info("🔍 [Debug Badge] Unlocked IDs found in DB: {}", unlockedBadgeIds);
+
         // 3. 組裝 DTO 並設定 unlocked 狀態
         return badges.stream()
-                .map(badge -> GymBadgeDTO.builder()
+                .map(badge -> {
+                    if (badge.getId() == null) {
+                        log.warn("⚠️ [Debug Badge] Badge has NULL ID! Name: {}", badge.getName());
+                        return GymBadgeDTO.builder().name(badge.getName()).unlocked(false).build();
+                    }
+
+                    // 強制轉型比對 (避免 Long vs Integer 陷阱)
+                    boolean isUnlocked = unlockedBadgeIds.stream().anyMatch(unlockedId -> unlockedId.equals(badge.getId()));
+                    
+                    log.info("🔍 [Debug Badge] Checking Badge: '{}' (ID: {}). Match found: {}", 
+                        badge.getName(), badge.getId(), isUnlocked);
+                    
+                    return GymBadgeDTO.builder()
+                        .id(badge.getId())
+                        .name(badge.getName())
+                        .imageUrl(badge.getImageUrl())
+                        .gymId(badge.getGym() != null ? badge.getGym().getId() : null)
+                        .journeyId(badge.getJourneyId())
+                        .chapterId(badge.getChapterId())
+                        .unlocked(isUnlocked)
+                        .build();
+                })
+                .collect(Collectors.toList());
+    }
+
+    // --- 功能 3.5: 取得未播放動畫的徽章 (Data-Driven Celebration) ---
+    public List<GymBadgeDTO> getUnshownBadges(Long userId) {
+        // 1. 撈出該死者所有 `is_shown = false` 的 member_badges
+        List<MemberBadge> unshownMemberBadges = memberBadgeRepository.findByMemberIdAndIsShownFalse(userId);
+        
+        List<GymBadgeDTO> unshownDtos = new ArrayList<>();
+        for (MemberBadge mb : unshownMemberBadges) {
+            gymBadgeRepository.findById(mb.getBadgeId()).ifPresent(badge -> {
+                unshownDtos.add(GymBadgeDTO.builder()
                         .id(badge.getId())
                         .name(badge.getName())
                         .imageUrl(badge.getImageUrl())
                         .gymId(badge.getGym().getId())
                         .journeyId(badge.getJourneyId())
                         .chapterId(badge.getChapterId())
-                        // ★ 核心邏輯：如果使用者已獲得的徽章 ID 包含這個徽章的 id，就是 true
-                        .unlocked(unlockedBadgeIds.contains(badge.getId()))
-                        .build())
-                .collect(Collectors.toList());
+                        .unlocked(true)
+                        .build());
+            });
+        }
+        return unshownDtos;
+    }
+
+    // --- 功能 3.6: 標記徽章動畫為已播放 ---
+    public void markBadgeAsShown(Long userId, Long badgeId) {
+        memberBadgeRepository.findByMemberIdAndBadgeId(userId, badgeId).ifPresent(mb -> {
+            mb.setIsShown(true);
+            memberBadgeRepository.save(mb);
+            log.info("✅ 徽章標記為已播放: User={}, Badge={}", userId, badgeId);
+        });
     }
 
     // --- 功能 4: 取得特定道館的詳細資料 (包含 Mapper 轉換) ---

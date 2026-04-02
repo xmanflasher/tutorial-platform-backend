@@ -80,7 +80,7 @@ public class GymChallengeRecordController {
         }
         log.info("[RecordController] Bulk simulateCorrection for gymId {}, userId {}", gymId, userId);
         
-        GymChallengeRecord sampleRecord = recordService.bulkSimulateCorrection(userId);
+        GymChallengeRecord sampleRecord = recordService.bulkSimulateCorrection(userId, gymId);
         return ResponseEntity.ok(mapper.toDto(sampleRecord));
     }
 

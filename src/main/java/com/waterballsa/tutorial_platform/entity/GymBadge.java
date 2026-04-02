@@ -33,6 +33,9 @@ public class GymBadge {
     @Column(name = "journey_id")
     private Long journeyId;
 
+    @Column(name = "unlock_condition", columnDefinition = "TEXT")
+    private String unlockCondition; // 格式如: GYM_COMPLETED:6000
+
     @Column(name = "created_at")
     private LocalDateTime createdAt;
 

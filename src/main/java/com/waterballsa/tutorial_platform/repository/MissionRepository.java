@@ -10,8 +10,8 @@ public interface MissionRepository extends JpaRepository<Mission, Long> {
     // 解決 findAllByJourney_Slug 錯誤
     // 注意：這假設 Mission Entity 裡有一個名為 journey 的欄位
     List<Mission> findAllByJourney_Slug(String slug);
-    // 透過原始 ID 找 Lesson
-    Optional<Lesson> findByOriginalId(Long originalId);
+    // 透過原始 ID 找 Mission
+    Optional<Mission> findByOriginalId(Long originalId);
 
     // 一次找多個 (給 DataSeeder 用)
     List<Lesson> findByOriginalIdIn(List<Long> originalIds);

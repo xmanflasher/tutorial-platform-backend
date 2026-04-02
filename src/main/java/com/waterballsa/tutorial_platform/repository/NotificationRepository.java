@@ -1,10 +1,19 @@
 package com.waterballsa.tutorial_platform.repository;
 
-// 假設你有 Notification Entity，沒有的話可以先跳過
-// import com.waterballsa.tutorial_platform.entity.Notification;
+import com.waterballsa.tutorial_platform.entity.Notification;
 import org.springframework.data.jpa.repository.JpaRepository;
-// import java.util.List;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.transaction.annotation.Transactional;
 
-// public interface NotificationRepository extends JpaRepository<Notification, Long> {
-//     List<Notification> findByMemberIdAndReadFalse(Long memberId);
-// }
+import java.util.List;
+
+public interface NotificationRepository extends JpaRepository<Notification, Long> {
+    List<Notification> findByMemberIdOrderByCreatedAtDesc(Long memberId);
+    long countByMemberIdAndIsReadFalse(Long memberId);
+
+    @Modifying
+    @Transactional
+    @Query("UPDATE Notification n SET n.isRead = true WHERE n.memberId = ?1")
+    void markAllAsReadByMemberId(Long memberId);
+}

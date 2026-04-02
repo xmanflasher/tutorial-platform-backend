@@ -15,8 +15,6 @@ public class Announcement {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long userId; // null for global announcements
-
     @Column(nullable = false)
     private String message;
 

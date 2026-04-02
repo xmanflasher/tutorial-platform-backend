@@ -1,10 +1,12 @@
 package com.waterballsa.tutorial_platform.controller;
 
 import com.waterballsa.tutorial_platform.entity.*;
+import com.waterballsa.tutorial_platform.event.GymPassedEvent;
 import com.waterballsa.tutorial_platform.repository.*;
 import com.waterballsa.tutorial_platform.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.transaction.annotation.Transactional;
@@ -30,6 +32,7 @@ public class DemoController {
     private final GymChallengeRecordRepository gymChallengeRecordRepository;
     private final GymBadgeRepository gymBadgeRepository;
     private final MemberBadgeRepository memberBadgeRepository;
+    private final ApplicationEventPublisher eventPublisher;
 
     /**
      * 完成當前正在進行中的任務
@@ -117,25 +120,10 @@ public class DemoController {
                 .build();
         gymChallengeRecordRepository.save(record);
 
-        // 6. 如果該道館有徽章，自動頒發
-        if (journeyId != null) {
-            List<GymBadge> badges = gymBadgeRepository.findByJourneyId(journeyId);
-            badges.stream()
-                    .filter(b -> b.getGym().getId().equals(gym.getId()))
-                    .findFirst()
-                    .ifPresent(badge -> {
-                        if (!memberBadgeRepository.findByMemberId(memberId).stream()
-                                .anyMatch(mb -> mb.getBadgeId().equals(badge.getId()))) {
-                            memberBadgeRepository.save(MemberBadge.builder()
-                                    .memberId(memberId)
-                                    .badgeId(badge.getId())
-                                    .awardedAt(LocalDateTime.now())
-                                    .build());
-                        }
-                    });
-        }
+        // 6. 發佈通關事件，啟動解鎖引擎 (ISSUE-BADGE-01)
+        eventPublisher.publishEvent(new GymPassedEvent(memberId, gym.getId()));
 
         log.info("Demo: Member {} completed gym {}", memberId, gym.getName());
-        return ResponseEntity.ok("道館「" + gym.getName() + "」已模擬成功並同步徽章！");
+        return ResponseEntity.ok("道館「" + gym.getName() + "」已模擬成功，系統正自動計算獎勵與徽章！");
     }
 }

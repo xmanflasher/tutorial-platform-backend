@@ -34,4 +34,24 @@ public class GymController {
         GymDetailDTO detail = gymService.getGymDetail(id);
         return detail != null ? ResponseEntity.ok(detail) : ResponseEntity.notFound().build();
     }
+
+    // 3. 取得未觸發慶祝動畫的徽章 (Data-Driven Celebration)
+    @GetMapping("/members/me/badges/unshown")
+    public ResponseEntity<List<GymBadgeDTO>> getUnshownBadges(
+            org.springframework.security.core.Authentication auth
+    ) {
+        Long userId = memberService.getCurrentMemberId(auth);
+        return ResponseEntity.ok(gymService.getUnshownBadges(userId));
+    }
+
+    // 4. 將徽章標記為已看過 (動畫播完後呼叫)
+    @PatchMapping("/members/me/badges/{badgeId}/mark-shown")
+    public ResponseEntity<Void> markBadgeAsShown(
+            @PathVariable Long badgeId,
+            org.springframework.security.core.Authentication auth
+    ) {
+        Long userId = memberService.getCurrentMemberId(auth);
+        gymService.markBadgeAsShown(userId, badgeId);
+        return ResponseEntity.ok().build();
+    }
 }

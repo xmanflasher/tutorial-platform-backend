@@ -6,6 +6,7 @@ import com.waterballsa.tutorial_platform.entity.GymChallengeRecord;
 import com.waterballsa.tutorial_platform.entity.GymSubmission;
 import com.waterballsa.tutorial_platform.entity.Member;
 import com.waterballsa.tutorial_platform.enums.ChallengeType;
+import com.waterballsa.tutorial_platform.event.GymPassedEvent;
 import com.waterballsa.tutorial_platform.exception.BusinessException;
 import com.waterballsa.tutorial_platform.repository.ChallengeRepository;
 import com.waterballsa.tutorial_platform.repository.GymChallengeRecordRepository;
@@ -14,6 +15,7 @@ import com.waterballsa.tutorial_platform.repository.GymSubmissionRepository;
 import com.waterballsa.tutorial_platform.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,6 +33,7 @@ public class GymChallengeRecordService {
     private final GymRepository gymRepository;
     private final GymSubmissionRepository gymSubmissionRepository;
     private final ChallengeRepository challengeRepository;
+    private final ApplicationEventPublisher eventPublisher;
 
     public List<GymChallengeRecord> getLatestRecordsByUserId(Long userId) {
         if (userId == null) return Collections.emptyList();
@@ -152,10 +155,10 @@ public class GymChallengeRecordService {
     }
 
     @Transactional
-    public GymChallengeRecord bulkSimulateCorrection(Long userId) {
-        List<GymChallengeRecord> records = repository.findByUserIdOrderByCreatedAtDesc(userId);
+    public GymChallengeRecord bulkSimulateCorrection(Long userId, Long gymId) {
+        List<GymChallengeRecord> records = repository.findByGymIdAndUserIdOrderByCreatedAtDesc(gymId, userId);
         if (records.isEmpty()) {
-            throw new BusinessException("找不到任何挑戰紀錄", HttpStatus.NOT_FOUND);
+            throw new BusinessException("找不到該道館的挑戰紀錄", HttpStatus.NOT_FOUND);
         }
 
         String feedback = "導師批改：實作優秀！優點：結構清晰。";
@@ -170,6 +173,11 @@ public class GymChallengeRecordService {
             target.setReviewedAt(new Date());
             target.setCompletedAt(new Date());
             repository.save(target);
+            
+            // 重要：發佈過關事件，觸發徽章核發引擎 (ISSUE-BADGE-02-01)
+            if (target.getGymId() != null) {
+                eventPublisher.publishEvent(new GymPassedEvent(userId, target.getGymId()));
+            }
         }
         repository.flush();
         return records.get(0);
@@ -184,7 +192,11 @@ public class GymChallengeRecordService {
         target.setFeedback("手動強行批改成功");
         target.setReviewedAt(new Date());
         target.setCompletedAt(new Date());
+        repository.saveAndFlush(target);
 
-        return repository.saveAndFlush(target);
+        // 重要：發佈過關事件 (ISSUE-BADGE-02-01)
+        eventPublisher.publishEvent(new GymPassedEvent(target.getUserId(), target.getGymId()));
+
+        return target;
     }
 }

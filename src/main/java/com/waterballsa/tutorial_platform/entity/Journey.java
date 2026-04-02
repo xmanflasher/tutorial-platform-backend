@@ -55,4 +55,8 @@ public class Journey {
     @OrderBy("displayOrder ASC")
     @Builder.Default
     private List<JourneyMenu> menus = new ArrayList<>();
+
+    // 關聯：徽章 (SD-10)
+    @Transient // 先設為 Transient 方便 JSON 反序列化，再手動存入 db
+    private List<GymBadge> badges = new ArrayList<>();
 }

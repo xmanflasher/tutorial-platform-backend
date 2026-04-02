@@ -9,9 +9,5 @@ import java.util.Optional;
 
 @Repository
 public interface AnnouncementRepository extends JpaRepository<Announcement, Long> {
-    Optional<Announcement> findFirstByUserIdOrUserIdIsNullOrderByCreatedAtDesc(Long userId);
-    
-    List<Announcement> findByUserIdOrUserIdIsNullOrderByCreatedAtDesc(Long userId);
-
     Optional<Announcement> findFirstByOrderByCreatedAtDesc();
 }

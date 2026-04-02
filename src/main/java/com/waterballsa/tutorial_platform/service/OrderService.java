@@ -1,10 +1,10 @@
 package com.waterballsa.tutorial_platform.service;
 
 import com.waterballsa.tutorial_platform.dto.OrderDTO;
-import com.waterballsa.tutorial_platform.entity.Announcement;
+import com.waterballsa.tutorial_platform.entity.Notification;
 import com.waterballsa.tutorial_platform.entity.Order;
 import com.waterballsa.tutorial_platform.entity.Journey;
-import com.waterballsa.tutorial_platform.repository.AnnouncementRepository;
+import com.waterballsa.tutorial_platform.repository.NotificationRepository;
 import com.waterballsa.tutorial_platform.repository.JourneyRepository;
 import com.waterballsa.tutorial_platform.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
 public class OrderService {
     private final OrderRepository orderRepository;
     private final JourneyRepository journeyRepository;
-    private final AnnouncementRepository announcementRepository;
+    private final NotificationRepository notificationRepository;
 
     @Transactional
     public OrderDTO createOrder(Long userId, Long journeyId, Long amount, String paymentMethod, String invoiceType, String invoiceValue) {
@@ -42,9 +42,9 @@ public class OrderService {
         
         Order savedOrder = orderRepository.save(order);
 
-        // 自動建立通知
-        announcementRepository.save(Announcement.builder()
-                .userId(userId)
+        // 自動建立通知 (ISSUE-NTF-01)
+        notificationRepository.save(Notification.builder()
+                .memberId(userId)
                 .message("🎉 您的訂單 " + orderNumber + " 已建立成功！請前往完成支付。")
                 .linkText("查看訂單")
                 .linkHref("/courses")
@@ -68,15 +68,15 @@ public class OrderService {
         order.setPaidAt(LocalDateTime.now());
         Order savedOrder = orderRepository.save(order);
 
-        // 自動建立通知
+        // 自動建立通知 (ISSUE-NTF-01)
         Journey journey = journeyRepository.findById(order.getJourneyId()).orElse(null);
         String journeySlug = journey != null ? journey.getSlug() : "software-design-pattern";
-        
-        announcementRepository.save(Announcement.builder()
-                .userId(order.getUserId())
+
+        notificationRepository.save(Notification.builder()
+                .memberId(order.getUserId())
                 .message("✅ 您的訂單 " + orderNumber + " 已完成支付！快去開始您的學習旅程吧。")
                 .linkText("前往挑戰地圖")
-                .linkHref("/journeys/" + journeySlug + "/map")
+                .linkHref("/journeys/" + journeySlug)
                 .build());
 
         return toDto(savedOrder);

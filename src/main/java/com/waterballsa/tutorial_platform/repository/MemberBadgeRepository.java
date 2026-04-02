@@ -6,4 +6,7 @@ import java.util.List;
 
 public interface MemberBadgeRepository extends JpaRepository<MemberBadge, Long> {
     List<MemberBadge> findByMemberId(Long memberId);
+    boolean existsByMemberIdAndBadgeId(Long memberId, Long badgeId);
+    List<MemberBadge> findByMemberIdAndIsShownFalse(Long memberId);
+    java.util.Optional<MemberBadge> findByMemberIdAndBadgeId(Long memberId, Long badgeId);
 }

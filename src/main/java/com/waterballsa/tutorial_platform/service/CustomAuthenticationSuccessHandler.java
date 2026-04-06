@@ -65,8 +65,8 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
             redirectUrl = request.getParameter("redirect");
         }
 
-        // ★ 生成 JWT 並帶入重定向 URL
-        String token = jwtService.generateToken(authentication, email);
+        // ★ 生成 JWT 並帶入重定向 URL，加入 RBAC Role
+        String token = jwtService.generateToken(authentication, email, member.getRole().name());
         
         // 從環境變數讀取前端網址，若無則預設為 localhost:3000
         String frontendUrl = System.getenv("FRONTEND_URL");

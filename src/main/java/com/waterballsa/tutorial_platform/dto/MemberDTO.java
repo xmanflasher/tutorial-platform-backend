@@ -26,4 +26,9 @@ public class MemberDTO {
     private String region;
     private String githubUrl;
     private String discordId;
+
+    // ★ RBAC 與講師欄位
+    private String role;
+    private String instructorBio;
+    private String socialLinks;
 }

@@ -24,6 +24,18 @@ public class Member {
     private String nickName;
     private String occupation;
 
+    public enum Role {
+        ROLE_GUEST, ROLE_USER, ROLE_INSTRUCTOR, ROLE_ADMIN
+    }
+
+    @Enumerated(EnumType.STRING)
+    @Builder.Default
+    private Role role = Role.ROLE_USER;
+
+    // ★ 講師額外欄位 (Instructor Info)
+    private String instructorBio;
+    private String socialLinks;
+
     @Builder.Default
     private Long nextLevelExp = 2000L;
 

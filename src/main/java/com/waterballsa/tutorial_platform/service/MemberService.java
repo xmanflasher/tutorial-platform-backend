@@ -60,6 +60,9 @@ public class MemberService {
                 .region(member.getRegion())
                 .githubUrl(member.getGithubUrl())
                 .discordId(member.getDiscordId())
+                .role(member.getRole() != null ? member.getRole().name() : null)
+                .instructorBio(member.getInstructorBio())
+                .socialLinks(member.getSocialLinks())
                 .build();
     }
 
@@ -96,6 +99,9 @@ public class MemberService {
                 .region(member.getRegion())
                 .githubUrl(member.getGithubUrl())
                 .discordId(member.getDiscordId())
+                .role(member.getRole() != null ? member.getRole().name() : null)
+                .instructorBio(member.getInstructorBio())
+                .socialLinks(member.getSocialLinks())
                 .build();
     }
 }

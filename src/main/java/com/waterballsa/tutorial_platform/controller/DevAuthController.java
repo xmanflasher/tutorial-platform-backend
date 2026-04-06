@@ -67,8 +67,8 @@ public class DevAuthController {
         HttpSession session = request.getSession(true);
         session.setAttribute("SPRING_SECURITY_CONTEXT", sc);
 
-        // 6. ★ 生成 Token
-        String token = jwtService.generateToken(authentication, member.getEmail());
+        // 6. ★ 生成 Token，加入 RBAC Role
+        String token = jwtService.generateToken(authentication, member.getEmail(), member.getRole().name());
 
         // 7. 回傳 MemberDTO + Token
         com.waterballsa.tutorial_platform.dto.MemberDTO dto = com.waterballsa.tutorial_platform.dto.MemberDTO.builder()
@@ -86,6 +86,9 @@ public class DevAuthController {
                 .region(member.getRegion())
                 .githubUrl(member.getGithubUrl())
                 .discordId(member.getDiscordId())
+                .role(member.getRole() != null ? member.getRole().name() : null)
+                .instructorBio(member.getInstructorBio())
+                .socialLinks(member.getSocialLinks())
                 .build();
 
         Map<String, Object> result = new HashMap<>();

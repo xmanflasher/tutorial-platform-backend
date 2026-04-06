@@ -22,7 +22,7 @@ public class JwtService {
         this.jwtEncoder = jwtEncoder;
     }
 
-    public String generateToken(Authentication authentication, String email) {
+    public String generateToken(Authentication authentication, String email, String role) {
         Instant now = Instant.now();
         long expiry = 36000L; // 10 hours
 
@@ -36,7 +36,8 @@ public class JwtService {
                 .expiresAt(now.plusSeconds(expiry))
                 .subject(authentication.getName())
                 .claim("email", email)
-                .claim("scope", scope)
+                .claim("scope", scope) // backward compat
+                .claim("roles", role) // RBAC roles mapping
                 .build();
 
         JwsHeader jwsHeader = JwsHeader.with(MacAlgorithm.HS256).build();

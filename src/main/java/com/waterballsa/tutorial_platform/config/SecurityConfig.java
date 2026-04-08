@@ -58,6 +58,7 @@ public class SecurityConfig {
                         // ★ 修改重點 2: 新增這一行，允許公開讀取/變更使用者的資料
                         .requestMatchers("/api/users/**").permitAll()
                         .requestMatchers("/api/orders/**").permitAll()
+                        .requestMatchers("/api/visitor/**").permitAll()
                         .requestMatchers("/api/gym-challenge-records/**").permitAll()
                         .requestMatchers("/api/learning-records/**").permitAll()
 

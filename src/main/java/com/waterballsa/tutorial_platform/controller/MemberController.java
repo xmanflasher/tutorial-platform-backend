@@ -16,6 +16,9 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.security.oauth2.jwt.Jwt;
+import org.springframework.security.access.prepost.PreAuthorize;
+import com.waterballsa.tutorial_platform.dto.InstructorProfileUpdateDTO;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -53,6 +56,9 @@ public class MemberController {
                 .region(member.getRegion())
                 .githubUrl(member.getGithubUrl())
                 .discordId(member.getDiscordId())
+                .role(member.getRole() != null ? member.getRole().name() : null)
+                .instructorBio(member.getInstructorBio())
+                .socialLinks(member.getSocialLinks())
                 .build();
     }
 
@@ -62,6 +68,24 @@ public class MemberController {
         Long memberId = memberService.getCurrentMemberId(auth);
         if (memberId == null) throw new RuntimeException("Unauthorized");
         return memberService.updateMemberProfile(memberId, updateDTO);
+    }
+
+    // 1.2 更新講師版面 (Phase 9.1)
+    @PreAuthorize("hasAnyRole('INSTRUCTOR', 'ADMIN')")
+    @PutMapping("/api/users/me/instructor-profile")
+    public MemberDTO updateInstructorProfile(Authentication auth, @RequestBody InstructorProfileUpdateDTO updateDTO) {
+        Long memberId = memberService.getCurrentMemberId(auth);
+        if (memberId == null) throw new RuntimeException("Unauthorized");
+        
+        Member member = memberRepository.findById(memberId)
+                .orElseThrow(() -> new RuntimeException("Member not found"));
+        
+        if (updateDTO.getInstructorBio() != null) member.setInstructorBio(updateDTO.getInstructorBio());
+        if (updateDTO.getSocialLinks() != null) member.setSocialLinks(updateDTO.getSocialLinks());
+        if (updateDTO.getJobTitle() != null) member.setJobTitle(updateDTO.getJobTitle());
+        
+        Member saved = memberRepository.save(member);
+        return toPublicDto(saved);
     }
 
     // 2. 獲取公開使用者資料
@@ -121,6 +145,9 @@ public class MemberController {
                 .region(entity.getRegion())
                 .githubUrl(entity.getGithubUrl())
                 .discordId(entity.getDiscordId())
+                .role(entity.getRole() != null ? entity.getRole().name() : null)
+                .instructorBio(entity.getInstructorBio())
+                .socialLinks(entity.getSocialLinks())
                 .build();
     }
 }

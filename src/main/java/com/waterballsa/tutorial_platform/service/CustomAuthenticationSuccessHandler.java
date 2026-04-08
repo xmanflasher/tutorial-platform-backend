@@ -66,6 +66,8 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
         }
 
         // ★ 生成 JWT 並帶入重定向 URL，加入 RBAC Role
+        // 已通過 DataMigrationPatch 補強，回歸標準調用。
+        // String roleStr = (member.getRole() != null) ? member.getRole().name() : "ROLE_USER";
         String token = jwtService.generateToken(authentication, email, member.getRole().name());
         
         // 從環境變數讀取前端網址，若無則預設為 localhost:3000

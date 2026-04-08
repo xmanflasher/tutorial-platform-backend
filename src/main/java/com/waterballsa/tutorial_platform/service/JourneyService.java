@@ -148,6 +148,8 @@ public class JourneyService {
                 .title(entity.getName())
                 .subtitle("成為硬核的 Coding 實戰高手")
                 .description(entity.getDescription())
+                .instructorId(entity.getInstructor() != null ? entity.getInstructor().getId() : null)
+                .instructorName(entity.getInstructor() != null ? (entity.getInstructor().getNickName() != null ? entity.getInstructor().getNickName() : entity.getInstructor().getName()) : "Σ-Codeatl 導師")
                 .price(3000)
                 .totalVideos(totalVideos)
                 .skills(skills)

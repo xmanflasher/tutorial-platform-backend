@@ -67,7 +67,8 @@ public class DevAuthController {
         HttpSession session = request.getSession(true);
         session.setAttribute("SPRING_SECURITY_CONTEXT", sc);
 
-        // 6. ★ 生成 Token，加入 RBAC Role
+        // 6. ★ 生成 Token (已通過 DataMigrationPatch 補強資料，不再需要手動 null check)
+        // String roleStr = (member.getRole() != null) ? member.getRole().name() : "ROLE_USER"; 
         String token = jwtService.generateToken(authentication, member.getEmail(), member.getRole().name());
 
         // 7. 回傳 MemberDTO + Token

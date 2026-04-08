@@ -28,9 +28,14 @@ public class Member {
         ROLE_GUEST, ROLE_USER, ROLE_INSTRUCTOR, ROLE_ADMIN
     }
 
+    @Column(nullable = false, columnDefinition = "varchar(20) default 'ROLE_USER'")
     @Enumerated(EnumType.STRING)
     @Builder.Default
     private Role role = Role.ROLE_USER;
+
+    public Role getRole() {
+        return role == null ? Role.ROLE_USER : role;
+    }
 
     // ★ 講師額外欄位 (Instructor Info)
     private String instructorBio;
@@ -52,6 +57,11 @@ public class Member {
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
     @Builder.Default
     private List<LearningRecord> learningRecords = new ArrayList<>();
+
+    @com.fasterxml.jackson.annotation.JsonIgnore
+    @OneToMany(mappedBy = "instructor", cascade = CascadeType.ALL)
+    @Builder.Default
+    private List<Journey> journeys = new ArrayList<>();
 
     private String sex;
     private String birthDate;

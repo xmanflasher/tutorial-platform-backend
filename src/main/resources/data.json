@@ -1,5 +1,16 @@
 [
   {
+    "id": 140,
+    "name": "JavaScript 基礎實戰 (140集精通)",
+    "slug": "javascript-basics-140",
+    "author": "李立超 (超哥)",
+    "description": "涵蓋 ES 標準、BOM 與 DOM 核心內容，建立扎實前端開發基礎。由尚硅谷名師李立超親授。",
+    "status": "PUBLISHED",
+    "price": 0,
+    "chapters": [],
+    "createdAt": 1712475000000
+  },
+  {
     "id": 4,
     "name": "AI x BDD：規格驅動全自動開發術",
     "slug": "ai-bdd",

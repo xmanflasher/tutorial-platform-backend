@@ -16,6 +16,8 @@ public class JourneyDetailDTO {
     private String slug;
     private String title;
     private String description;
+    private Long instructorId;
+    private String instructorName;
     private Integer totalVideos;
     private List<String> skills;
     private List<ChapterDTO> chapters;

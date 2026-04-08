@@ -24,6 +24,10 @@ public class Journey {
 
     @Column(columnDefinition = "TEXT")
     private String description;
+    
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "instructor_id")
+    private Member instructor;
 
     @Column(name = "visible")
     @Builder.Default

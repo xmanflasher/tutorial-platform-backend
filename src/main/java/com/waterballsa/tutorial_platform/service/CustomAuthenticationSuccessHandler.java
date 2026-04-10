@@ -7,6 +7,7 @@ import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
@@ -18,6 +19,7 @@ import java.util.Arrays;
 
 @Component
 @RequiredArgsConstructor
+@Slf4j
 public class CustomAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
 
     private final MemberRepository memberRepo;
@@ -69,6 +71,12 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
         // 已通過 DataMigrationPatch 補強，回歸標準調用。
         // String roleStr = (member.getRole() != null) ? member.getRole().name() : "ROLE_USER";
         String token = jwtService.generateToken(authentication, email, member.getRole().name());
+        
+        log.info("Successfully authenticated user: {}, Role: {}", email, member.getRole());
+        if (log.isDebugEnabled()) {
+            String maskedToken = token.substring(0, Math.min(token.length(), 8)) + "********";
+            log.debug("JWT generated for {}: {}", email, maskedToken);
+        }
         
         // 從環境變數讀取前端網址，若無則預設為 localhost:3000
         String frontendUrl = System.getenv("FRONTEND_URL");

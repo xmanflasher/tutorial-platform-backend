@@ -25,6 +25,7 @@ import org.springframework.security.oauth2.server.resource.authentication.JwtGra
 public class SecurityConfig {
 
     private final CustomAuthenticationSuccessHandler customAuthenticationSuccessHandler;
+    private final RateLimitingFilter rateLimitingFilter;
 
     @Bean
     public JwtAuthenticationConverter jwtAuthenticationConverter() {
@@ -41,6 +42,7 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
+                .addFilterBefore(rateLimitingFilter, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter.class)
                 .csrf(AbstractHttpConfigurer::disable)
                 // ★ 修改重點 1: 掛載 CORS 設定
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
@@ -48,24 +50,25 @@ public class SecurityConfig {
                         // 允許 CORS Preflight requests
                         .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
 
-                        // 既有的公開路徑
-                        .requestMatchers("/api/leaderboard").permitAll()
-                        .requestMatchers("/api/journeys/**").permitAll()
-                        .requestMatchers("/api/gyms/**").permitAll()
-                        .requestMatchers("/api/missions/**").permitAll()
-                        .requestMatchers("/api/lessons/**").permitAll()
-
-                        // ★ 修改重點 2: 新增這一行，允許公開讀取/變更使用者的資料
-                        .requestMatchers("/api/users/**").permitAll()
-                        .requestMatchers("/api/orders/**").permitAll()
-                        .requestMatchers("/api/visitor/**").permitAll()
-                        .requestMatchers("/api/gym-challenge-records/**").permitAll()
-                        .requestMatchers("/api/learning-records/**").permitAll()
-
+                        // 1. 允許所有人的路徑 (僅限 GET)
+                        .requestMatchers(HttpMethod.GET, "/api/leaderboard").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/journeys/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/gyms/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/missions/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/lessons/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/users/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/announcements/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/visitor/**").permitAll()
+
+                        // 2. 註冊與開發登入 (實務上 dev-login 應在生產環境停用)
+                        .requestMatchers(HttpMethod.POST, "/api/auth/register", "/api/auth/quick-register").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/auth/dev-login").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/visitor/**").permitAll()
+
+                        // 3. 靜態資源與基礎頁面
                         .requestMatchers("/", "/sign-in", "/error", "/images/**", "/logo.png", "/favicon.ico").permitAll()
-                        .requestMatchers("/api/auth/dev-login").permitAll()
-                        .requestMatchers("/api/auth/register", "/api/auth/quick-register").permitAll()
+
+                        // 其餘所有請求 (如 POST /api/orders, PATCH /api/users) 接需驗證
                         .anyRequest().authenticated()
                 )
                 .oauth2ResourceServer(oauth2 -> oauth2.jwt(jwt -> jwt.jwtAuthenticationConverter(jwtAuthenticationConverter())))
@@ -93,16 +96,28 @@ public class SecurityConfig {
     }
 
 
-    // ★ 修改重點 3: 定義 CORS 規則 (允許 localhost:3000)
+    // ★ 修改重點 3: 定義 CORS 規則 (動態支援環境變數)
     @Bean
     public UrlBasedCorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
-        // ★ 支援 Vercel 與網域萬用字元
-        config.setAllowedOriginPatterns(List.of(
+        
+        // 優先讀取 FRONTEND_URL 與 CORS_ALLOWED_ORIGINS
+        String frontendUrl = System.getenv("FRONTEND_URL");
+        String extraOrigins = System.getenv("CORS_ALLOWED_ORIGINS");
+        
+        List<String> allowedPatterns = new java.util.ArrayList<>(List.of(
                 "http://localhost:3000",
-                "https://*.vercel.app",
-                "https://your-production-domain.com" // 若有自定義網域請在此加入
+                "https://*.vercel.app"
         ));
+        
+        if (frontendUrl != null && !frontendUrl.isEmpty()) {
+            allowedPatterns.add(frontendUrl);
+        }
+        if (extraOrigins != null && !extraOrigins.isEmpty()) {
+            allowedPatterns.addAll(List.of(extraOrigins.split(",")));
+        }
+
+        config.setAllowedOriginPatterns(allowedPatterns);
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(List.of("*"));
         config.setAllowCredentials(true);

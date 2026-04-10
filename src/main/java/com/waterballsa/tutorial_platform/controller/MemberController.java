@@ -24,7 +24,6 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequiredArgsConstructor
-@CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true")
 public class MemberController {
 
     private final MemberService memberService;
@@ -97,10 +96,19 @@ public class MemberController {
                 .collect(Collectors.toList());
     }
 
-    // 2.1 更新使用者資料
+    // 2.1 更新使用者資料 (需要驗證權限)
     @PatchMapping("/api/users/{id}")
-    public MemberDTO updateMember(@PathVariable Long id, @RequestBody MemberDTO dto) {
-        System.out.println("Updating member: " + id + ", dto: " + dto);
+    public MemberDTO updateMember(Authentication auth, @PathVariable Long id, @RequestBody MemberDTO dto) {
+        Long currentId = memberService.getCurrentMemberId(auth);
+        
+        // 權限檢查：只能修改自己的資料，除非是 ADMIN
+        boolean isAdmin = auth.getAuthorities().stream()
+                .anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN") || a.getAuthority().equals("ADMIN"));
+        
+        if (currentId == null || (!currentId.equals(id) && !isAdmin)) {
+            throw new RuntimeException("Unauthorized: You can only update your own profile.");
+        }
+
         Member member = memberRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Member not found"));
         

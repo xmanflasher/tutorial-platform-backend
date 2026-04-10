@@ -22,8 +22,6 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api/auth")
 @RequiredArgsConstructor
-// 2. 允許前端跨域 (重要)
-@CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true")
 public class DevAuthController {
 
     private final MemberRepository memberRepository;

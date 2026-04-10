@@ -18,7 +18,6 @@ import java.util.ArrayList;
 
 @RestController
 @RequestMapping("/api/journeys")
-@CrossOrigin(origins = "http://localhost:3000")
 @RequiredArgsConstructor
 public class JourneyProgressController {
 

@@ -16,7 +16,6 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/api/lessons")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "http://localhost:3000")
 public class LessonController {
 
     private final LessonRepository lessonRepository;

@@ -83,7 +83,7 @@ public class SecurityConfig {
                         if (feUrl == null || feUrl.isEmpty()) feUrl = "http://localhost:3000";
                         oauth2
                             .successHandler(customAuthenticationSuccessHandler)
-                            .failureUrl(feUrl + "/sign-in?error");
+                            .failureUrl(feUrl + "/?error=oauth2_failure");
                 })
                 .logout(logout -> logout
                         .logoutUrl("/api/auth/logout")

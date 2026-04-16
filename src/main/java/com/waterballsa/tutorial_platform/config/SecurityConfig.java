@@ -78,10 +78,13 @@ public class SecurityConfig {
                             response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Unauthorized");
                         })
                 )
-                .oauth2Login(oauth2 -> oauth2
-                        .successHandler(customAuthenticationSuccessHandler)
-                        .failureUrl("/sign-in?error")
-                )
+                .oauth2Login(oauth2 -> {
+                        String feUrl = System.getenv("FRONTEND_URL");
+                        if (feUrl == null || feUrl.isEmpty()) feUrl = "http://localhost:3000";
+                        oauth2
+                            .successHandler(customAuthenticationSuccessHandler)
+                            .failureUrl(feUrl + "/sign-in?error");
+                })
                 .logout(logout -> logout
                         .logoutUrl("/api/auth/logout")
                         .invalidateHttpSession(true)

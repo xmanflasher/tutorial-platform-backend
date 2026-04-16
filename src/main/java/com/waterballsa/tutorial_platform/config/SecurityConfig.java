@@ -30,6 +30,9 @@ public class SecurityConfig {
     @Value("${app.frontend-url}")
     private String frontendUrl;
 
+    @Value("${app.cors.allowed-patterns}")
+    private String corsAllowedPatterns;
+
     @Bean
     public JwtAuthenticationConverter jwtAuthenticationConverter() {
         JwtGrantedAuthoritiesConverter grantedAuthoritiesConverter = new JwtGrantedAuthoritiesConverter();
@@ -108,14 +111,19 @@ public class SecurityConfig {
         
         String extraOrigins = System.getenv("CORS_ALLOWED_ORIGINS");
         
-        List<String> allowedPatterns = new java.util.ArrayList<>(List.of(
-                "http://localhost:3000",
-                "https://*.vercel.app"
-        ));
+        List<String> allowedPatterns = new java.util.ArrayList<>();
         
-        if (frontendUrl != null && !frontendUrl.isEmpty()) {
+        // 1. 加入配置檔案中的 Pattern
+        if (corsAllowedPatterns != null && !corsAllowedPatterns.isEmpty()) {
+            allowedPatterns.addAll(List.of(corsAllowedPatterns.split(",")));
+        }
+        
+        // 2. 額外支持前端 URL (如果有單獨設定)
+        if (frontendUrl != null && !frontendUrl.isEmpty() && !allowedPatterns.contains(frontendUrl)) {
             allowedPatterns.add(frontendUrl);
         }
+        
+        // 3. 支持 Env 注入的額外 Origin
         if (extraOrigins != null && !extraOrigins.isEmpty()) {
             allowedPatterns.addAll(List.of(extraOrigins.split(",")));
         }

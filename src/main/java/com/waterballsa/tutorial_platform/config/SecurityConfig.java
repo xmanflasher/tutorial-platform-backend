@@ -59,7 +59,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/api/users/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/announcements/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/visitor/**").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/api/health").permitAll()
+                        .requestMatchers("/api/health").permitAll()
 
                         // 2. 註冊與開發登入 (實務上 dev-login 應在生產環境停用)
                         .requestMatchers(HttpMethod.POST, "/api/auth/register", "/api/auth/quick-register").permitAll()

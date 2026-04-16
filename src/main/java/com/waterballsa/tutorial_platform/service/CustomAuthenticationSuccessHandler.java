@@ -25,6 +25,9 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
     private final MemberRepository memberRepo;
     private final JwtService jwtService;
 
+    @org.springframework.beans.factory.annotation.Value("${app.frontend-url}")
+    private String frontendUrl;
+
     @Override
     @Transactional
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
@@ -73,16 +76,6 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
         String token = jwtService.generateToken(authentication, email, member.getRole().name());
         
         log.info("Successfully authenticated user: {}, Role: {}", email, member.getRole());
-        if (log.isDebugEnabled()) {
-            String maskedToken = token.substring(0, Math.min(token.length(), 8)) + "********";
-            log.debug("JWT generated for {}: {}", email, maskedToken);
-        }
-        
-        // 從環境變數讀取前端網址，若無則預設為 localhost:3000
-        String frontendUrl = System.getenv("FRONTEND_URL");
-        if (frontendUrl == null || frontendUrl.isEmpty()) {
-            frontendUrl = "http://localhost:3000";
-        }
         
         String finalRedirectUrl = frontendUrl + redirectUrl + (redirectUrl.contains("?") ? "&" : "?") + "token=" + token;
         response.sendRedirect(finalRedirectUrl);

@@ -27,6 +27,9 @@ public class SecurityConfig {
     private final CustomAuthenticationSuccessHandler customAuthenticationSuccessHandler;
     private final RateLimitingFilter rateLimitingFilter;
 
+    @Value("${app.frontend-url}")
+    private String frontendUrl;
+
     @Bean
     public JwtAuthenticationConverter jwtAuthenticationConverter() {
         JwtGrantedAuthoritiesConverter grantedAuthoritiesConverter = new JwtGrantedAuthoritiesConverter();
@@ -79,11 +82,9 @@ public class SecurityConfig {
                         })
                 )
                 .oauth2Login(oauth2 -> {
-                        String feUrl = System.getenv("FRONTEND_URL");
-                        if (feUrl == null || feUrl.isEmpty()) feUrl = "http://localhost:3000";
                         oauth2
                             .successHandler(customAuthenticationSuccessHandler)
-                            .failureUrl(feUrl + "/?error=oauth2_failure");
+                            .failureUrl(frontendUrl + "/?error=oauth2_failure");
                 })
                 .logout(logout -> logout
                         .logoutUrl("/api/auth/logout")
@@ -105,8 +106,6 @@ public class SecurityConfig {
     public UrlBasedCorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
         
-        // 優先讀取 FRONTEND_URL 與 CORS_ALLOWED_ORIGINS
-        String frontendUrl = System.getenv("FRONTEND_URL");
         String extraOrigins = System.getenv("CORS_ALLOWED_ORIGINS");
         
         List<String> allowedPatterns = new java.util.ArrayList<>(List.of(

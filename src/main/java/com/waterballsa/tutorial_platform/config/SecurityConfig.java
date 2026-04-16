@@ -26,6 +26,7 @@ import org.springframework.security.oauth2.server.resource.authentication.JwtGra
 public class SecurityConfig {
 
     private final CustomAuthenticationSuccessHandler customAuthenticationSuccessHandler;
+    private final CustomAuthenticationFailureHandler customAuthenticationFailureHandler;
     private final RateLimitingFilter rateLimitingFilter;
 
     @Value("${app.frontend-url}")
@@ -88,7 +89,7 @@ public class SecurityConfig {
                 .oauth2Login(oauth2 -> {
                         oauth2
                             .successHandler(customAuthenticationSuccessHandler)
-                            .failureUrl(frontendUrl + "/?error=oauth2_failure");
+                            .failureHandler(customAuthenticationFailureHandler);
                 })
                 .logout(logout -> logout
                         .logoutUrl("/api/auth/logout")

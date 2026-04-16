@@ -1,6 +1,7 @@
 package com.waterballsa.tutorial_platform.config;
 
 import com.waterballsa.tutorial_platform.service.CustomAuthenticationSuccessHandler;
+import com.waterballsa.tutorial_platform.service.CustomAuthenticationFailureHandler;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;

@@ -34,44 +34,41 @@ public class MemberController {
     // 1. 獲取當前登入者 (Private Profile)
     @GetMapping("/api/me")
     public MemberDTO getCurrentUser(Authentication authentication) {
-        Long memberId = memberService.getCurrentMemberId(authentication);
-        
-        // 如果找不到用戶 ID (例如匿名或未註冊成功)，回傳一個基礎 DTO 而不是 500 或 401
-        if (memberId == null) {
+        try {
+            Long memberId = memberService.getCurrentMemberId(authentication);
+
+            if (memberId == null) {
+                return MemberDTO.builder().role("ROLE_GUEST").name("Guest").build();
+            }
+
+            Member member = memberRepository.findById(memberId).orElse(null);
+
+            if (member == null) {
+                return MemberDTO.builder().role("ROLE_USER").name("New Student").build();
+            }
+
             return MemberDTO.builder()
+                    .id(member.getId())
+                    .email(member.getEmail())
+                    .name(member.getName())
+                    .avatar(member.getAvatar())
+                    .pictureUrl(member.getAvatar())
+                    .role(member.getRole() != null ? member.getRole().name() : "ROLE_USER")
+                    .level(member.getLevel())
+                    .exp(member.getExp())
+                    .nextLevelExp(member.getNextLevelExp())
+                    .contribution(member.getContribution())
+                    .isSubscribed(member.getIsSubscribed())
+                    .jobTitle(member.getJobTitle())
+                    .occupation(member.getOccupation())
+                    .socialLinks(member.getSocialLinks())
+                    .build();
+        } catch (Exception e) {
+            return MemberDTO.builder()
+                    .name("DEBUG_ERROR_ME: " + e.getMessage())
                     .role("ROLE_GUEST")
-                    .name("訪客")
                     .build();
         }
-        
-        Member member = memberRepository.findById(memberId).orElse(null);
-        if (member == null) {
-            return MemberDTO.builder()
-                    .role("ROLE_USER")
-                    .name("新用戶")
-                    .build();
-        }
-        
-        // 這裡回傳完整的 DTO (包含敏感資訊)
-        return MemberDTO.builder()
-                .id(member.getId())
-                .name(member.getName())
-                .email(member.getEmail())
-                .nickName(member.getNickName())
-                .jobTitle(member.getJobTitle())
-                .occupation(member.getOccupation())
-                .level(member.getLevel())
-                .exp(member.getExp())
-                .nextLevelExp(member.getNextLevelExp())
-                .avatar(member.getAvatar()) 
-                .pictureUrl(member.getAvatar()) // 同時填入 pictureUrl 確保前端顯示正常
-                .region(member.getRegion())
-                .githubUrl(member.getGithubUrl())
-                .discordId(member.getDiscordId())
-                .role(member.getRole() != null ? member.getRole().name() : "ROLE_USER")
-                .instructorBio(member.getInstructorBio())
-                .socialLinks(member.getSocialLinks())
-                .build();
     }
 
     // 1.1 更新當前登入者資料 (Phase 7)

@@ -19,50 +19,61 @@ public class AnnouncementController {
 
     @GetMapping("/latest")
     public Map<String, Object> getLatestAnnouncement() {
-        return announcementRepository.findAll().stream()
-                .sorted((a1, a2) -> {
-                    java.time.LocalDateTime t1 = a1.getCreatedAt() != null ? a1.getCreatedAt() : java.time.LocalDateTime.MIN;
-                    java.time.LocalDateTime t2 = a2.getCreatedAt() != null ? a2.getCreatedAt() : java.time.LocalDateTime.MIN;
-                    return t2.compareTo(t1);
-                })
-                .findFirst()
-                .map(a -> {
-                    Map<String, Object> map = new HashMap<>();
-                    map.put("id", a.getId());
-                    map.put("message", a.getMessage());
-                    map.put("linkText", a.getLinkText());
-                    map.put("linkHref", a.getLinkHref());
-                    return map;
-                })
-                .orElseGet(() -> {
-                    Map<String, Object> announcement = new HashMap<>();
-                    announcement.put("id", 1);
-                    announcement.put("message", "歡迎來到軟體設計精通之旅！");
-                    announcement.put("linkText", "查看");
-                    announcement.put("linkHref", "/");
-                    return announcement;
-                });
+        try {
+            return announcementRepository.findAll().stream()
+                    .sorted((a1, a2) -> {
+                        java.time.LocalDateTime t1 = a1.getCreatedAt() != null ? a1.getCreatedAt() : java.time.LocalDateTime.MIN;
+                        java.time.LocalDateTime t2 = a2.getCreatedAt() != null ? a2.getCreatedAt() : java.time.LocalDateTime.MIN;
+                        return t2.compareTo(t1);
+                    })
+                    .findFirst()
+                    .map(a -> {
+                        Map<String, Object> map = new HashMap<>();
+                        map.put("id", a.getId());
+                        map.put("message", a.getMessage());
+                        map.put("linkText", a.getLinkText());
+                        map.put("linkHref", a.getLinkHref());
+                        return map;
+                    })
+                    .orElseGet(() -> {
+                        Map<String, Object> announcement = new HashMap<>();
+                        announcement.put("id", 1);
+                        announcement.put("message", "歡迎來到軟體設計精通之旅！");
+                        announcement.put("linkText", "查看");
+                        announcement.put("linkHref", "/");
+                        return announcement;
+                    });
+        } catch (Exception e) {
+            Map<String, Object> errorMap = new HashMap<>();
+            errorMap.put("error", "DEBUG_ERROR_LATEST: " + e.getMessage());
+            errorMap.put("id", -1);
+            return errorMap;
+        }
     }
 
     @GetMapping
     public List<Map<String, Object>> getAnnouncements() {
-        return announcementRepository.findAll().stream()
-                .sorted((a1, a2) -> {
-                    java.time.LocalDateTime t1 = a1.getCreatedAt() != null ? a1.getCreatedAt() : java.time.LocalDateTime.MIN;
-                    java.time.LocalDateTime t2 = a2.getCreatedAt() != null ? a2.getCreatedAt() : java.time.LocalDateTime.MIN;
-                    return t2.compareTo(t1);
-                })
-                .map(a -> {
-                    Map<String, Object> map = new HashMap<>();
-                    map.put("id", a.getId());
-                    map.put("message", a.getMessage());
-                    map.put("linkText", a.getLinkText());
-                    map.put("linkHref", a.getLinkHref());
-                    map.put("createdAt", a.getCreatedAt());
-                    map.put("isGlobal", true);
-                    return map;
-                })
-                .collect(Collectors.toList());
+        try {
+            return announcementRepository.findAll().stream()
+                    .sorted((a1, a2) -> {
+                        java.time.LocalDateTime t1 = a1.getCreatedAt() != null ? a1.getCreatedAt() : java.time.LocalDateTime.MIN;
+                        java.time.LocalDateTime t2 = a2.getCreatedAt() != null ? a2.getCreatedAt() : java.time.LocalDateTime.MIN;
+                        return t2.compareTo(t1);
+                    })
+                    .map(a -> {
+                        Map<String, Object> map = new HashMap<>();
+                        map.put("id", a.getId());
+                        map.put("message", a.getMessage());
+                        map.put("linkText", a.getLinkText());
+                        map.put("linkHref", a.getLinkHref());
+                        map.put("createdAt", a.getCreatedAt());
+                        map.put("isGlobal", true);
+                        return map;
+                    })
+                    .collect(Collectors.toList());
+        } catch (Exception e) {
+            return List.of(Map.of("error", "DEBUG_ERROR_LIST: " + e.getMessage()));
+        }
     }
 
     @PostMapping

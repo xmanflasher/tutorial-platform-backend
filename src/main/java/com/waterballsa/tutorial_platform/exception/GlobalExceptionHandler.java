@@ -33,7 +33,8 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorResponseDTO> handleGenericException(Exception ex, HttpServletRequest request) {
         log.error("[GlobalExceptionHandler] Unexpected error", ex);
-        return buildErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR, "系統發生未預期的錯誤，請稍後再試", request.getRequestURI());
+        String debugMessage = String.format("DEBUG_GENERIC [%s]: %s", ex.getClass().getName(), ex.getMessage());
+        return buildErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR, debugMessage, request.getRequestURI());
     }
 
     private ResponseEntity<ErrorResponseDTO> buildErrorResponse(HttpStatus status, String message, String path) {

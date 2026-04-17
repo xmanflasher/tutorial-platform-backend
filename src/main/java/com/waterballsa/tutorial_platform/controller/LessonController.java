@@ -3,7 +3,10 @@ package com.waterballsa.tutorial_platform.controller;
 import com.waterballsa.tutorial_platform.entity.Lesson;
 import com.waterballsa.tutorial_platform.entity.LessonContent;
 import com.waterballsa.tutorial_platform.entity.Reward;
+import com.waterballsa.tutorial_platform.entity.Order;
 import com.waterballsa.tutorial_platform.repository.LessonRepository;
+import com.waterballsa.tutorial_platform.repository.OrderRepository;
+import com.waterballsa.tutorial_platform.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,27 +22,46 @@ import java.util.stream.Collectors;
 public class LessonController {
 
     private final LessonRepository lessonRepository;
+    private final MemberService memberService;
+    private final OrderRepository orderRepository;
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> getLesson(@PathVariable Long id) {
+    public ResponseEntity<?> getLesson(@PathVariable Long id, org.springframework.security.core.Authentication authentication) {
         // 這裡會先去 DB 找 Lesson，如果找到，再轉成 DTO
         return lessonRepository.findById(id)
-                .map(this::toFrontendDto)
+                .map(lesson -> toFrontendDto(lesson, authentication))
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
 
     // 將 Lesson 實體轉換為前端需要的 JSON 格式
-    private Map<String, Object> toFrontendDto(Lesson lesson) {
+    private Map<String, Object> toFrontendDto(Lesson lesson, org.springframework.security.core.Authentication authentication) {
+        boolean isLocked = false;
+        
+        // [ISSUE-PLCY-08] 權限管控：如果是 Premium 單元，檢查使用者是否已購買
+        if (Boolean.TRUE.equals(lesson.getPremiumOnly())) {
+            Long currentMemberId = memberService.getCurrentMemberId(authentication);
+            if (currentMemberId == null) {
+                isLocked = true;
+            } else {
+                Long journeyId = lesson.getJourney() != null ? lesson.getJourney().getId() : null;
+                if (journeyId != null) {
+                    isLocked = !orderRepository.existsByUserIdAndJourneyIdAndStatus(
+                            currentMemberId, journeyId, Order.OrderStatus.PAID);
+                }
+            }
+        }
+
         return Map.of(
                 "id", lesson.getId(),
                 "name", lesson.getName(),
                 "description", lesson.getDescription() != null ? lesson.getDescription() : "",
-                // 如果 Lesson 本身有 type 就用，沒有就預設 video
                 "type", lesson.getType() != null ? lesson.getType().toLowerCase() : "video",
-                "createdAt", System.currentTimeMillis(), // 前端介面有 createdAt，補上一個時間戳
-                // ★★★ 關鍵：這裡呼叫轉換內容的方法，把 Content 串進來 ★★★
-                "content", toContentDtoList(lesson.getContents()),
+                "premiumOnly", Boolean.TRUE.equals(lesson.getPremiumOnly()),
+                "isLocked", isLocked,
+                "createdAt", System.currentTimeMillis(),
+                // 如果被鎖定，回傳空內容列表
+                "content", isLocked ? Collections.emptyList() : toContentDtoList(lesson.getContents()),
                 "reward", toRewardDto(lesson)
         );
     }

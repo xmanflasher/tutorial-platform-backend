@@ -1,12 +1,11 @@
 package com.waterballsa.tutorial_platform.service;
 
 import com.waterballsa.tutorial_platform.dto.OrderDTO;
-import com.waterballsa.tutorial_platform.entity.Notification;
 import com.waterballsa.tutorial_platform.entity.Order;
 import com.waterballsa.tutorial_platform.entity.Journey;
-import com.waterballsa.tutorial_platform.repository.NotificationRepository;
 import com.waterballsa.tutorial_platform.repository.JourneyRepository;
 import com.waterballsa.tutorial_platform.repository.OrderRepository;
+import com.waterballsa.tutorial_platform.service.NotificationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,7 +21,7 @@ import java.util.stream.Collectors;
 public class OrderService {
     private final OrderRepository orderRepository;
     private final JourneyRepository journeyRepository;
-    private final NotificationRepository notificationRepository;
+    private final NotificationService notificationService;
 
     @Transactional
     public OrderDTO createOrder(Long userId, Long journeyId, Long amount, String paymentMethod, String invoiceType, String invoiceValue) {
@@ -42,13 +41,8 @@ public class OrderService {
         
         Order savedOrder = orderRepository.save(order);
 
-        // 自動建立通知 (ISSUE-NTF-01)
-        notificationRepository.save(Notification.builder()
-                .memberId(userId)
-                .message("🎉 您的訂單 " + orderNumber + " 已建立成功！請前往完成支付。")
-                .linkText("查看訂單")
-                .linkHref("/courses")
-                .build());
+        // 自動建立通知 (ISSUE-NTF-01) [Ref: ISSUE-ARCH-09]
+        notificationService.sendOrderCreatedNotification(userId, orderNumber);
 
         return toDto(savedOrder);
     }
@@ -72,12 +66,8 @@ public class OrderService {
         Journey journey = journeyRepository.findById(order.getJourneyId()).orElse(null);
         String journeySlug = journey != null ? journey.getSlug() : "software-design-pattern";
 
-        notificationRepository.save(Notification.builder()
-                .memberId(order.getUserId())
-                .message("✅ 您的訂單 " + orderNumber + " 已完成支付！快去開始您的學習旅程吧。")
-                .linkText("前往挑戰地圖")
-                .linkHref("/journeys/" + journeySlug)
-                .build());
+        // 自動建立通知 (ISSUE-NTF-01) [Ref: ISSUE-ARCH-09]
+        notificationService.sendOrderPaidNotification(order.getUserId(), orderNumber, journeySlug);
 
         return toDto(savedOrder);
     }

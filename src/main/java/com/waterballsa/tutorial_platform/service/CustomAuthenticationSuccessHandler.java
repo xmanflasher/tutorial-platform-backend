@@ -1,9 +1,8 @@
 package com.waterballsa.tutorial_platform.service;
 
 import com.waterballsa.tutorial_platform.entity.Member;
-import com.waterballsa.tutorial_platform.entity.Notification;
 import com.waterballsa.tutorial_platform.repository.MemberRepository;
-import com.waterballsa.tutorial_platform.repository.NotificationRepository;
+import com.waterballsa.tutorial_platform.service.NotificationService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
@@ -25,7 +24,7 @@ import java.util.Arrays;
 public class CustomAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
 
     private final MemberRepository memberRepo;
-    private final NotificationRepository notificationRepo;
+    private final NotificationService notificationService;
     private final JwtService jwtService;
 
     @org.springframework.beans.factory.annotation.Value("${app.frontend-url}")
@@ -52,13 +51,8 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
                     .avatar(avatar)
                     .build());
             
-            // ★ 新帳號初始化 (ISSUE-BUG-06): 建立歡迎通知
-            notificationRepo.save(Notification.builder()
-                    .memberId(newMember.getId())
-                    .message("👋 歡迎來到 Codeatl！準備好開始您的硬核之學習旅程了嗎？")
-                    .linkText("看看課程")
-                    .linkHref("/courses")
-                    .build());
+            // ★ 新帳號初始化 (ISSUE-BUG-06): 建立歡迎通知 [Ref: ISSUE-ARCH-09]
+            notificationService.sendWelcomeNotification(newMember.getId());
             
             return newMember;
         });

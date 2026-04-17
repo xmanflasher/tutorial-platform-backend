@@ -1,9 +1,8 @@
 package com.waterballsa.tutorial_platform.controller;
 
 import com.waterballsa.tutorial_platform.entity.Member;
-import com.waterballsa.tutorial_platform.entity.Notification;
 import com.waterballsa.tutorial_platform.repository.MemberRepository;
-import com.waterballsa.tutorial_platform.repository.NotificationRepository;
+import com.waterballsa.tutorial_platform.service.NotificationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,7 +15,7 @@ import java.util.UUID;
 public class RegistrationController {
 
     private final MemberRepository memberRepository;
-    private final NotificationRepository notificationRepository;
+    private final NotificationService notificationService;
 
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody RegistrationRequest request, jakarta.servlet.http.HttpServletRequest httpRequest) {
@@ -37,13 +36,8 @@ public class RegistrationController {
 
         Member saved = memberRepository.save(member);
 
-        // ★ 新帳號初始化 (ISSUE-BUG-06): 建立歡迎通知
-        notificationRepository.save(Notification.builder()
-                .memberId(saved.getId())
-                .message("👋 歡迎來到 Codeatl！準備好開始您的硬核之學習旅程了嗎？")
-                .linkText("看看課程")
-                .linkHref("/courses")
-                .build());
+        // ★ 新帳號初始化 (ISSUE-BUG-06): 建立歡迎通知 [Ref: ISSUE-ARCH-09]
+        notificationService.sendWelcomeNotification(saved.getId());
 
         loginUser(saved, httpRequest);
         return ResponseEntity.ok(saved);
@@ -67,13 +61,8 @@ public class RegistrationController {
 
         Member saved = memberRepository.save(member);
         
-        // ★ 新帳號初始化 (ISSUE-BUG-06): 建立歡迎通知
-        notificationRepository.save(Notification.builder()
-                .memberId(saved.getId())
-                .message("👋 歡迎來到 Codeatl！準備好開始您的硬核之學習旅程了嗎？")
-                .linkText("看看課程")
-                .linkHref("/courses")
-                .build());
+        // ★ 新帳號初始化 (ISSUE-BUG-06): 建立歡迎通知 [Ref: ISSUE-ARCH-09]
+        notificationService.sendWelcomeNotification(saved.getId());
         
         loginUser(saved, httpRequest);
         return ResponseEntity.ok(saved);

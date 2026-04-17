@@ -35,10 +35,22 @@ public class MemberController {
     @GetMapping("/api/me")
     public MemberDTO getCurrentUser(Authentication authentication) {
         Long memberId = memberService.getCurrentMemberId(authentication);
-        if (memberId == null) return null;
+        
+        // 如果找不到用戶 ID (例如匿名或未註冊成功)，回傳一個基礎 DTO 而不是 500 或 401
+        if (memberId == null) {
+            return MemberDTO.builder()
+                    .role("ROLE_GUEST")
+                    .name("訪客")
+                    .build();
+        }
         
         Member member = memberRepository.findById(memberId).orElse(null);
-        if (member == null) return null;
+        if (member == null) {
+            return MemberDTO.builder()
+                    .role("ROLE_USER")
+                    .name("新用戶")
+                    .build();
+        }
         
         // 這裡回傳完整的 DTO (包含敏感資訊)
         return MemberDTO.builder()
@@ -51,11 +63,12 @@ public class MemberController {
                 .level(member.getLevel())
                 .exp(member.getExp())
                 .nextLevelExp(member.getNextLevelExp())
-                .avatar(member.getAvatar()) // 修正欄位名稱與 Member 一致
+                .avatar(member.getAvatar()) 
+                .pictureUrl(member.getAvatar()) // 同時填入 pictureUrl 確保前端顯示正常
                 .region(member.getRegion())
                 .githubUrl(member.getGithubUrl())
                 .discordId(member.getDiscordId())
-                .role(member.getRole() != null ? member.getRole().name() : null)
+                .role(member.getRole() != null ? member.getRole().name() : "ROLE_USER")
                 .instructorBio(member.getInstructorBio())
                 .socialLinks(member.getSocialLinks())
                 .build();

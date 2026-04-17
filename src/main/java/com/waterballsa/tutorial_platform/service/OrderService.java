@@ -91,7 +91,7 @@ public class OrderService {
                 .paymentDetails(order.getPaymentDetails())
                 .invoiceType(order.getInvoiceType())
                 .invoiceValue(order.getInvoiceValue())
-                .createdAt(order.getCreatedAt().atZone(java.time.ZoneId.systemDefault()).toInstant().toEpochMilli())
+                .createdAt(order.getCreatedAt() != null ? order.getCreatedAt().atZone(java.time.ZoneId.systemDefault()).toInstant().toEpochMilli() : null)
                 .paidAt(order.getPaidAt() != null ? order.getPaidAt().atZone(java.time.ZoneId.systemDefault()).toInstant().toEpochMilli() : null)
                 .build();
     }

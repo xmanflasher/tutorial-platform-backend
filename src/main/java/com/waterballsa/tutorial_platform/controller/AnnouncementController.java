@@ -20,7 +20,11 @@ public class AnnouncementController {
     @GetMapping("/latest")
     public Map<String, Object> getLatestAnnouncement() {
         return announcementRepository.findAll().stream()
-                .sorted((a1, a2) -> a2.getCreatedAt().compareTo(a1.getCreatedAt()))
+                .sorted((a1, a2) -> {
+                    java.time.LocalDateTime t1 = a1.getCreatedAt() != null ? a1.getCreatedAt() : java.time.LocalDateTime.MIN;
+                    java.time.LocalDateTime t2 = a2.getCreatedAt() != null ? a2.getCreatedAt() : java.time.LocalDateTime.MIN;
+                    return t2.compareTo(t1);
+                })
                 .findFirst()
                 .map(a -> {
                     Map<String, Object> map = new HashMap<>();
@@ -43,7 +47,11 @@ public class AnnouncementController {
     @GetMapping
     public List<Map<String, Object>> getAnnouncements() {
         return announcementRepository.findAll().stream()
-                .sorted((a1, a2) -> a2.getCreatedAt().compareTo(a1.getCreatedAt()))
+                .sorted((a1, a2) -> {
+                    java.time.LocalDateTime t1 = a1.getCreatedAt() != null ? a1.getCreatedAt() : java.time.LocalDateTime.MIN;
+                    java.time.LocalDateTime t2 = a2.getCreatedAt() != null ? a2.getCreatedAt() : java.time.LocalDateTime.MIN;
+                    return t2.compareTo(t1);
+                })
                 .map(a -> {
                     Map<String, Object> map = new HashMap<>();
                     map.put("id", a.getId());

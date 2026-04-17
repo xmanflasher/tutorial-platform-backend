@@ -47,14 +47,13 @@ public class GymService {
 
         for (Gym gym : allGyms) {
             // 找找看有沒有這個 Gym 的提交紀錄 (取最新的一筆，或判斷是否有 SUCCESS)
-            // 這裡假設一個 Gym 可能有多筆 submission，我們要找有沒有成功的
             boolean hasPassed = submissions.stream()
-                    .anyMatch(s -> s.getGym().getId().equals(gym.getId())
+                    .anyMatch(s -> s.getGym() != null && s.getGym().getId().equals(gym.getId())
                             && s.getStatus() == GymSubmission.SubmissionStatus.SUCCESS);
 
             // 取得該 Gym 最高分的紀錄 (用來顯示星數)
             Integer maxGrade = submissions.stream()
-                    .filter(s -> s.getGym().getId().equals(gym.getId()))
+                    .filter(s -> s.getGym() != null && s.getGym().getId().equals(gym.getId()))
                     .map(GymSubmission::getGrade)
                     .filter(g -> g != null)
                     .max(Integer::compareTo)
@@ -147,7 +146,7 @@ public class GymService {
                         .id(badge.getId())
                         .name(badge.getName())
                         .imageUrl(badge.getImageUrl())
-                        .gymId(badge.getGym().getId())
+                        .gymId(badge.getGym() != null ? badge.getGym().getId() : null)
                         .journeyId(badge.getJourneyId())
                         .chapterId(badge.getChapterId())
                         .unlocked(true)

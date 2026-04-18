@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/api/learning-records")
+@RequestMapping("/learning-records")
 @RequiredArgsConstructor
 public class LearningRecordController {
 

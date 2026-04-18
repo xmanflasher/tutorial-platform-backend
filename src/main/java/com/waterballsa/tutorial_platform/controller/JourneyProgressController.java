@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 import java.util.ArrayList;
 
 @RestController
-@RequestMapping("/api/journeys")
+@RequestMapping("/journeys")
 @RequiredArgsConstructor
 public class JourneyProgressController {
 

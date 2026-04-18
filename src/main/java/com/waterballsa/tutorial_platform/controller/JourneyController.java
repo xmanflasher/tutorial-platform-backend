@@ -14,7 +14,7 @@ import org.springframework.http.HttpStatus;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/journeys")
+@RequestMapping("/journeys")
 @RequiredArgsConstructor
 public class JourneyController {
 

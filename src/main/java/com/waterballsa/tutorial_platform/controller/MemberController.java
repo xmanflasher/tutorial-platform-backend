@@ -32,7 +32,7 @@ public class MemberController {
     private final GymService gymService;
 
     // 1. 獲取當前登入者 (Private Profile)
-    @GetMapping("/api/me")
+    @GetMapping("/me")
     public MemberDTO getCurrentUser(Authentication authentication) {
         try {
             Long memberId = memberService.getCurrentMemberId(authentication);
@@ -74,7 +74,7 @@ public class MemberController {
     }
 
     // 1.1 更新當前登入者資料 (Phase 7)
-    @PutMapping("/api/members/me")
+    @PutMapping("/members/me")
     public MemberDTO updateCurrentMember(Authentication auth, @RequestBody MemberUpdateDTO updateDTO) {
         Long memberId = memberService.getCurrentMemberId(auth);
         if (memberId == null) throw new RuntimeException("Unauthorized");
@@ -83,7 +83,7 @@ public class MemberController {
 
     // 1.2 更新講師版面 (Phase 9.1)
     @PreAuthorize("hasAnyRole('INSTRUCTOR', 'ADMIN')")
-    @PutMapping("/api/users/me/instructor-profile")
+    @PutMapping("/users/me/instructor-profile")
     public MemberDTO updateInstructorProfile(Authentication auth, @RequestBody InstructorProfileUpdateDTO updateDTO) {
         Long memberId = memberService.getCurrentMemberId(auth);
         if (memberId == null) throw new RuntimeException("Unauthorized");
@@ -100,7 +100,7 @@ public class MemberController {
     }
 
     // 2. 獲取公開使用者資料
-    @GetMapping("/api/users")
+    @GetMapping("/users")
     public List<MemberDTO> getUsers(@RequestParam List<Long> ids) {
         return memberRepository.findByIdIn(ids)
                 .stream()
@@ -109,7 +109,7 @@ public class MemberController {
     }
 
     // 2.1 更新使用者資料 (需要驗證權限)
-    @PatchMapping("/api/users/{id}")
+    @PatchMapping("/users/{id}")
     public MemberDTO updateMember(Authentication auth, @PathVariable Long id, @RequestBody MemberDTO dto) {
         Long currentId = memberService.getCurrentMemberId(auth);
         
@@ -138,13 +138,13 @@ public class MemberController {
     }
 
     // 3. 排行榜
-    @GetMapping("/api/leaderboard")
+    @GetMapping("/leaderboard")
     public List<LeaderboardDTO> getLeaderboard() {
         return leaderboardService.getLeaderboard();
     }
 
     // 4. 挑戰地圖狀態
-    @GetMapping("/api/gyms")
+    @GetMapping("/gyms")
     public List<GymStatusDTO> getGyms(Authentication auth) {
         Long currentMemberId = memberService.getCurrentMemberId(auth);
         return gymService.getGymMap(currentMemberId);

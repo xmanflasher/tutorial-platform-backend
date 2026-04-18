@@ -23,7 +23,7 @@ import java.util.stream.Collectors;
  */
 @Slf4j
 @RestController
-@RequestMapping("/api/gym-challenge-records")
+@RequestMapping("/gym-challenge-records")
 @RequiredArgsConstructor
 public class GymChallengeRecordController {
 

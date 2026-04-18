@@ -11,7 +11,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/api/announcements")
+@RequestMapping("/announcements")
 @RequiredArgsConstructor
 public class AnnouncementController {
     private final com.waterballsa.tutorial_platform.repository.AnnouncementRepository announcementRepository;

@@ -19,7 +19,7 @@ import java.util.Optional;
 
 @Slf4j
 @RestController
-@RequestMapping("/api/demo")
+@RequestMapping("/demo")
 @RequiredArgsConstructor
 public class DemoController {
 

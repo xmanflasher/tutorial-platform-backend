@@ -15,7 +15,7 @@ import java.util.Map;
  * 個人通知控制器 [Ref: ISSUE-NTF-01]
  */
 @RestController
-@RequestMapping("/api/notifications")
+@RequestMapping("/notifications")
 @RequiredArgsConstructor
 public class NotificationController {
 

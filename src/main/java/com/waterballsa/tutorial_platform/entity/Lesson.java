@@ -73,7 +73,7 @@ public class Lesson {
 
     @Builder.Default
     @Column(name = "is_core_lesson")
-    private boolean isCoreLesson = false; // 預設為 false (弱關聯)
+    private Boolean isCoreLesson = false; // 預設為 false (弱關聯)
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "journey_id") // 這會在資料庫新增 journey_id 欄位

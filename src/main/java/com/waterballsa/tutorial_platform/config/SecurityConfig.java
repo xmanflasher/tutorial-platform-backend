@@ -60,20 +60,20 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
 
                         // 1. 允許所有人的路徑 (僅限 GET)
-                        .requestMatchers(HttpMethod.GET, "/api/leaderboard").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/api/journeys/**").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/api/gyms/**").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/api/missions/**").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/api/lessons/**").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/api/users/**").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/api/announcements/**").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/api/visitor/**").permitAll()
-                        .requestMatchers("/api/health").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/leaderboard").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/journeys/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/gyms/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/missions/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/lessons/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/users/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/announcements/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/visitor/**").permitAll()
+                        .requestMatchers("/health").permitAll()
 
                         // 2. 註冊與開發登入 (實務上 dev-login 應在生產環境停用)
-                        .requestMatchers(HttpMethod.POST, "/api/auth/register", "/api/auth/quick-register").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/api/auth/dev-login").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/api/visitor/**").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/auth/register", "/auth/quick-register").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/auth/dev-login").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/visitor/**").permitAll()
 
                         // 3. 靜態資源與基礎頁面
                         .requestMatchers("/", "/sign-in", "/error", "/images/**", "/logo.png", "/favicon.ico", "/lessons/**").permitAll()
@@ -93,7 +93,7 @@ public class SecurityConfig {
                             .failureHandler(customAuthenticationFailureHandler);
                 })
                 .logout(logout -> logout
-                        .logoutUrl("/api/auth/logout")
+                        .logoutUrl("/auth/logout")
                         .invalidateHttpSession(true)
                         .clearAuthentication(true)
                         .deleteCookies("JSESSIONID")

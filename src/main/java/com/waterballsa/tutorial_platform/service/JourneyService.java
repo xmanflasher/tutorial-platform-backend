@@ -161,6 +161,7 @@ public class JourneyService {
                         .secondary("預約 1v1 諮詢")
                         .build())
                 .menus(menuDTOs)
+                .visible(entity.getVisible())
                 .build();
     }
 }

@@ -24,6 +24,7 @@ public class JourneyDetailDTO {
     private List<JourneyMenuDTO> menus;
     // ★★★ [新增] 缺少的 gyms 欄位 ★★★
     private List<GymDTO> gyms;
+    private Boolean visible;
 
     // 前端需要的額外欄位
     private String subtitle;

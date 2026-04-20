@@ -9,14 +9,25 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.oauth2.client.OAuth2AuthorizedClient;
+import org.springframework.security.oauth2.client.OAuth2AuthorizedClientService;
+import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
 
 @Component
 @RequiredArgsConstructor
@@ -26,6 +37,8 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
     private final MemberRepository memberRepo;
     private final NotificationService notificationService;
     private final JwtService jwtService;
+    private final OAuth2AuthorizedClientService authorizedClientService;
+    private final RestTemplate restTemplate = new RestTemplate();
 
     @org.springframework.beans.factory.annotation.Value("${app.frontend-url}")
     private String frontendUrl;
@@ -33,15 +46,20 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
     @Override
     @Transactional
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
-        org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken oauthToken = 
-                (org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken) authentication;
-        String registrationId = oauthToken.getAuthorizedClientRegistrationId();
+        OAuth2AuthenticationToken oauthToken = (OAuth2AuthenticationToken) authentication;
+        final String registrationId = oauthToken.getAuthorizedClientRegistrationId();
         OAuth2User oauthUser = oauthToken.getPrincipal();
 
-        // ★ 屬性提取器映射 (ISSUE-AUTH-07/08 修復重點)
-        String email = extractEmail(registrationId, oauthUser);
-        String name = oauthUser.getAttribute("name");
-        String avatar = extractAvatar(registrationId, oauthUser);
+        // ★ 屬性提取 (使用 final 確保 Lambda 安全性)
+        final String email = extractEmail(registrationId, oauthUser, oauthToken);
+        
+        String tempName = oauthUser.getAttribute("name");
+        if (tempName == null) {
+            tempName = oauthUser.getAttribute("login"); // GitHub fallback
+        }
+        final String name = tempName;
+        
+        final String avatar = extractAvatar(registrationId, oauthUser);
 
         if (email == null || email.isEmpty()) {
             log.error("Failed to extract email from provider: {}. User data: {}", registrationId, oauthUser.getAttributes());
@@ -50,13 +68,16 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
         }
 
         Member member = memberRepo.findByEmail(email).map(existingMember -> {
-            // ★ 更新顯示資訊 (解決 ISSUE-AUTH-08): 每次登錄同步當前 Provider 的資訊
-            existingMember.setName(name != null ? name : existingMember.getName());
+            // ★ 更新顯示資訊 (同步當前 Provider 資訊)
+            if (name != null) {
+                existingMember.setName(name);
+            }
             if (avatar != null) {
                 existingMember.setAvatar(avatar);
             }
             return memberRepo.save(existingMember);
         }).orElseGet(() -> {
+            // ★ Lambda 引用變數必須是 final 或 effectively final
             Member newMember = memberRepo.save(Member.builder()
                     .email(email)
                     .name(name != null ? name : "User_" + registrationId)
@@ -68,28 +89,61 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
             return newMember;
         });
 
-        // ★ 訪客追蹤 (維持原邏輯)
+        // ★ 訪客追蹤
         syncVisitorId(request, member);
 
-        String redirectUrl = "/";
+        String redirectPath = "/";
         if (request.getParameter("redirect") != null) {
-            redirectUrl = request.getParameter("redirect");
+            redirectPath = request.getParameter("redirect");
         }
 
         String token = jwtService.generateToken(authentication, email, member.getRole().name());
         log.info("Successfully authenticated user: {} via {}", email, registrationId);
         
-        String finalRedirectUrl = frontendUrl + redirectUrl + (redirectUrl.contains("?") ? "&" : "?") + "token=" + token;
+        String finalRedirectUrl = frontendUrl + redirectPath + (redirectPath.contains("?") ? "&" : "?") + "token=" + token;
         response.sendRedirect(finalRedirectUrl);
     }
 
-    private String extractEmail(String registrationId, OAuth2User user) {
+    private String extractEmail(String registrationId, OAuth2User user, OAuth2AuthenticationToken oauthToken) {
         String email = user.getAttribute("email");
         if (email == null && "github".equals(registrationId)) {
-            // 如果 GitHub Email 是私有的，嘗試抓取暫時代置 (可視需求調整)
-            log.warn("GitHub email is private. Consider using account-name@github.local as fallback.");
+            email = fetchGithubEmail(oauthToken);
         }
         return email;
+    }
+
+    private String fetchGithubEmail(OAuth2AuthenticationToken oauthToken) {
+        try {
+            OAuth2AuthorizedClient client = authorizedClientService.loadAuthorizedClient(
+                    oauthToken.getAuthorizedClientRegistrationId(), oauthToken.getName());
+            
+            if (client == null || client.getAccessToken() == null) return null;
+            
+            String tokenValue = client.getAccessToken().getTokenValue();
+            HttpHeaders headers = new HttpHeaders();
+            headers.setBearerAuth(tokenValue);
+            HttpEntity<String> entity = new HttpEntity<>(headers);
+
+            // 使用 ParameterizedTypeReference 解決 unchecked 警告
+            ResponseEntity<List<Map<String, Object>>> response = restTemplate.exchange(
+                    "https://api.github.com/user/emails",
+                    HttpMethod.GET,
+                    entity,
+                    new ParameterizedTypeReference<List<Map<String, Object>>>() {}
+            );
+
+            if (response.getStatusCode().is2xxSuccessful() && response.getBody() != null) {
+                List<Map<String, Object>> emails = response.getBody();
+                return emails.stream()
+                        .filter(e -> Boolean.TRUE.equals(e.get("primary")))
+                        .map(e -> (String) e.get("email"))
+                        .findFirst()
+                        .orElse(null);
+            }
+        } catch (Exception e) {
+            log.error("Error fetching GitHub private email: {}", e.getMessage());
+        }
+        return null;
     }
 
     private String extractAvatar(String registrationId, OAuth2User user) {

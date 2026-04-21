@@ -33,12 +33,16 @@ public class DemoController {
     private final MemberBadgeRepository memberBadgeRepository;
     private final ApplicationEventPublisher eventPublisher;
 
+    @org.springframework.beans.factory.annotation.Value("${app.enable-test-login:false}")
+    private boolean enableTestLogin;
+
     /**
      * 完成當前正在進行中的任務
      */
     @PostMapping("/complete-current-mission")
     @Transactional
     public ResponseEntity<String> completeCurrentMission(Authentication auth) {
+        if (!enableTestLogin) return ResponseEntity.status(403).body("Demo features are disabled.");
         Long memberId = memberService.getCurrentMemberId(auth);
         if (memberId == null) return ResponseEntity.status(401).body("Unauthorized");
 
@@ -68,6 +72,7 @@ public class DemoController {
     @PostMapping("/complete-current-gym")
     @Transactional
     public ResponseEntity<String> completeCurrentGym(Authentication auth) {
+        if (!enableTestLogin) return ResponseEntity.status(403).body("Demo features are disabled.");
         Long memberId = memberService.getCurrentMemberId(auth);
         if (memberId == null) return ResponseEntity.status(401).body("Unauthorized");
 

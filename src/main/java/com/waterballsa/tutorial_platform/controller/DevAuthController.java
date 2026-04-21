@@ -5,7 +5,8 @@ import com.waterballsa.tutorial_platform.repository.MemberRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity; // 1. 記得引入這行
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContext;
@@ -19,6 +20,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
+@Slf4j
 @RestController
 @RequestMapping("/auth")
 @RequiredArgsConstructor
@@ -27,12 +29,19 @@ public class DevAuthController {
     private final MemberRepository memberRepository;
     private final com.waterballsa.tutorial_platform.service.JwtService jwtService;
 
+    @org.springframework.beans.factory.annotation.Value("${app.enable-test-login:false}")
+    private boolean enableTestLogin;
+
     /**
      * 開發專用登入 API (Mock Login)
      */
     @PostMapping("/dev-login")
     // 3. 修改回傳型別 String -> ResponseEntity<Member>
     public ResponseEntity<Map<String, Object>> devLogin(@RequestParam String email, HttpServletRequest request) {
+        if (!enableTestLogin) {
+            log.warn("Mock login attempt while feature is disabled. Email: {}", email);
+            return ResponseEntity.status(403).body(Map.of("message", "Test login is disabled in this environment."));
+        }
         // 1. 根據 Email 找使用者
         Member member = memberRepository.findByEmail(email)
                 .orElseThrow(() -> new RuntimeException("User not found: " + email));

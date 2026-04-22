@@ -6,19 +6,27 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.Where; // ★ 引入這個
 
+import java.util.Set;
+import java.util.LinkedHashSet;
 import java.util.ArrayList;
 import java.util.List;
-import org.hibernate.annotations.SQLRestriction; // ★ 引入這個
+import org.hibernate.annotations.SQLRestriction;
+import org.hibernate.annotations.BatchSize;
 
 @Entity
 @Table(name = "missions")
-@Data
+@Getter
+@Setter
+@ToString(onlyExplicitlyIncluded = true)
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 public class Mission {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @EqualsAndHashCode.Include
+    @ToString.Include
     private Long id;
 
     @Column(name = "original_id")
@@ -53,16 +61,16 @@ public class Mission {
     // ★ 1. 前置條件列表
     // 加入 @Where 讓 Hibernate 撈資料時只撈 category = 'PREREQUISITE' 的項目
     @Builder.Default
-    @OneToMany(mappedBy = "mission", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "mission", cascade = CascadeType.ALL, orphanRemoval = true)
     @SQLRestriction("category = 'PREREQUISITE'")
+    @BatchSize(size = 100)
     @JsonProperty("prerequisites")
     private List<MissionRequirement> prerequisites = new ArrayList<>();
 
-    // ★ 2. 驗收條件列表
-    // 加入 @Where 讓 Hibernate 撈資料時只撈 category = 'CRITERIA' 的項目
     @Builder.Default
-    @OneToMany(mappedBy = "mission", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-    @SQLRestriction("category = 'CRITERIA'") // 假設資料庫存的是 "CRITERIA" (如果存 "COMPLETION" 請自行修改)
+    @OneToMany(mappedBy = "mission", cascade = CascadeType.ALL, orphanRemoval = true)
+    @SQLRestriction("category = 'CRITERIA'")
+    @BatchSize(size = 100)
     @JsonProperty("criteria")
     private List<MissionRequirement> criteria = new ArrayList<>();
 

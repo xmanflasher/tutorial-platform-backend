@@ -2,19 +2,28 @@ package com.waterballsa.tutorial_platform.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Set;
+import org.hibernate.annotations.BatchSize;
+import java.util.LinkedHashSet;
 
 
 @Entity
 @Table(name = "chapters")
-@Data
+@Getter
+@Setter
+@ToString(onlyExplicitlyIncluded = true)
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 public class Chapter {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @EqualsAndHashCode.Include
+    @ToString.Include
     private Long id;
 
     @Column(name = "original_id")
@@ -35,15 +44,18 @@ public class Chapter {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @ToString.Exclude
+    @JsonIgnore
     private Journey journey;
 
     @OneToMany(mappedBy = "chapter", cascade = CascadeType.ALL)
     @OrderBy("id ASC")
+    @BatchSize(size = 100)
     @Builder.Default
     private List<Lesson> lessons = new ArrayList<>();
 
     @Builder.Default
     @OneToMany(mappedBy = "chapter", cascade = CascadeType.ALL)
+    @BatchSize(size = 100)
     private List<Gym> gyms = new ArrayList<>();
 
     @Embedded

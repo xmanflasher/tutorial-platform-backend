@@ -2,20 +2,29 @@ package com.waterballsa.tutorial_platform.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-import java.util.List;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.util.Set;
+import java.util.LinkedHashSet;
 import java.util.ArrayList;
+import java.util.List;
 import com.waterballsa.tutorial_platform.enums.GymType;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "gyms")
-@Data
+@Getter
+@Setter
+@ToString(onlyExplicitlyIncluded = true)
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 public class Gym {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @EqualsAndHashCode.Include
+    @ToString.Include
     private Long id;
 
     @Column(name = "original_id")
@@ -43,11 +52,13 @@ public class Gym {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "journey_id")
     @ToString.Exclude
+    @JsonIgnore
     private Journey journey;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "chapter_id")
     @ToString.Exclude
+    @JsonIgnore
     private Chapter chapter;
 
     @Embedded
@@ -60,7 +71,8 @@ public class Gym {
     private Reward reward;
 
     @OneToMany(mappedBy = "gym", cascade = CascadeType.ALL)
-    private List<GymSubmission> submissions;
+    @Builder.Default
+    private List<GymSubmission> submissions = new ArrayList<>();
 
     @OneToMany(mappedBy = "gym", cascade = CascadeType.ALL, orphanRemoval = true)
     @Builder.Default

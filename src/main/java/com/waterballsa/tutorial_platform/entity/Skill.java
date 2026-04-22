@@ -6,13 +6,18 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "skills")
-@Data // ★ 自動生成 Getter, Setter, toString, equals, hashCode
-@NoArgsConstructor // ★ 自動生成無參數建構子 (JPA 需要)
-@AllArgsConstructor // ★ 自動生成全參數建構子
-@Builder // ★ 自動生成 Builder 模式
+@Getter
+@Setter
+@ToString(onlyExplicitlyIncluded = true)
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Skill {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @EqualsAndHashCode.Include
+    @ToString.Include
     private Long id;
 
     @Column(name = "original_id")

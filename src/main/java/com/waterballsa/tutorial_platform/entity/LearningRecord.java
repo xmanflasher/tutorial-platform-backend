@@ -6,13 +6,18 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "learning_records")
-@Data
+@Getter
+@Setter
+@ToString(onlyExplicitlyIncluded = true)
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 public class LearningRecord {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @EqualsAndHashCode.Include
+    @ToString.Include
     private Long id;
 
     @com.fasterxml.jackson.annotation.JsonIgnore

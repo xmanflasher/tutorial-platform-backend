@@ -7,17 +7,22 @@ import org.hibernate.type.SqlTypes;
 import java.util.List;
 import com.waterballsa.tutorial_platform.entity.vo.SubmissionFieldConfig;
 import com.waterballsa.tutorial_platform.enums.ChallengeType;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "challenges")
-@Data
+@Getter
+@Setter
+@ToString(onlyExplicitlyIncluded = true)
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 public class Challenge {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @EqualsAndHashCode.Include
+    @ToString.Include
     private Long id;
 
     @Column(name = "original_id")
@@ -46,5 +51,6 @@ public class Challenge {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "gym_id")
     @ToString.Exclude
+    @JsonIgnore
     private Gym gym;
 }

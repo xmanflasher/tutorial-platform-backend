@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -67,7 +68,7 @@ public class LessonController {
     }
 
     // ★★★ 這裡就是「Lesson 串 LessonContent」取 URL 的核心邏輯 ★★★
-    private List<Map<String, Object>> toContentDtoList(List<LessonContent> contents) {
+    private List<Map<String, Object>> toContentDtoList(java.util.Collection<LessonContent> contents) {
         // 安全檢查：如果 list 是 null，回傳空陣列，避免 500 錯誤
         if (contents == null || contents.isEmpty()) {
             return Collections.emptyList();

@@ -13,6 +13,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -103,7 +105,7 @@ public class DemoController {
         GymSubmission submission = GymSubmission.builder()
                 .member(member)
                 .gym(gym)
-                .challengeId(gym.getChallenges() != null && !gym.getChallenges().isEmpty() ? gym.getChallenges().get(0).getId() : 1L)
+                .challengeId(gym.getChallenges() != null && !gym.getChallenges().isEmpty() ? gym.getChallenges().iterator().next().getId() : 1L)
                 .status(GymSubmission.SubmissionStatus.SUCCESS)
                 .grade(3) // 預設 3 星
                 .submittedAt(LocalDateTime.now())

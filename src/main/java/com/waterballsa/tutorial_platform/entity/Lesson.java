@@ -2,18 +2,25 @@ package com.waterballsa.tutorial_platform.entity;
 
 import jakarta.persistence.*;
 import lombok.*; // 務必引入 Lombok
+import java.util.Set;
+import java.util.LinkedHashSet;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "lessons")
-@Data // ★★★ 救星：自動產生 getReward(), getName(), getDescription() 等方法
+@Getter
+@Setter
+@ToString(onlyExplicitlyIncluded = true)
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 public class Lesson {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @EqualsAndHashCode.Include
+    @ToString.Include
     private Long id;
 
     @Column(name = "original_id")
@@ -54,17 +61,20 @@ public class Lesson {
     private Reward reward;
 
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "lesson_id") // 建立單向關聯 (Skill table 會有 lesson_id)
-    private List<Skill> skills;
+    @JoinColumn(name = "lesson_id")
+    @Builder.Default
+    private Set<Skill> skills = new LinkedHashSet<>();
 
-    @OneToMany(mappedBy = "lesson", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @OrderBy("sortOrder ASC") // 讓取出來的內容自動依照順序排列
+    @OneToMany(mappedBy = "lesson", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OrderBy("sortOrder ASC")
     @ToString.Exclude
-    private List<LessonContent> contents;
+    @Builder.Default
+    private Set<LessonContent> contents = new LinkedHashSet<>();
 
     // ★★★ 新增 1：Lesson 對 Gym 的多對一關聯 (假設一個單元對應一個道館) ★★★
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "gym_id") // DB 欄位名稱
+    @JsonIgnore
     private Gym gym;
 
     // ★★★ 新增 2：接收 JSON 字串的暫存欄位 (e.g., "5_6") ★★★

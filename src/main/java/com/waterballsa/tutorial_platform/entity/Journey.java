@@ -4,16 +4,22 @@ import jakarta.persistence.*;
 import lombok.*; // 引入 Lombok
 import java.util.ArrayList;
 import java.util.List;
+import org.hibernate.annotations.BatchSize;
 
 @Entity
 @Table(name = "journeys")
-@Data // 自動生成 Getter/Setter (包含 getMissions)
+@Getter
+@Setter
+@ToString(onlyExplicitlyIncluded = true)
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 public class Journey {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @EqualsAndHashCode.Include
+    @ToString.Include
     private Long id;
 
     @Column(name = "original_id", unique = true, nullable = false)
@@ -35,32 +41,38 @@ public class Journey {
 
     // 關聯：章節
     @OneToMany(mappedBy = "journey", cascade = CascadeType.ALL, orphanRemoval = true)
+    @BatchSize(size = 100)
     @Builder.Default
     private List<Chapter> chapters = new ArrayList<>();
 
     // ★★★ 關鍵修正：補回 missions 欄位 ★★★
     @OneToMany(mappedBy = "journey", cascade = CascadeType.ALL, orphanRemoval = true)
+    @BatchSize(size = 100)
     @Builder.Default
     private List<Mission> missions = new ArrayList<>();
 
     // 關聯：技能
     @OneToMany(mappedBy = "journey", cascade = CascadeType.ALL, orphanRemoval = true)
+    @BatchSize(size = 100)
     @Builder.Default
     private List<Skill> skills = new ArrayList<>();
 
     // ★★★ [新增] 道館關聯 (對應 Gym.java 的 journey 屬性) ★★★
-    @OneToMany(mappedBy = "journey", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "journey", cascade = CascadeType.ALL, orphanRemoval = true)
+    @BatchSize(size = 100)
     @Builder.Default
-    @ToString.Exclude // 建議加這個，避免 Lombok 生成 toString 時發生無限遞迴
+    @ToString.Exclude
     private List<Gym> gyms = new ArrayList<>();
 
     // 關聯：選單
     @OneToMany(mappedBy = "journey", cascade = CascadeType.ALL, orphanRemoval = true)
     @OrderBy("displayOrder ASC")
+    @BatchSize(size = 100)
     @Builder.Default
     private List<JourneyMenu> menus = new ArrayList<>();
 
     // 關聯：徽章 (SD-10)
+    @Builder.Default
     @Transient // 先設為 Transient 方便 JSON 反序列化，再手動存入 db
     private List<GymBadge> badges = new ArrayList<>();
 }

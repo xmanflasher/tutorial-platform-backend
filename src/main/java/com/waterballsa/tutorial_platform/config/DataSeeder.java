@@ -15,6 +15,8 @@ import java.io.InputStream;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Component
 @RequiredArgsConstructor
@@ -319,7 +321,7 @@ public class DataSeeder implements CommandLineRunner {
         }
     }
 
-    private void saveRequirements(Mission parent, List<MissionRequirement> list, String category) {
+    private void saveRequirements(Mission parent, java.util.Collection<MissionRequirement> list, String category) {
         if (list == null) return;
         for (MissionRequirement r : list) {
             r.setOriginalId(r.getId());

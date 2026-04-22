@@ -5,16 +5,22 @@ import lombok.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.time.LocalDateTime;
+import org.hibernate.annotations.BatchSize;
 
 @Entity
 @Table(name = "members")
-@Data
+@Getter
+@Setter
+@ToString(onlyExplicitlyIncluded = true)
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 public class Member {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @EqualsAndHashCode.Include
+    @ToString.Include
     private Long id;
 
     private String name;
@@ -55,11 +61,13 @@ public class Member {
 
     @com.fasterxml.jackson.annotation.JsonIgnore
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+    @BatchSize(size = 100)
     @Builder.Default
     private List<LearningRecord> learningRecords = new ArrayList<>();
 
     @com.fasterxml.jackson.annotation.JsonIgnore
     @OneToMany(mappedBy = "instructor", cascade = CascadeType.ALL)
+    @BatchSize(size = 100)
     @Builder.Default
     private List<Journey> journeys = new ArrayList<>();
 

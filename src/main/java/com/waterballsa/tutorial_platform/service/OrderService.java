@@ -25,6 +25,15 @@ public class OrderService {
 
     @Transactional
     public OrderDTO createOrder(Long userId, Long journeyId, Long amount, String paymentMethod, String invoiceType, String invoiceValue) {
+        // 檢查重複下單 (SD-04.1 / SA-05.1 延伸安全性實作)
+        // 透過 Repository 直接查詢是否存在已支付或待付款的訂單
+        boolean hasPaid = orderRepository.existsByUserIdAndJourneyIdAndStatus(userId, journeyId, Order.OrderStatus.PAID);
+        boolean hasPending = orderRepository.existsByUserIdAndJourneyIdAndStatus(userId, journeyId, Order.OrderStatus.PENDING);
+        
+        if (hasPaid || hasPending) {
+            throw new RuntimeException("Duplicate order: You already have a paid or pending order for this journey.");
+        }
+
         String orderNumber = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss")) + UUID.randomUUID().toString().substring(0, 4).toUpperCase();
         
         Order order = Order.builder()

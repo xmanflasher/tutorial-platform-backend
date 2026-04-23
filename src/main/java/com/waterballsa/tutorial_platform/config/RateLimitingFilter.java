@@ -23,12 +23,17 @@ import java.util.concurrent.ConcurrentHashMap;
 @Component
 public class RateLimitingFilter extends OncePerRequestFilter {
 
+    @org.springframework.beans.factory.annotation.Value("${app.rate-limit.capacity:100}")
+    private int capacity;
+
+    @org.springframework.beans.factory.annotation.Value("${app.rate-limit.time-unit-minutes:1}")
+    private int timeUnitMinutes;
+
     // 使用 ConcurrentHashMap 儲存每個 IP 對應的權杖桶
     private final Map<String, Bucket> buckets = new ConcurrentHashMap<>();
 
-    // 定義速率限制規則：每分鐘 30 個請求 (可根據需求調整)
     private Bucket createNewBucket() {
-        Bandwidth limit = Bandwidth.classic(30, Refill.greedy(30, Duration.ofMinutes(1)));
+        Bandwidth limit = Bandwidth.classic(capacity, Refill.greedy(capacity, Duration.ofMinutes(timeUnitMinutes)));
         return Bucket.builder()
                 .addLimit(limit)
                 .build();
@@ -41,16 +46,22 @@ public class RateLimitingFilter extends OncePerRequestFilter {
         // 僅對 API 進行速率限制
         if (request.getRequestURI().startsWith("/api/")) {
             String ip = getClientIp(request);
+            
+            // ★ 修復點 1: Local 環境 (localhost/127.0.0.1) 豁免限流
+            if ("127.0.0.1".equals(ip) || "0:0:0:0:0:0:0:1".equals(ip) || "localhost".equals(ip)) {
+                filterChain.doFilter(request, response);
+                return;
+            }
+
             Bucket bucket = buckets.computeIfAbsent(ip, k -> createNewBucket());
 
             if (bucket.tryConsume(1)) {
-                // 允許請求
                 filterChain.doFilter(request, response);
             } else {
-                // 超過速率限制，回傳 429 Too Many Requests
+                // ★ 修復點 2: 提供更具辨識度的 429 回應內容
                 response.setStatus(HttpStatus.TOO_MANY_REQUESTS.value());
-                response.setContentType("application/json");
-                response.getWriter().write("{\"error\": \"Too many requests. Please try again later.\"}");
+                response.setContentType("application/json;charset=UTF-8");
+                response.getWriter().write("{\"code\": \"RATE_LIMIT_EXCEEDED\", \"error\": \"操作過於頻繁，請稍後再試。\"}");
             }
         } else {
             filterChain.doFilter(request, response);

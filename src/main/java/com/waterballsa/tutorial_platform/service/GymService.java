@@ -16,6 +16,7 @@ import com.waterballsa.tutorial_platform.converter.GymMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -25,6 +26,7 @@ import java.util.stream.Collectors;
 
 @Slf4j
 @Service
+@Transactional(readOnly = true)
 @RequiredArgsConstructor
 public class GymService {
 
@@ -157,6 +159,7 @@ public class GymService {
     }
 
     // --- 功能 3.6: 標記徽章動畫為已播放 ---
+    @Transactional
     public void markBadgeAsShown(Long userId, Long badgeId) {
         memberBadgeRepository.findByMemberIdAndBadgeId(userId, badgeId).ifPresent(mb -> {
             mb.setIsShown(true);

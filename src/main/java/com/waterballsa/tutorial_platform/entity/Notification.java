@@ -10,13 +10,17 @@ import java.time.LocalDateTime;
  */
 @Entity
 @Table(name = "notifications")
-@Data
+@Getter
+@Setter
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@ToString
 public class Notification {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @EqualsAndHashCode.Include
     private Long id;
 
     @Column(name = "member_id", nullable = false)

@@ -6,13 +6,17 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "member_badges")
-@Data
+@Getter
+@Setter
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@ToString
 public class MemberBadge {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @EqualsAndHashCode.Include
     private Long id;
 
     @Column(name = "member_id", nullable = false)

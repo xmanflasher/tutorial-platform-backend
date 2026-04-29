@@ -6,13 +6,17 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "gym_badges")
-@Data
+@Getter
+@Setter
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@ToString
 public class GymBadge {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @EqualsAndHashCode.Include
     private Long id;
 
     private String name;
@@ -23,6 +27,7 @@ public class GymBadge {
     // 關聯到道館 (Many-to-One)
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "gym_id")
+    @ToString.Exclude
     private Gym gym;
 
     // 這裡直接存 ID 即可，方便 Service 層直接拿來做 filter 或回傳給前端

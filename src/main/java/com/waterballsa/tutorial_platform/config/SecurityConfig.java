@@ -76,7 +76,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/visitor/**").permitAll()
 
                         // 3. 靜態資源與基礎頁面
-                        .requestMatchers("/", "/sign-in", "/error", "/images/**", "/logo.png", "/favicon.ico", "/lessons/**").permitAll()
+                        .requestMatchers("/", "/sign-in", "/error", "/images/**", "/logo.png", "/favicon.ico").permitAll()
 
                         // 其餘所有請求 (如 POST /api/orders, PATCH /api/users) 接需驗證
                         .anyRequest().authenticated()

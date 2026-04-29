@@ -21,13 +21,16 @@ public class Skill {
     private Long id;
 
     @Column(name = "original_id")
+    @ToString.Include
     private Long originalId;
 
+    @ToString.Include
     private String name;
     private String description;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "journey_id")
-    @JsonIgnore
+    @com.fasterxml.jackson.annotation.JsonIgnoreProperties("skills")
+    @ToString.Exclude
     private Journey journey;
 }

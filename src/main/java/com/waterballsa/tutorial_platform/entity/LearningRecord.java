@@ -23,10 +23,12 @@ public class LearningRecord {
     @com.fasterxml.jackson.annotation.JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
+    @ToString.Exclude
     private Member member;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "lesson_id")
+    @ToString.Exclude
     private Lesson lesson;
 
     private boolean finished; // true 代表已看完 (打勾)

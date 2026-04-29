@@ -28,35 +28,44 @@ public class Gym {
     private Long id;
 
     @Column(name = "original_id")
+    @ToString.Include
     private Long originalId;
 
     @Column(name = "code")
+    @ToString.Include
     private String code;
 
+    @ToString.Include
     private String name;
 
     @Column(columnDefinition = "TEXT")
     private String description;
 
     @Column(name = "display_order")
+    @ToString.Include
     private Integer displayOrder;
 
+    @ToString.Include
     private Integer difficulty;
 
     @Enumerated(EnumType.STRING)
     @Column(length = 20)
+    @ToString.Include
     private GymType type;
 
+    @ToString.Include
     private Integer maxStars;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "journey_id")
+    @com.fasterxml.jackson.annotation.JsonIgnoreProperties("gyms")
     @ToString.Exclude
     @JsonIgnore
     private Journey journey;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "chapter_id")
+    @com.fasterxml.jackson.annotation.JsonIgnoreProperties("gyms")
     @ToString.Exclude
     @JsonIgnore
     private Chapter chapter;
@@ -72,10 +81,14 @@ public class Gym {
 
     @OneToMany(mappedBy = "gym", cascade = CascadeType.ALL)
     @Builder.Default
+    @com.fasterxml.jackson.annotation.JsonIgnoreProperties("gym")
+    @ToString.Exclude
     private List<GymSubmission> submissions = new ArrayList<>();
 
     @OneToMany(mappedBy = "gym", cascade = CascadeType.ALL, orphanRemoval = true)
     @Builder.Default
+    @com.fasterxml.jackson.annotation.JsonIgnoreProperties("gym")
+    @ToString.Exclude
     private List<Challenge> challenges = new ArrayList<>();
 
     // =================================================================
@@ -83,13 +96,14 @@ public class Gym {
     // =================================================================
     //@ManyToMany(fetch = FetchType.LAZY)
     //@JoinTable(
-//            name = "gym_lessons", // 產生的中間表名稱
-//            joinColumns = @JoinColumn(name = "gym_id"),
-//            inverseJoinColumns = @JoinColumn(name = "lesson_id")
-//    )
+    //        name = "gym_lessons", // 產生的中間表名稱
+    //        joinColumns = @JoinColumn(name = "gym_id"),
+    //        inverseJoinColumns = @JoinColumn(name = "lesson_id")
+    //)
     @Builder.Default
-    @ToString.Exclude // 避免循環引用導致 StackOverflow
     @OneToMany(mappedBy = "gym", fetch = FetchType.LAZY)// 意思：去 Lesson 類別找一個叫做 "gym" 的屬性，以它為主
+    @com.fasterxml.jackson.annotation.JsonIgnoreProperties("gym")
+    @ToString.Exclude // 避免循環引用導致 StackOverflow
     private List<Lesson> relatedLessons = new ArrayList<>();
 
     // 用於接收 JSON 資料，不存入資料庫欄位

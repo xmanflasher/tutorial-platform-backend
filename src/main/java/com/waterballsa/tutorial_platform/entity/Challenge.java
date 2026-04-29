@@ -26,19 +26,24 @@ public class Challenge {
     private Long id;
 
     @Column(name = "original_id")
+    @ToString.Include
     private Long originalId;
 
+    @ToString.Include
     private String name;  // 例如："Showdown ! 撲克牌遊戲建模 ★"
 
     @Enumerated(EnumType.STRING)
+    @ToString.Include
     private ChallengeType type;
 
     // ★ 新增：建議完成天數
     @Column(name = "recommend_duration")
+    @ToString.Include
     private Integer recommendDurationInDays;
 
     // ★ 新增：最大完成天數
     @Column(name = "max_duration")
+    @ToString.Include
     private Integer maxDurationInDays;
 
     // ★ 新增：繳交檔案設定 (存成 JSONB)
@@ -50,6 +55,7 @@ public class Challenge {
     // 雙向關聯：對應 Gym.java 裡面的 List<Challenge>
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "gym_id")
+    @com.fasterxml.jackson.annotation.JsonIgnoreProperties("challenges")
     @ToString.Exclude
     @JsonIgnore
     private Gym gym;

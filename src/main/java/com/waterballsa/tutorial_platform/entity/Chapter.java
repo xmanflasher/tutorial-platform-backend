@@ -27,22 +27,27 @@ public class Chapter {
     private Long id;
 
     @Column(name = "original_id")
+    @ToString.Include
     private Long originalId;
 
+    @ToString.Include
     private String name;
     private String description;
 
     // ★ 新增：對應資料庫的 display_order
     @Column(name = "display_order")
+    @ToString.Include
     private Integer displayOrder;
 
     // ★ 新增：對應資料庫的 visible
     // 建議給預設值 true，避免舊資料 null 導致 NullPointerException
     @Builder.Default
     @Column(name = "visible")
+    @ToString.Include
     private Boolean visible = true;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @com.fasterxml.jackson.annotation.JsonIgnoreProperties("chapters")
     @ToString.Exclude
     @JsonIgnore
     private Journey journey;
@@ -51,11 +56,15 @@ public class Chapter {
     @OrderBy("id ASC")
     @BatchSize(size = 100)
     @Builder.Default
+    @com.fasterxml.jackson.annotation.JsonIgnoreProperties("chapter")
+    @ToString.Exclude
     private List<Lesson> lessons = new ArrayList<>();
 
     @Builder.Default
     @OneToMany(mappedBy = "chapter", cascade = CascadeType.ALL)
     @BatchSize(size = 100)
+    @com.fasterxml.jackson.annotation.JsonIgnoreProperties("chapter")
+    @ToString.Exclude
     private List<Gym> gyms = new ArrayList<>();
 
     @Embedded

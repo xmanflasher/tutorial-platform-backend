@@ -36,11 +36,13 @@ public class DevAuthController {
      * 開發專用登入 API (Mock Login)
      */
     @PostMapping("/dev-login")
-    // 3. 修改回傳型別 String -> ResponseEntity<Member>
     public ResponseEntity<Map<String, Object>> devLogin(@RequestParam String email, HttpServletRequest request) {
-        if (!enableTestLogin) {
-            log.warn("Mock login attempt while feature is disabled. Email: {}", email);
-            return ResponseEntity.status(403).body(Map.of("message", "Test login is disabled in this environment."));
+        String remoteAddr = request.getRemoteAddr();
+        boolean isLocal = "127.0.0.1".equals(remoteAddr) || "0:0:0:0:0:0:0:1".equals(remoteAddr) || "localhost".equals(request.getServerName());
+
+        if (!enableTestLogin && !isLocal) {
+            log.warn("Mock login denied for non-local request: {}. Email: {}", remoteAddr, email);
+            return ResponseEntity.status(403).body(Map.of("message", "Test login is disabled on production."));
         }
         // 1. 根據 Email 找使用者
         Member member = memberRepository.findByEmail(email)

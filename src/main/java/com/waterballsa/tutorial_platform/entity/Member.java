@@ -5,19 +5,27 @@ import lombok.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.time.LocalDateTime;
+import org.hibernate.annotations.BatchSize;
 
 @Entity
 @Table(name = "members")
-@Data
+@Getter
+@Setter
+@ToString(onlyExplicitlyIncluded = true)
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 public class Member {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @EqualsAndHashCode.Include
+    @ToString.Include
     private Long id;
 
+    @ToString.Include
     private String name;
+    @ToString.Include
     private String email;
     private String avatar;
     private String jobTitle;
@@ -31,6 +39,7 @@ public class Member {
     @Column(nullable = false, columnDefinition = "varchar(20) default 'ROLE_USER'")
     @Enumerated(EnumType.STRING)
     @Builder.Default
+    @ToString.Include
     private Role role = Role.ROLE_USER;
 
     public Role getRole() {
@@ -53,14 +62,18 @@ public class Member {
     @Builder.Default
     private Long coin = 0L;
 
-    @com.fasterxml.jackson.annotation.JsonIgnore
+    @com.fasterxml.jackson.annotation.JsonIgnoreProperties("member")
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+    @BatchSize(size = 100)
     @Builder.Default
+    @ToString.Exclude
     private List<LearningRecord> learningRecords = new ArrayList<>();
 
-    @com.fasterxml.jackson.annotation.JsonIgnore
+    @com.fasterxml.jackson.annotation.JsonIgnoreProperties("instructor")
     @OneToMany(mappedBy = "instructor", cascade = CascadeType.ALL)
+    @BatchSize(size = 100)
     @Builder.Default
+    @ToString.Exclude
     private List<Journey> journeys = new ArrayList<>();
 
     private String sex;

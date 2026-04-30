@@ -7,6 +7,7 @@ import com.waterballsa.tutorial_platform.entity.Gym;
 import com.waterballsa.tutorial_platform.entity.LessonContent;
 import org.springframework.stereotype.Component;
 
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -28,7 +29,7 @@ public class GymMapper {
                                 .maxDurationInDays(c.getMaxDurationInDays())
                                 .build())
                         .collect(Collectors.toList()))
-                .lessons(gym.getRelatedLessons() == null ? Collections.emptyList() : gym.getRelatedLessons().stream()
+                .lessons(gym.getRelatedLessons() == null ? Collections.<LessonDTO>emptyList() : gym.getRelatedLessons().stream()
                         .map(l -> LessonDTO.builder()
                                 .id(String.valueOf(l.getId()))
                                 .name(l.getName())
@@ -40,7 +41,7 @@ public class GymMapper {
                 .build();
     }
 
-    private List<java.util.Map<String, Object>> toContentDtoList(List<LessonContent> contents) {
+    private List<java.util.Map<String, Object>> toContentDtoList(Collection<LessonContent> contents) {
         if (contents == null || contents.isEmpty()) {
             return Collections.emptyList();
         }

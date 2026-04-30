@@ -18,6 +18,7 @@ public class JourneyService {
 
     private final JourneyRepository journeyRepository;
 
+    @Transactional(readOnly = true)
     public List<JourneyDetailDTO> getAllJourneys() {
         return journeyRepository.findAll().stream()
                 // ★ 1. [新增] 過濾 Journey：只回傳 visible 為 true 的

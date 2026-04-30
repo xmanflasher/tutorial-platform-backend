@@ -6,24 +6,30 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "member_missions")
-@Data
+@Getter
+@Setter
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@ToString
 public class MemberMission {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @EqualsAndHashCode.Include
     private Long id;
 
     // ★ 修正 1：改用 @ManyToOne 關聯物件，不要只存 Long memberId
     @com.fasterxml.jackson.annotation.JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
+    @ToString.Exclude
     private Member member;
 
     // ★ 修正 2：改用 @ManyToOne 關聯物件，不要只存 Long missionId
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "mission_id")
+    @ToString.Exclude
     private Mission mission;
 
     @Enumerated(EnumType.STRING)

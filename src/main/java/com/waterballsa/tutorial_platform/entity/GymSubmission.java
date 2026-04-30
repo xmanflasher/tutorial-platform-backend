@@ -10,28 +10,39 @@ import java.util.Map;
 
 @Entity
 @Table(name = "gym_submissions")
-@Data
+@Getter
+@Setter
+@ToString(onlyExplicitlyIncluded = true)
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 public class GymSubmission {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @ToString.Include
+    @EqualsAndHashCode.Include
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
+    @com.fasterxml.jackson.annotation.JsonIgnoreProperties("submissions")
+    @ToString.Exclude
     private Member member;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "gym_id")
+    @com.fasterxml.jackson.annotation.JsonIgnoreProperties("submissions")
+    @ToString.Exclude
     private Gym gym;
 
     @Column(name = "challenge_id")
+    @ToString.Include
     private Long challengeId;
 
     // ★★★ 修正這裡：完全對照 API JSON 的值 ★★★
     @Enumerated(EnumType.STRING)
+    @ToString.Include
     private SubmissionStatus status;
 
     @JdbcTypeCode(SqlTypes.JSON)
@@ -45,7 +56,9 @@ public class GymSubmission {
     @Column(columnDefinition = "TEXT")
     private String feedback;
 
+    @ToString.Include
     private Integer grade;
+    @ToString.Include
     private LocalDateTime submittedAt;
     private LocalDateTime bookingCompletedAt;
     private LocalDateTime reviewedAt;

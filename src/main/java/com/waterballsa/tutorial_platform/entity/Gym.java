@@ -59,14 +59,12 @@ public class Gym {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "journey_id")
     @com.fasterxml.jackson.annotation.JsonIgnoreProperties("gyms")
-    @ToString.Exclude
     @JsonIgnore
     private Journey journey;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "chapter_id")
     @com.fasterxml.jackson.annotation.JsonIgnoreProperties("gyms")
-    @ToString.Exclude
     @JsonIgnore
     private Chapter chapter;
 
@@ -82,13 +80,11 @@ public class Gym {
     @OneToMany(mappedBy = "gym", cascade = CascadeType.ALL)
     @Builder.Default
     @com.fasterxml.jackson.annotation.JsonIgnoreProperties("gym")
-    @ToString.Exclude
     private List<GymSubmission> submissions = new ArrayList<>();
 
     @OneToMany(mappedBy = "gym", cascade = CascadeType.ALL, orphanRemoval = true)
     @Builder.Default
     @com.fasterxml.jackson.annotation.JsonIgnoreProperties("gym")
-    @ToString.Exclude
     private List<Challenge> challenges = new ArrayList<>();
 
     // =================================================================
@@ -103,7 +99,6 @@ public class Gym {
     @Builder.Default
     @OneToMany(mappedBy = "gym", fetch = FetchType.LAZY)// 意思：去 Lesson 類別找一個叫做 "gym" 的屬性，以它為主
     @com.fasterxml.jackson.annotation.JsonIgnoreProperties("gym")
-    @ToString.Exclude // 避免循環引用導致 StackOverflow
     private List<Lesson> relatedLessons = new ArrayList<>();
 
     // 用於接收 JSON 資料，不存入資料庫欄位

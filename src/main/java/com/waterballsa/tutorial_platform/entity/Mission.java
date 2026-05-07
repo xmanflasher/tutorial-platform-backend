@@ -45,8 +45,6 @@ public class Mission {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "journey_id")
     @JsonIgnore
-    @ToString.Exclude
-    @EqualsAndHashCode.Exclude
     private Journey journey;
 
     @Embedded

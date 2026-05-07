@@ -48,7 +48,6 @@ public class Chapter {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @com.fasterxml.jackson.annotation.JsonIgnoreProperties("chapters")
-    @ToString.Exclude
     @JsonIgnore
     private Journey journey;
 
@@ -57,14 +56,12 @@ public class Chapter {
     @BatchSize(size = 100)
     @Builder.Default
     @com.fasterxml.jackson.annotation.JsonIgnoreProperties("chapter")
-    @ToString.Exclude
     private List<Lesson> lessons = new ArrayList<>();
 
     @Builder.Default
     @OneToMany(mappedBy = "chapter", cascade = CascadeType.ALL)
     @BatchSize(size = 100)
     @com.fasterxml.jackson.annotation.JsonIgnoreProperties("chapter")
-    @ToString.Exclude
     private List<Gym> gyms = new ArrayList<>();
 
     @Embedded

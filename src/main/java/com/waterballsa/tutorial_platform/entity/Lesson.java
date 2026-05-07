@@ -53,7 +53,6 @@ public class Lesson {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "chapter_id")
     @com.fasterxml.jackson.annotation.JsonIgnoreProperties("lessons")
-    @ToString.Exclude // 避免無窮迴圈
     private Chapter chapter;
 
     @Embedded
@@ -69,13 +68,11 @@ public class Lesson {
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "lesson_id")
     @Builder.Default
-    @ToString.Exclude
     private List<Skill> skills = new ArrayList<>();
 
     @OneToMany(mappedBy = "lesson", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @OrderBy("sortOrder ASC")
     @com.fasterxml.jackson.annotation.JsonIgnoreProperties("lesson")
-    @ToString.Exclude
     @Builder.Default
     private Set<LessonContent> contents = new LinkedHashSet<>();
 
@@ -83,7 +80,6 @@ public class Lesson {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "gym_id") // DB 欄位名稱
     @com.fasterxml.jackson.annotation.JsonIgnoreProperties("lessons")
-    @ToString.Exclude
     private Gym gym;
 
     // ★★★ 新增 2：接收 JSON 字串的暫存欄位 (e.g., "5_6") ★★★
@@ -98,7 +94,6 @@ public class Lesson {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "journey_id") // 這會在資料庫新增 journey_id 欄位
     @com.fasterxml.jackson.annotation.JsonIgnoreProperties("lessons")
-    @ToString.Exclude
     private Journey journey;
 
 }

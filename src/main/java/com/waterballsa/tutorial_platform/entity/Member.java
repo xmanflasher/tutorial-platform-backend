@@ -66,14 +66,12 @@ public class Member {
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
     @BatchSize(size = 100)
     @Builder.Default
-    @ToString.Exclude
     private List<LearningRecord> learningRecords = new ArrayList<>();
 
     @com.fasterxml.jackson.annotation.JsonIgnoreProperties("instructor")
     @OneToMany(mappedBy = "instructor", cascade = CascadeType.ALL)
     @BatchSize(size = 100)
     @Builder.Default
-    @ToString.Exclude
     private List<Journey> journeys = new ArrayList<>();
 
     private String sex;

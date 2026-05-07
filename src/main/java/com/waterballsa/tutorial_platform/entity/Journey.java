@@ -38,7 +38,6 @@ public class Journey {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "instructor_id")
     @com.fasterxml.jackson.annotation.JsonIgnoreProperties("journeys")
-    @ToString.Exclude
     private Member instructor;
 
     @Column(name = "visible")
@@ -51,7 +50,6 @@ public class Journey {
     @BatchSize(size = 100)
     @Builder.Default
     @com.fasterxml.jackson.annotation.JsonIgnoreProperties("journey")
-    @ToString.Exclude
     private List<Chapter> chapters = new ArrayList<>();
 
     // ★★★ 關鍵修正：補回 missions 欄位 ★★★
@@ -59,7 +57,6 @@ public class Journey {
     @BatchSize(size = 100)
     @Builder.Default
     @com.fasterxml.jackson.annotation.JsonIgnoreProperties("journey")
-    @ToString.Exclude
     private List<Mission> missions = new ArrayList<>();
 
     // 關聯：技能
@@ -67,7 +64,6 @@ public class Journey {
     @BatchSize(size = 100)
     @Builder.Default
     @com.fasterxml.jackson.annotation.JsonIgnoreProperties("journey")
-    @ToString.Exclude
     private List<Skill> skills = new ArrayList<>();
 
     // ★★★ [新增] 道館關聯 (對應 Gym.java 的 journey 屬性) ★★★
@@ -75,7 +71,6 @@ public class Journey {
     @BatchSize(size = 100)
     @Builder.Default
     @com.fasterxml.jackson.annotation.JsonIgnoreProperties("journey")
-    @ToString.Exclude
     private List<Gym> gyms = new ArrayList<>();
 
     // 關聯：選單
@@ -84,12 +79,10 @@ public class Journey {
     @BatchSize(size = 100)
     @Builder.Default
     @com.fasterxml.jackson.annotation.JsonIgnoreProperties("journey")
-    @ToString.Exclude
     private List<JourneyMenu> menus = new ArrayList<>();
 
     // 關聯：徽章 (SD-10)
     @Builder.Default
     @Transient // 先設為 Transient 方便 JSON 反序列化，再手動存入 db
-    @ToString.Exclude
     private List<GymBadge> badges = new ArrayList<>();
 }

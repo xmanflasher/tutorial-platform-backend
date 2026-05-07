@@ -69,7 +69,8 @@ public class SkillRatingSyncIT {
             try {
                 Member member = memberRepository.findById(record.getUserId()).orElse(null);
                 if (member != null) {
-                    skillRatingService.updateSkillRating(member, record.getRatings());
+                    skillRatingService.updateSkillRating(member, record.getRatings(), 
+                                java.util.Objects.requireNonNullElse(record.getJourneyId(), 0L));
                     count++;
                 }
             } catch (Exception e) {

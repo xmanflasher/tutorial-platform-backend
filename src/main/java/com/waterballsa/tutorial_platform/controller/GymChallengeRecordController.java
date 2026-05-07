@@ -29,14 +29,11 @@ public class GymChallengeRecordController {
 
     private final GymChallengeRecordService recordService;
     private final MemberService memberService;
-    private final GymChallengeRecordMapper mapper;
 
     @GetMapping("/user/{userId}")
     public List<GymChallengeRecordDTO> getRecords(@PathVariable Long userId) {
         log.info("[RecordController] Fetching records for user {}", userId);
-        return recordService.getLatestRecordsByUserId(userId).stream()
-                .map(mapper::toDto)
-                .collect(Collectors.toList());
+        return recordService.getLatestRecordsAsDto(userId);
     }
 
     @GetMapping("/me")
@@ -57,7 +54,7 @@ public class GymChallengeRecordController {
         log.info("[RecordController] Submitting record for user {} gym {}", userId, dto.getGymId());
         
         GymChallengeRecord record = recordService.submitChallengeRecord(userId, dto.getGymId(), dto.getGymChallengeId(), dto.getSubmission());
-        return mapper.toDto(record);
+        return recordService.mapToDto(record);
     }
 
     @PostMapping("/book")
@@ -69,7 +66,7 @@ public class GymChallengeRecordController {
         log.info("[RecordController] Booking challenge for user {} gym {}", userId, dto.getGymId());
         
         GymChallengeRecord record = recordService.bookChallenge(userId, dto.getGymId(), dto.getGymChallengeId());
-        return mapper.toDto(record);
+        return recordService.mapToDto(record);
     }
 
     @PostMapping("/demo/simulate-correction/{gymId}")
@@ -81,14 +78,14 @@ public class GymChallengeRecordController {
         log.info("[RecordController] Bulk simulateCorrection for gymId {}, userId {}", gymId, userId);
         
         GymChallengeRecord sampleRecord = recordService.bulkSimulateCorrection(userId, gymId);
-        return ResponseEntity.ok(mapper.toDto(sampleRecord));
+        return ResponseEntity.ok(recordService.mapToDto(sampleRecord));
     }
 
     @PostMapping("/demo/force-grade-record-by-id/{id}")
     public ResponseEntity<?> forceGradeRecord(@PathVariable Long id) {
         log.info("[RecordController] Force grading record ID: {}", id);
         GymChallengeRecord record = recordService.forceGradeRecord(id);
-        return ResponseEntity.ok(mapper.toDto(record));
+        return ResponseEntity.ok(recordService.mapToDto(record));
     }
 
     @GetMapping("/diagnostic/all")

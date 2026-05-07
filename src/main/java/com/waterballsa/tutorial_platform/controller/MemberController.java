@@ -19,12 +19,21 @@ public class MemberController {
     private final MemberService memberService;
     private final LeaderboardService leaderboardService;
     private final GymService gymService;
+    private final com.waterballsa.tutorial_platform.service.SkillRatingService skillRatingService;
 
     // 1. 獲取當前登入者 (Private Profile)
     @GetMapping("/me")
     public MemberDTO getCurrentUser(Authentication authentication) {
         Long memberId = memberService.getCurrentMemberId(authentication);
         return memberService.getMemberDto(memberId);
+    }
+
+    // 1.0 獲取課程專屬技能統計 (Phase 29: ARCH-FIX-02)
+    @GetMapping("/api/members/me/skill-stats")
+    public List<SkillStatDTO> getSkillStats(Authentication auth, @RequestParam(required = false) Long journeyId) {
+        Long memberId = memberService.getCurrentMemberId(auth);
+        if (memberId == null) throw new RuntimeException("Unauthorized");
+        return skillRatingService.getJourneySkillStats(memberId, journeyId);
     }
 
     // 1.1 更新當前登入者資料 (Phase 7)

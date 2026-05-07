@@ -11,4 +11,9 @@ import lombok.Getter;
 public class GymPassedEvent {
     private final Long memberId;
     private final Long gymId;
+    private final boolean skipSkillUpdate;
+
+    public GymPassedEvent(Long memberId, Long gymId) {
+        this(memberId, gymId, false);
+    }
 }

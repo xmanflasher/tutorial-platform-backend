@@ -3,8 +3,6 @@ package com.waterballsa.tutorial_platform.converter;
 import com.waterballsa.tutorial_platform.dto.GymChallengeRecordDTO;
 import com.waterballsa.tutorial_platform.entity.Challenge;
 import com.waterballsa.tutorial_platform.entity.GymChallengeRecord;
-import com.waterballsa.tutorial_platform.repository.ChallengeRepository;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
@@ -12,12 +10,13 @@ import java.util.HashMap;
 
 @Slf4j
 @Component
-@RequiredArgsConstructor
 public class GymChallengeRecordMapper {
 
-    private final ChallengeRepository challengeRepository;
-
-    public GymChallengeRecordDTO toDto(GymChallengeRecord entity) {
+    /**
+     * [ARCH-FIX-01] 移除 Repository 依賴，回歸純粹轉換職責。
+     * 呼叫端 (Service) 負責準備好 Challenge 物件。
+     */
+    public GymChallengeRecordDTO toDto(GymChallengeRecord entity, Challenge challenge) {
         if (entity == null) return null;
         try {
             GymChallengeRecordDTO dto = new GymChallengeRecordDTO();
@@ -37,13 +36,14 @@ public class GymChallengeRecordMapper {
             if (entity.getReviewedAt() != null) dto.setReviewedAt(entity.getReviewedAt().getTime());
             if (entity.getBookingCompletedAt() != null) dto.setBookingCompletedAt(entity.getBookingCompletedAt().getTime());
 
-            dto.setGymName("道館挑戰 #" + entity.getGymId());
+            // 標題顯示處理
+            dto.setGymName("道館挑戰 #" + entity.getGymId()); // Default Fallback
 
-            // 查找挑戰類型 (區分實戰 vs 速解)
-            try {
-                challengeRepository.findById(entity.getGymChallengeId())
-                        .ifPresent(c -> dto.setChallengeType(c.getType()));
-            } catch (Exception ignore) {
+            if (challenge != null) {
+                dto.setChallengeType(challenge.getType());
+                if (challenge.getName() != null && !challenge.getName().isEmpty()) {
+                    dto.setGymName(challenge.getName());
+                }
             }
 
             return dto;
@@ -54,5 +54,12 @@ public class GymChallengeRecordMapper {
             err.setStatus("ERROR");
             return err;
         }
+    }
+
+    /**
+     * 簡易版轉換 (不含挑戰詳細資訊)
+     */
+    public GymChallengeRecordDTO toDto(GymChallengeRecord entity) {
+        return toDto(entity, null);
     }
 }

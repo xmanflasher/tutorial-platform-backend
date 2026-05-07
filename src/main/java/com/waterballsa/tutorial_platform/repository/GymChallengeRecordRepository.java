@@ -11,4 +11,5 @@ public interface GymChallengeRecordRepository extends JpaRepository<GymChallenge
     List<GymChallengeRecord> findByUserIdOrderByCreatedAtDesc(Long userId);
     List<GymChallengeRecord> findByGymIdAndUserIdOrderByCreatedAtDesc(Long gymId, Long userId);
     List<GymChallengeRecord> findByGymIdAndGymChallengeIdAndUserIdOrderByCreatedAtDesc(Long gymId, Long gymChallengeId, Long userId);
+    List<GymChallengeRecord> findByUserIdAndStatus(Long userId, GymChallengeRecord.ChallengeStatus status);
 }

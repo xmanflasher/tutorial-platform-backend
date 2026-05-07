@@ -36,6 +36,10 @@ public class GymService {
     private final MemberBadgeRepository memberBadgeRepository;
     private final GymMapper gymMapper;
 
+    public java.util.Optional<Gym> findById(Long id) {
+        return gymRepository.findById(id);
+    }
+
     // --- 功能 1: 取得道館地圖狀態 (主線/支線解鎖邏輯) ---
     public List<GymStatusDTO> getGymMap(Long memberId) {
         // 1. 撈出所有 Gym (依照順序)

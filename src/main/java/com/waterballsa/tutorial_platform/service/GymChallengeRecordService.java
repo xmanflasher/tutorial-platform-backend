@@ -1,5 +1,7 @@
 package com.waterballsa.tutorial_platform.service;
 
+import com.waterballsa.tutorial_platform.converter.GymChallengeRecordMapper;
+import com.waterballsa.tutorial_platform.dto.GymChallengeRecordDTO;
 import com.waterballsa.tutorial_platform.entity.Challenge;
 import com.waterballsa.tutorial_platform.entity.Gym;
 import com.waterballsa.tutorial_platform.entity.GymChallengeRecord;
@@ -13,6 +15,8 @@ import com.waterballsa.tutorial_platform.repository.GymChallengeRecordRepository
 import com.waterballsa.tutorial_platform.repository.GymRepository;
 import com.waterballsa.tutorial_platform.repository.GymSubmissionRepository;
 import com.waterballsa.tutorial_platform.repository.MemberRepository;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationEventPublisher;
@@ -22,6 +26,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Service
@@ -33,7 +38,28 @@ public class GymChallengeRecordService {
     private final GymRepository gymRepository;
     private final GymSubmissionRepository gymSubmissionRepository;
     private final ChallengeRepository challengeRepository;
+    private final SkillRatingService skillRatingService;
+    private final GymChallengeRecordMapper mapper;
     private final ApplicationEventPublisher eventPublisher;
+
+    /**
+     * [ARCH-FIX-01] 將 DTO 轉換邏輯移入 Service。
+     */
+    public List<GymChallengeRecordDTO> getLatestRecordsAsDto(Long userId) {
+        List<GymChallengeRecord> records = getLatestRecordsByUserId(userId);
+        return records.stream()
+                .map(r -> {
+                    Challenge challenge = challengeRepository.findById(r.getGymChallengeId()).orElse(null);
+                    return mapper.toDto(r, challenge);
+                })
+                .collect(Collectors.toList());
+    }
+
+    public GymChallengeRecordDTO mapToDto(GymChallengeRecord record) {
+        if (record == null) return null;
+        Challenge challenge = challengeRepository.findById(record.getGymChallengeId()).orElse(null);
+        return mapper.toDto(record, challenge);
+    }
 
     public List<GymChallengeRecord> getLatestRecordsByUserId(Long userId) {
         if (userId == null) return Collections.emptyList();
@@ -45,6 +71,10 @@ public class GymChallengeRecordService {
             latestRecords.putIfAbsent(key, r);
         }
         return new ArrayList<>(latestRecords.values());
+    }
+
+    public List<GymChallengeRecord> getRecordsByGymAndUser(Long gymId, Long userId) {
+        return repository.findByGymIdAndUserIdOrderByCreatedAtDesc(gymId, userId);
     }
 
     public List<GymChallengeRecord> getAllDiagnostics() {
@@ -163,8 +193,10 @@ public class GymChallengeRecordService {
 
         String feedback = "導師批改：實作優秀！優點：結構清晰。";
         Map<String, String> ratings = new HashMap<>();
-        ratings.put("1", "S");
-        ratings.put("2", "A");
+        // 直接使用通用維度，模擬更真實的批改數據
+        ratings.put("Logic", "S");
+        ratings.put("Arch", "A");
+        ratings.put("Design", "B");
 
         for (GymChallengeRecord target : records) {
             target.setStatus(GymChallengeRecord.ChallengeStatus.SUCCESS);
@@ -173,12 +205,20 @@ public class GymChallengeRecordService {
             target.setReviewedAt(new Date());
             target.setCompletedAt(new Date());
             repository.save(target);
-            
-            // 重要：發佈過關事件，觸發徽章核發引擎 (ISSUE-BADGE-02-01)
-            if (target.getGymId() != null) {
-                eventPublisher.publishEvent(new GymPassedEvent(userId, target.getGymId()));
+        }
+
+        // [ISSUE-28-05-06-01] 手動更新技能評級 (僅限實作挑戰)
+        Member member = memberRepository.findById(userId).orElse(null);
+        if (member != null) {
+            Challenge challenge = challengeRepository.findById(records.get(0).getGymChallengeId()).orElse(null);
+            if (challenge != null && challenge.getType() == ChallengeType.PRACTICAL_CHALLENGE) {
+                skillRatingService.updateSkillRating(member, ratings, records.get(0).getJourneyId());
             }
         }
+
+        // 重要：發佈過關事件，並標註 skipSkillUpdate=true，因為我們剛才已經手動更新過了
+        eventPublisher.publishEvent(new GymPassedEvent(userId, gymId, true));
+
         repository.flush();
         return records.get(0);
     }

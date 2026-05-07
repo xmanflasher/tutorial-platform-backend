@@ -105,6 +105,14 @@ public class MemberService {
         return toDTO(memberRepository.save(member));
     }
 
+    public Member getMemberById(Long id) {
+        return memberRepository.findById(id).orElse(null);
+    }
+
+    public java.util.Optional<Member> findById(Long id) {
+        return memberRepository.findById(id);
+    }
+
     private MemberDTO toDTO(Member member) {
         return MemberDTO.builder()
                 .id(member.getId())
